@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid-o-meter</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro|Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
+    <script defer="" src="https://vmokry.com/js/all.js"></script>
+
+
   </head>
   <body>
     <div class="container">
@@ -20,7 +24,9 @@
           <div>fasd
             <div class="person-container">
               <div class="person">
-                Human
+                Human <i class="fab fa-artstation fa-w-16 fa-2x"></i>
+
+
               </div>
             </div>
 
@@ -28,6 +34,14 @@
           <div>kjbh</div>
         </div>
       </div>
+
+
+
+      <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select>
     </div>
 
 
@@ -37,6 +51,16 @@
     <div id="debug"></div>
 
     <style>
+
+    code {
+      font-family: 'Source Code Pro', monospace;
+    }
+    h1,h2,h3,h4 {
+      font-family: 'Source Serif Pro', serif;
+    }
+    p, a {
+      font-family: 'Source Sans Pro', sans-serif;
+    }
       .three-column-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -58,17 +82,35 @@
 
       const people = [];
 
-      const fetchCorona = () =>
-        fetch(`${coronaEndpoint}/`)
-          .then((body) => body.json())
-          .then((data) => {
-            document.getElementById('debug').innerHTML = JSON.stringify(data);
-          });
+      const countryList = [{
+        value: 'japan',
+        label: 'Japan',
+      }];
+
+      const populateCountryList = (countries) => {
+        const countrySelect = document.getElementById('country-select');
+
+        countries.forEach(country => {
+          const countryOption = document.createElement('option');
+          countryOption.setAttribute('value', country.value);
+          countryOption.innerText = country.label;
+          countrySelect.appendChild(countryOption);
+        })
+      }
+
+      populateCountryList(countryList);
+
+      const fetchCorona = async () => {
+        return await fetch(`${coronaEndpoint}/`)
+          .then((body) => body.json());
+      }
 
       const fetchCoronaCountry = () => {}
 
       if (!globalCoronaData) {
-        fetchCorona();
+        const data = await fetchCorona();
+
+        document.getElementById('debug').innerHTML = JSON.stringify(data);
       }
 
     </script>
