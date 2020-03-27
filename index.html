@@ -7,15 +7,70 @@
   </head>
   <body>
     <div class="container">
-      <h1 style="color: red;">Covibility</h1>
-      <h2>Learn your chance to get infected</h2>
-      dfdsf
-      test asdasd asdas
-    </div>
-    <style>
+      <div class="intro">
+        <h1 style="">Covibility</h1>
+        <h3>Learn your chance to get infected</h3>
+      </div> <!-- intro -->
 
+
+      <div class="person-select">
+        <h2>How many people you met</h2>
+        <div class="three-column-grid">
+          <div>asdf</div>
+          <div>fasd
+            <div class="person-container">
+              <div class="person">
+                Human
+              </div>
+            </div>
+
+          </div>
+          <div>kjbh</div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div id="data"></div>
+    <div id="debug"></div>
+
+    <style>
+      .three-column-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 1em;
+      }
+      .person {
+        padding: 1em;
+        background-color: #eee;
+        border-radius: 4px;
+        cursor: move;
+      }
 
     </style>
 
+    <script>
+
+      const coronaEndpoint = 'https://corona.blloc.com';
+      const globalCoronaData = null;
+
+      const people = [];
+
+      const fetchCorona = () =>
+        fetch(`${coronaEndpoint}/`)
+          .then((body) => body.json())
+          .then((data) => {
+            document.getElementById('debug').innerHTML = JSON.stringify(data);
+          });
+
+      const fetchCoronaCountry = () => {}
+
+      if (!globalCoronaData) {
+        fetchCorona();
+      }
+
+    </script>
   </body>
 </html>
