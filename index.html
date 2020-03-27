@@ -1,118 +1,142 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covid-o-meter</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro|Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
-    <script defer="" src="https://vmokry.com/js/all.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid-o-meter</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro|Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
+  <script defer="" src="./js/all.js"></script>
 
 
-  </head>
-  <body>
-    <div class="container">
-      <div class="intro">
-        <h1 style="">Covibility</h1>
-        <h3>Learn your chance to get infected</h3>
-      </div> <!-- intro -->
+</head>
+
+<body>
+  <div class="container">
+    <div class="intro">
+      <h1 style="">Covibility</h1>
+      <h2 class="main">You have 3.35% to get infected</h2>
+    </div>
+    <!-- intro -->
 
 
-      <div class="person-select">
-        <h2>How many people you met</h2>
-        <div class="three-column-grid">
-          <div>asdf</div>
-          <div>fasd
-            <div class="person-container">
-              <div class="person">
-                Human <i class="fab fa-artstation fa-w-16 fa-2x"></i>
-
-
-              </div>
-            </div>
-
+    <div class="person-select">
+      <h2>How many people you met</h2>
+      <div class="three-column-grid">
+        <div>
+          <div class="header">
+            <h3>Yesterday</h3>
           </div>
-          <div>kjbh</div>
+
+
         </div>
+        <div>Today
+          <div class="person-container">
+            <div class="person">
+              <p>Human <i class="fab fa-artstation fa-w-16 fa-2x"></i>
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+        <div>Tommorow</div>
       </div>
-
-
-
-      <select id="country-select">
-        <option value="japan">Japan</option>
-        <option value="czech-republic">Czech Republic</option>
-        <option value="usa">United States</option>
-      </select>
     </div>
 
 
 
+    <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select>
+  </div>
 
-    <div id="data"></div>
-    <div id="debug"></div>
 
-    <style>
+
+
+  <div id="data"></div>
+  <div id="debug"></div>
+
+  <style>
+    .container {
+      margin: auto;
+      max-width: 60em;
+    }
 
     code {
       font-family: 'Source Code Pro', monospace;
     }
-    h1,h2,h3,h4 {
+
+    h1,
+    h2,
+    h3,
+    h4 {
       font-family: 'Source Serif Pro', serif;
     }
-    p, a {
+
+    p {
+      font-size: 1em;
+      line-height: 1.2em;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    p,
+    a {
       font-family: 'Source Sans Pro', sans-serif;
     }
-      .three-column-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 1em;
-      }
-      .person {
-        padding: 1em;
-        background-color: #eee;
-        border-radius: 4px;
-        cursor: move;
-      }
 
-    </style>
+    .three-column-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 1em;
+    }
 
-    <script>
+    .person {
+      padding: 1em;
+      background-color: #eee;
+      border-radius: 4px;
+      cursor: move;
+    }
+  </style>
 
-      const coronaEndpoint = 'https://corona.blloc.com';
-      const globalCoronaData = null;
+  <script>
+    const coronaEndpoint = 'https://corona.blloc.com';
+    const globalCoronaData = null;
 
-      const people = [];
+    const people = [];
 
-      const countryList = [{
-        value: 'japan',
-        label: 'Japan',
-      }];
+    const countryList = [{
+      value: 'japan',
+      label: 'Japan',
+    }];
 
-      const populateCountryList = (countries) => {
-        const countrySelect = document.getElementById('country-select');
+    const populateCountryList = (countries) => {
+      const countrySelect = document.getElementById('country-select');
 
-        countries.forEach(country => {
-          const countryOption = document.createElement('option');
-          countryOption.setAttribute('value', country.value);
-          countryOption.innerText = country.label;
-          countrySelect.appendChild(countryOption);
-        })
-      }
+      countries.forEach(country => {
+        const countryOption = document.createElement('option');
+        countryOption.setAttribute('value', country.value);
+        countryOption.innerText = country.label;
+        countrySelect.appendChild(countryOption);
+      })
+    }
 
-      populateCountryList(countryList);
+    populateCountryList(countryList);
 
-      const fetchCorona = async () => {
-        return await fetch(`${coronaEndpoint}/`)
-          .then((body) => body.json());
-      }
+    const fetchCorona = async () => {
+      return await fetch(`${coronaEndpoint}/`)
+        .then((body) =>  body.json());
+    }
 
-      const fetchCoronaCountry = () => {}
+    const fetchCoronaCountry = () => {}
 
-      if (!globalCoronaData) {
-        const data = await fetchCorona();
+    if (!globalCoronaData) {
+      const data = await fetchCorona();
 
-        document.getElementById('debug').innerHTML = JSON.stringify(data);
-      }
-
-    </script>
-  </body>
+      document.getElementById('debug').innerHTML = JSON.stringify(data);
+    }
+  </script>
+</body>
 </html>
