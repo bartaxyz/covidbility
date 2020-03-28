@@ -25,6 +25,7 @@ Learn your chance to become infected by SARS-COV-2.
 - Showing % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity in country and age)
 
 ## Notes
-- We will multiply current infected number by 50 based on published studies (ToDo, find them)
+- We will multiply current infected number by 10 based on recent published studies
+  - "We estimate 86% of all infections were undocumented (95% CI: [82%–90%]) prior to 23 January 2020 travel restrictions." via https://science.sciencemag.org/content/early/2020/03/24/science.abb3221 16 March
 - I would love to see graphs as Outputs, showing that meeting one person tommorow is actually worse that seing that person today. Of course the best is not seeing the person at all.
 
