@@ -28,8 +28,9 @@
 
 
     <div class="part mainline">
-        <h1 class="main">You have <b class="highlight">3.305%</b> chance to been infected.</h1>
-        <p>(Based on data for whole World and meeting 2 people)</p>
+        <h1 class="main">You have <b class="highlight">3.305%</b> chance to get infected.</h1>
+        <p class="closer">(Based on data for World and meeting 2 people)</p>
+        <!-- note: 1 person, 2 and more people-->
         <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a></p>
     </div>
     <!-- mainline -->
@@ -39,8 +40,8 @@
 
     <div class="part timeline">
       <h2>How many people you met?</h2>
-      <p>Without mask under 2 meter distance.</p>
-      <dic class="container">
+      <p class="closer">Without mask under 2 meter of distance.</p>
+      <div class="container">
 
         <div class="item">
           <div class="no">
@@ -103,7 +104,7 @@
           </div>
         </div>
 
-      </dic>
+      </div>
 
     </div>
     <!-- timeline -->
@@ -144,7 +145,7 @@
 
 
 
-    <div class="part country">
+    <div class="part optional">
       <h2>Optional</h2>
 
       <h3>Where do you live?
@@ -163,31 +164,27 @@
 
 
     </div>
-    <!-- country -->
+    <!-- optional -->
 
 
 
     <div class="part settings">
-      <h2>Adjust settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
+      <h2>Settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
 
       <h3>Multiplicator of undocumented cases.
       <input type="number" value="10"></h3>
 
     </div>
-    <!-- country -->
+    <!-- settings -->
 
 
-    <div class="part results">
-      <h2>Adjust settings</h2>
+    <div class="part results" id="results">
+      <h2>Results</h2>
 
-      <select id="country-select">
-        <option value="japan">Japan</option>
-        <option value="czech-republic">Czech Republic</option>
-        <option value="usa">United States</option>
-      </select>
+
 
     </div>
-    <!-- country -->
+    <!-- results -->
 
 
 
