@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covid-o-meter</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro|Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
-  <script defer="" src="./js/all.js"></script>
+  <link href="style.css" rel="stylesheet">
+  <script defer="" src="./js/all.min.js"></script>
 
 
 </head>
@@ -13,130 +15,116 @@
 <body>
   <div class="container">
     <div class="intro">
-      <h1 style="">Covibility</h1>
-      <h2 class="main">You have 3.35% to get infected</h2>
+      <h2 style=""><i class="fas fa-chart-line"></i> Covid-o-meter</h2>
+      <h1 class="main">You have <b>3.35%</b> chance to get infected</h1>
     </div>
     <!-- intro -->
 
 
     <div class="person-select">
-      <h2>How many people you met</h2>
+      <h2>How many people you met?</h2>
       <div class="three-column-grid">
-        <div>
+        <div class="column">
           <div class="header">
-            <h3>Yesterday</h3>
+            <h3>&minus; 2</h3>
           </div>
 
 
         </div>
-        <div>Today
+        <div class="column">
+          <div class="header">
+            <h3>&minus; 1 (Yesterday)</h3>
+          </div>
+
+
+        </div>
+        <div class="column">
+          <div class="header">
+            <h3>Today</h3>
+          </div>
           <div class="person-container">
             <div class="person">
-              <p>Human <i class="fab fa-artstation fa-w-16 fa-2x"></i>
+              <p>Human <i class="fad fa-id-badge  fa-2x"></i>
               </p>
-
             </div>
           </div>
+        </div>
+      </div>
+      <!-- three column -->
+
+
+      <div class="three-column-grid">
+        <div class="column">
+          <button class="btn">Add person</button>
+
 
         </div>
-        <div>Tommorow</div>
+        <div class="column">
+          <button class="btn">Add person</button>
+
+
+        </div>
+
       </div>
-    </div>
+      <!-- three column -->
 
 
+      <br>
+      <br>
+      <br>
+      <br>
 
-    <select id="country-select">
+      <select id="country-select">
         <option value="japan">Japan</option>
         <option value="czech-republic">Czech Republic</option>
         <option value="usa">United States</option>
       </select>
-  </div>
+    </div>
 
 
 
 
-  <div id="data"></div>
-  <div id="debug"></div>
+    <div id="data"></div>
+    <div id="debug"></div>
 
-  <style>
-    .container {
-      margin: auto;
-      max-width: 60em;
-    }
+    <script>
+      const coronaEndpoint = 'https://corona.blloc.com';
+      const globalCoronaData = null;
 
-    code {
-      font-family: 'Source Code Pro', monospace;
-    }
+      const people = [];
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: 'Source Serif Pro', serif;
-    }
+      const countryList = [{
+        value: 'japan',
+        label: 'Japan',
+      }];
 
-    p {
-      font-size: 1em;
-      line-height: 1.2em;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
+      const populateCountryList = (countries) => {
+        const countrySelect = document.getElementById('country-select');
 
-    p,
-    a {
-      font-family: 'Source Sans Pro', sans-serif;
-    }
+        countries.forEach(country => {
+          const countryOption = document.createElement('option');
+          countryOption.setAttribute('value', country.value);
+          countryOption.innerText = country.label;
+          countrySelect.appendChild(countryOption);
+        })
+      }
 
-    .three-column-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: 1em;
-    }
+      populateCountryList(countryList);
 
-    .person {
-      padding: 1em;
-      background-color: #eee;
-      border-radius: 4px;
-      cursor: move;
-    }
-  </style>
+      const fetchCorona = async () => {
+        return await fetch(`${coronaEndpoint}/`)
+          .then((body) =>  body.json());
+      }
 
-  <script>
-    const coronaEndpoint = 'https://corona.blloc.com';
-    const globalCoronaData = null;
+      const fetchCoronaCountry = () => {}
 
-    const people = [];
+      if (!globalCoronaData) {
+        const data = await fetchCorona();
 
-    const countryList = [{
-      value: 'japan',
-      label: 'Japan',
-    }];
+        document.getElementById('debug').innerHTML = JSON.stringify(data);
+      }
 
-    const populateCountryList = (countries) => {
-      const countrySelect = document.getElementById('country-select');
-
-      countries.forEach(country => {
-        const countryOption = document.createElement('option');
-        countryOption.setAttribute('value', country.value);
-        countryOption.innerText = country.label;
-        countrySelect.appendChild(countryOption);
-      })
-    }
-
-    populateCountryList(countryList);
-
-    const fetchCorona = async () => {
-      return await fetch(`${coronaEndpoint}/`)
-        .then((body) =>  body.json());
-    }
-
-    const fetchCoronaCountry = () => {}
-
-    if (!globalCoronaData) {
-      const data = await fetchCorona();
-
-      document.getElementById('debug').innerHTML = JSON.stringify(data);
-    }
-  </script>
+    </script>
 </body>
+
 </html>
