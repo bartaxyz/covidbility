@@ -1,5 +1,5 @@
 :root {
-
+  --document-color: aliceblue;
   --link-color: rgba(0, 150, 250, 1);
   --link-color-hover: black;
   --highlight-color: rgba(220, 220, 0, 1);
@@ -14,7 +14,7 @@
 */
 
 body {
-  background-color: aliceblue;
+  background-color: var(--document-color);
 }
 
 code {
@@ -40,8 +40,6 @@ a,
 button {
   font-size: 1em;
   line-height: 1.2em;
-  margin-bottom: 0;
-  margin-top: 0;
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -61,7 +59,17 @@ button.btn {
   display: inline-block;
   text-align: center;
   cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
 }
+a.btn.lite,
+button.btn.lite {
+  background-color: var(--document-color);
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+
+}
+
 
 a.btn:hover,
 button.btn:hover {
@@ -141,6 +149,10 @@ a.link:active
   text-align: center;
   position: relative;
 }
+.timeline p,
+.timeline h4 {
+  margin: 0;
+}
 
 .timeline .item-person {
   display: block;
@@ -205,7 +217,12 @@ a.link:active
   }
 }
 
-.people .person {}
+.people .person p
+  {
+    margin: 0;
+  }
+
+
 
 /*
   PERSON SELECT
