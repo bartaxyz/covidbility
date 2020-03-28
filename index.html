@@ -15,41 +15,34 @@
 <body>
   <div class="container">
     <div class="part header">
-      <h2 style=""><i class="fad fa-shield-virus"></i> Covid-o-meter</h2>
+      <h2 style=""><i class="fal fa-shield-virus"></i> Covid-o-meter</h2>
 
     </div>
     <!-- header -->
 
-
-
-    <div class="part intro">
-
-      <h1 class="main">You have <b class="highlight">3.305%</b> chance to been infected.</h1>
+    <div class="part mainline">
+      <h3>Learn your <b>covidbility</b>.</h3>
+      <h3><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br>
+        A number that represents how likely one person get infected by novel coronavirus.<h3>
     </div>
-    <!-- intro -->
+
+
+    <div class="part mainline">
+        <h1 class="main">You have <b class="highlight">3.305%</b> chance to get <b>infected</b>.</h1>
+        <p class="closer">(Based on data for World and meeting 2 people)</p>
+        <!-- note: 1 person, 2 and more people-->
+        <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a></p>
+    </div>
+    <!-- mainline -->
 
 
 
 
     <div class="part timeline">
       <h2>How many people you met?</h2>
-      <dic class="container">
-        <div class="item">
-          <div class="no">
-            <p>-7</p>
-          </div>
-          <div class="label">
-            <p class="small">&nbsp;</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="no">
-            <p>-6</p>
-          </div>
-          <div class="label">
-            <p class="small">&nbsp;</p>
-          </div>
-        </div>
+      <p class="closer">People that did not wear a mask under 2 meter of distance.</p>
+      <div class="container">
+
         <div class="item">
           <div class="no">
             <p>-5</p>
@@ -111,35 +104,35 @@
           </div>
         </div>
 
-      </dic>
+      </div>
 
     </div>
     <!-- timeline -->
 
-    <div class="people">
+    <div class="people part">
       <div class="person">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> A</h4>
 
-        <p class="small"><b>0.004%</b> chance of having COVID19
+        <p class="small">has <b>0.004%</b> chance of having COVID19
           <p class="small">(Yesterday)</p>
         </p>
       </div>
       <div class="person is-highlighted">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> B</h4>
-        <p class="small"><b>0.004%</b> chance of having COVID19
+        <p class="small">has <b>0.004%</b> chance of having COVID19
         </p>
         <p class="small">(Yesterday)</p>
       </div>
       <div class="person">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> C</h4>
-        <p class="small"><b>0.012%</b> chance of having COVID19
+        <p class="small">has <b>0.012%</b> chance of having COVID19
         </p>
         <p class="small">(Today)</p>
       </div>
-      <div class="person">
+      <div class="person empty">
         <a class="btn">Add person</a>
       </div>
     </div>
@@ -147,83 +140,75 @@
 
 
 
-    <!-- OLD LAYOUT -->
-
-    <div class="part person-select hide">
-      <h2>How many people you met?</h2>
-      <div class="three-column-grid">
-        <div class="column">
-          <div class="header">
-            <h3>&minus; 2</h3>
-          </div>
-
-
-        </div>
-        <div class="column">
-          <div class="header">
-            <h3>&minus; 1 (Yesterday)</h3>
-          </div>
-
-
-        </div>
-        <div class="column">
-          <div class="header">
-            <h3>Today</h3>
-          </div>
-
-          <div class="person">
-            <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
-            <h4><i class="fas fa-user"></i> No.1</h4>
-            <p class="small"><b>0.004%</b> chance of having COVID19
-            </p>
-          </div>
-
-          <!-- todo: dragable (on mobile too) -->
-        </div>
-      </div>
-      <!-- three column -->
-
-
-      <div class="three-column-grid hide">
-        <div class="column">
-          <a class="btn">Add person</a>
-          <!-- a or buttons? Up to you -->
-
-
-        </div>
-        <div class="column">
-          <button class="btn">Add person</button>
-
-
-        </div>
-        <div class="column">
-          <button class="btn">Add person</button>
-
-
-        </div>
-
-      </div>
-      <!-- three column -->
 
 
 
 
 
-    </div>
-    <!-- person-select -->
+    <div class="part optional">
+      <h2>Optional</h2>
 
-    <div class="part country">
-      <h2>Where do you live?</h2>
-
+      <h3>Where do you live?
       <select id="country-select">
         <option value="japan">Japan</option>
         <option value="czech-republic">Czech Republic</option>
         <option value="usa">United States</option>
-      </select>
+      </select> <input type="text"></h3>
+      <h3>What is your age group?
+      <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select></h3>
+
+
 
     </div>
-    <!-- country -->
+    <!-- optional -->
 
+
+
+    <div class="part settings">
+      <h2>Settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
+
+      <h3>Multiplicator of undocumented cases.
+      <input type="number" value="10"></h3>
+
+    </div>
+    <!-- settings -->
+
+
+    <div class="part results" id="results">
+      <h2>Results</h2>
+
+      <h1 class="main">You have <b class="highlight">3.305%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.<sup>1</sub></h1>
+      <h2 class="main">You have <b class="highlight">0.705%</b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization / ICU</b>.<sup>2</sub></h2>
+
+      <h2 class="main">There is also <b class="highlight">0.025%</b> chance that someone else will <i class="fad fa-skull"></i> <b>die because of triage</b>.<sup>3</sub></h2>
+
+
+      <p>Notes:<br/>
+        1 - based on diagnosed cases, undocumented cases and number of people you met.<br>
+        2 - based on age and source:<br>
+        3 - based on age and source:<br>
+      </p>
+
+    </div>
+    <!-- results -->
+
+
+    <div class="part conclusion">
+
+      <h1>Save lives, flatten the curve. <i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
+    </div>
+    <!-- conclusion -->
+
+
+    <div class="part footer">
+
+      <p>Take with grain of salt, based on API and our research. Feel free to comment on GITHUB page. Made by Vladimir Mokry and Ondrej Barta. Big thanks to: People.</p>
+      </div>
+    <!-- footer -->
 
 
 
