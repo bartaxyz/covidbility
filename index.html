@@ -14,13 +14,147 @@
 
 <body>
   <div class="container">
-    <div class="part intro">
+    <div class="part header">
       <h2 style=""><i class="fad fa-shield-virus"></i> Covid-o-meter</h2>
+
+    </div>
+    <!-- header -->
+
+
+
+    <div class="part intro">
+
       <h1 class="main">You have <b class="highlight">3.35%</b> chance to get infected.</h1>
     </div>
     <!-- intro -->
 
 
+
+
+    <div class="part timeline">
+      <h2>How many people you met?</h2>
+      <dic class="container">
+        <div class="item">
+          <div class="no">
+            <p>-7</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="no">
+            <p>-6</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="no">
+            <p>-5</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="no">
+            <p>-4</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-person ghost">
+            <h4><i class="fas fa-user"></i> B</h4>
+          </div>
+          <div class="no">
+            <p>-3</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="no">
+            <p>-2</p>
+          </div>
+          <div class="label">
+            <p class="small">&nbsp;</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-person">
+            <h4><i class="fas fa-user"></i> B</h4>
+          </div>
+          <div class="item-person">
+            <h4><i class="fas fa-user"></i> A</h4>
+          </div>
+          <div class="no">
+            <p>-1</p>
+          </div>
+          <div class="label">
+            <p class="small">Yesterday</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-person">
+            <h4><i class="fas fa-user"></i> C</h4>
+          </div>
+          <div class="no">
+            <p>0</p>
+          </div>
+          <div class="label today">
+            <p class="small">Today</p>
+          </div>
+        </div>
+
+      </dic>
+
+    </div>
+    <!-- timeline -->
+
+    <div class="people">
+      <div class="person">
+        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
+        <h4><i class="fas fa-user"></i> A</h4>
+        <p class="small"><b>0.004%</b> chance of having COVID19
+        </p>
+      </div>
+      <div class="person">
+        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
+        <h4><i class="fas fa-user"></i> B</h4>
+        <p class="small"><b>0.004%</b> chance of having COVID19
+        </p>
+      </div>
+      <div class="person">
+        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
+        <h4><i class="fas fa-user"></i> C</h4>
+        <p class="small"><b>0.004%</b> chance of having COVID19
+        </p>
+      </div>
+      <div class="person">
+        <a class="btn">Add person</a>
+      </div>
+    </div>
+    <!-- people -->
+
+
+
+    <!-- OLD LAYOUT -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="part person-select">
       <h2>How many people you met?</h2>
       <div class="three-column-grid">
@@ -139,6 +273,7 @@
 
         document.getElementById('debug').innerHTML = JSON.stringify(data);
       }
+
     </script>
 </body>
 

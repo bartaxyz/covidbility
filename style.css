@@ -78,8 +78,8 @@ a.link:hover {
 .container {
   margin: auto;
   max-width: 60em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: .5em;
+  padding-right: .5em;
 }
 
 .part {
@@ -93,6 +93,86 @@ a.link:hover {
   clear: both;
 }
 
+/* 
+  INTRO
+*/
+
+.intro {}
+
+
+/* 
+  TIMELINE
+*/
+
+.timeline .container {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-basis: auto;
+}
+
+.timeline .item {
+  width: 12%;
+  text-align: center;
+  position: relative;
+}
+
+.timeline .item-person {
+  display: block;
+  margin-bottom: .5em;
+  border-radius: 4px;
+  padding: 1em 0;
+  background-color: var(--block-color);
+  cursor: move;
+}
+
+.timeline .item-person.ghost {
+  background-color: rgba(0, 0, 0, 0);
+  opacity: .5;
+  border: 2px dashed var(--main-color);
+  padding-top: calc(1em - 2px);
+  padding-bottom: calc(1em - 2px);
+}
+
+.timeline .no {
+  background-color: var(--block-color);
+  display: block;
+  border-radius: 4px;
+  padding: 0.5em 0;
+}
+
+.timeline .label {
+  display: block;
+  bottom: -0.5em;
+  margin-top: .25em;
+}
+
+
+@media screen and (max-width: 28em) {
+  .timeline .label {
+    transform: rotate(-45deg);
+    text-align: right;
+    width: auto;
+
+  }
+}
+
+/* 
+  PEOPLE
+*/
+
+.people {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.people .person {
+  margin-right: 0.5em;
+}
 
 /* 
   PERSON SELECT
@@ -116,7 +196,7 @@ a.link:hover {
   padding: 1em;
   background-color: var(--block-color);
   border-radius: 4px;
-  cursor: move;
+
   margin-bottom: 1em;
   position: relative;
 }
