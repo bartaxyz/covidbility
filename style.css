@@ -5,11 +5,16 @@
   --highlight-color: rgba(220, 220, 0, 1);
   --main-color: rgba(50, 50, 150, 1);
   --block-color: rgba(50, 50, 150, 0.15);
+  --none-color: rgba(50, 50, 150, 0.05);
 }
 
 /* 
   GENERAL
 */
+
+body {
+  background-color: aliceblue;
+}
 
 code {
   font-family: 'Source Code Pro', monospace;
@@ -54,6 +59,7 @@ button.btn {
   font-size: 1em;
   display: inline-block;
   text-align: center;
+  cursor: pointer;
 }
 
 a.btn:hover,
@@ -74,6 +80,10 @@ a.link:hover {
 /* 
   LAYOUT
 */
+
+.hide {
+  display: none;
+}
 
 .container {
   margin: auto;
@@ -127,14 +137,19 @@ a.link:hover {
   padding: 1em 0;
   background-color: var(--block-color);
   cursor: move;
+  border: 2px solid var(--none-color);
 }
 
-.timeline .item-person.ghost {
+.is-highlighted.item-person,
+.is-highlighted.person {
+  border: 2px solid var(--main-color);
+}
+
+.timeline .item-person.is-ghosted {
   background-color: rgba(0, 0, 0, 0);
   opacity: .5;
   border: 2px dashed var(--main-color);
-  padding-top: calc(1em - 2px);
-  padding-bottom: calc(1em - 2px);
+
 }
 
 .timeline .no {
@@ -165,14 +180,20 @@ a.link:hover {
 */
 
 .people {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: .5em;
 
 }
 
-.people .person {
-  margin-right: 0.5em;
+@media screen and (max-width: 40em) {
+  .people {
+    grid-template-columns: 1fr 1fr;
+
+  }
 }
+
+.people .person {}
 
 /* 
   PERSON SELECT
@@ -195,9 +216,10 @@ a.link:hover {
 .person {
   padding: 1em;
   background-color: var(--block-color);
+  border: 2px solid var(--none-color);
   border-radius: 4px;
 
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   position: relative;
 }
 
