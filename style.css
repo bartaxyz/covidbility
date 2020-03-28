@@ -1,18 +1,15 @@
 :root {
 
-  --link-color: rgba(0, 150, 255, 1);
+  --link-color: rgba(0, 150, 250, 1);
+  --link-color-hover: black;
   --highlight-color: rgba(220, 220, 0, 1);
   --main-color: rgba(50, 50, 150, 1);
   --block-color: rgba(50, 50, 150, 0.15);
 }
 
-
-.container {
-  margin: auto;
-  max-width: 60em;
-  padding-left: 1em;
-  padding-right: 1em;
-}
+/* 
+  GENERAL
+*/
 
 code {
   font-family: 'Source Code Pro', monospace;
@@ -20,8 +17,7 @@ code {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   font-family: 'Source Serif Pro', serif;
   color: var(--main-color);
   font-weight: 400;
@@ -32,14 +28,20 @@ h4 {
   box-shadow: inset 0px -5px 0px 0px var(--highlight-color);
 }
 
+h4,
 p,
-a {
+a,
+button {
   font-size: 1em;
   line-height: 1.2em;
   margin-bottom: 0;
   margin-top: 0;
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+p.small {
+  font-size: 0.85em;
 }
 
 a.btn,
@@ -50,6 +52,38 @@ button.btn {
   border: none;
   border-radius: 4px;
   font-size: 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+a.btn:hover,
+button.btn:hover {
+  background-color: var(--link-color-hover);
+}
+
+a.link {
+  color: var(--link-color);
+}
+
+a.link:hover {
+  color: var(--link-color-hover);
+}
+
+
+
+/* 
+  LAYOUT
+*/
+
+.container {
+  margin: auto;
+  max-width: 60em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.part {
+  margin-bottom: 5em;
 }
 
 .three-column-grid {
@@ -59,15 +93,35 @@ button.btn {
   clear: both;
 }
 
+
+/* 
+  PERSON SELECT
+*/
+
+.person-select {}
+
+.person-select .header h4 {
+  font-weight: bold;
+}
+
+.person .link.delete {
+  position: absolute;
+  right: 0em;
+  top: 0em;
+  border-radius: 100%;
+  padding: 0.3em;
+}
+
 .person {
   padding: 1em;
   background-color: var(--block-color);
   border-radius: 4px;
   cursor: move;
   margin-bottom: 1em;
+  position: relative;
 }
 
-.person h3 {
+.person h4 {
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0.5em;
