@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
