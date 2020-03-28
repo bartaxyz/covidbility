@@ -132,7 +132,7 @@ a.link:active
   grid-column-gap: 1em;
   clear: both;
 }
-
+.footer { margin-top: 10em;}
 /*
   INTRO
 */
