@@ -6,7 +6,7 @@ Learn your chance to become infected by SARS-COV-2.
 - [ ] Find good data source of Intense Care Units
 - [x] Find good data source of probabilities, research
 - [ ] Built a mathematical model
-- [x ] Design
+- [x] Design
 
 ## Mission 
 - Showing user % chance of getting infected based on number of people and time of spending with them
