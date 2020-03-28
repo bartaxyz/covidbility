@@ -15,14 +15,14 @@
 <body>
   <div class="container">
     <div class="intro">
-      <h2 style=""><i class="fas fa-chart-line"></i> Covid-o-meter</h2>
-      <h1 class="main">You have <b class="highlight">3.35%</b> chance to get infected</h1>
+      <h2 style=""><i class="fad fa-shield-virus"></i> Covid-o-meter</h2>
+      <h1 class="main">You have <b class="highlight">3.35%</b> chance to get infected.</h1>
     </div>
     <!-- intro -->
 
 
     <div class="person-select">
-      <h2>How many people you met?</h2>
+      <h2>How many <i class="fad fa-people-arrows"></i> people you met?</h2>
       <div class="three-column-grid">
         <div class="column">
           <div class="header">
@@ -44,7 +44,8 @@
           </div>
           <div class="person-container">
             <div class="person">
-              <p><i class="fad fa-id-badge  fa-2x"></i> Person no.1
+              <h3>No.1</h3>
+              <p><b>0.004%</b> having COVID19
               </p>
             </div>
           </div>
@@ -54,6 +55,11 @@
 
 
       <div class="three-column-grid">
+        <div class="column">
+          <button class="btn">Add person</button>
+
+
+        </div>
         <div class="column">
           <button class="btn">Add person</button>
 
@@ -123,7 +129,6 @@
 
         document.getElementById('debug').innerHTML = JSON.stringify(data);
       }
-
     </script>
 </body>
 
