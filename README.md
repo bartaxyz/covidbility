@@ -23,7 +23,6 @@ Learn your chance to become infected by SARS-COV-2.
 - Showing % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity and age)
 
 ## Notes
-- We will multiply the current infected number by 10 based on recently published studies
-  - "We estimate 86% of all infections were undocumented (95% CI: [82%–90%]) prior to 23 January 2020 travel restrictions." via https://science.sciencemag.org/content/early/2020/03/24/science.abb3221 - CHINA
+- "We estimate 86% of all infections were undocumented (95% CI: [82%–90%]) prior to 23 January 2020 travel restrictions." via https://science.sciencemag.org/content/early/2020/03/24/science.abb3221 - CHINA
 
 
