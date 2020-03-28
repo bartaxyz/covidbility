@@ -1,53 +1,65 @@
-    .container {
-      margin: auto;
-      max-width: 60em;
-      padding-left: 1em;
-      padding-right: 1em;
-    }
+:root {
+  --block-color: #dde;
+  --link-color: #229;
+  --highlight-color: #ee0;
+}
 
-    code {
-      font-family: 'Source Code Pro', monospace;
-    }
+.container {
+  margin: auto;
+  max-width: 60em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: 'Source Serif Pro', serif;
-      color: #229;
-    }
+code {
+  font-family: 'Source Code Pro', monospace;
+}
 
-    p,
-    a {
-      font-size: 1em;
-      line-height: 1.2em;
-      margin-bottom: 0;
-      margin-top: 0;
-      color: #229;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Source Serif Pro', serif;
+  color: #229;
+  font-weight: 400;
+}
 
-    a.btn,
-    button.btn {
-      background-color: deepskyblue;
-      color: white;
-      padding: 0.5em 1em;
-      border: none;
-      border-radius: 4px;
-      font-size: 1em;
+.highlight {
+  border-bottom: 5px solid var(--highlight-color);
+  box-shadow: inset 0px -5px 0px 0px var(--highlight-color);
+}
 
-    }
+p,
+a {
+  font-size: 1em;
+  line-height: 1.2em;
+  margin-bottom: 0;
+  margin-top: 0;
+  color: var(--link-color);
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
-    .three-column-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: 1em;
-      clear: both;
-    }
+a.btn,
+button.btn {
+  background-color: deepskyblue;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
 
-    .person {
-      padding: 1em;
-      background-color: #eee;
-      border-radius: 4px;
-      cursor: move;
-    }
+}
+
+.three-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1em;
+  clear: both;
+}
+
+.person {
+  padding: 1em;
+  background-color: var(--block-color);
+  border-radius: 4px;
+  cursor: move;
+}
