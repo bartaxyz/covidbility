@@ -15,18 +15,22 @@
 <body>
   <div class="container">
     <div class="part header">
-      <h2 style=""><i class="fad fa-shield-virus"></i> Covid-o-meter</h2>
+      <h2 style=""><i class="fal fa-shield-virus"></i> Covid-o-meter</h2>
 
     </div>
     <!-- header -->
 
-
-
-    <div class="part intro">
-
-      <h1 class="main">You have <b class="highlight">3.305%</b> chance to been infected.</h1>
+    <div class="part mainline">
+      <h3>Learn your <b>covidbility</b>.</h3>
+      <h3><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br>
+        A number that represents how likely one person get infected by novel coronavirus.<h3>
     </div>
-    <!-- intro -->
+
+
+    <div class="part mainline">
+        <h1 class="main">You have <b class="highlight">3.305%</b> chance to been infected.</h1>
+    </div>
+    <!-- mainline -->
 
 
 
@@ -34,22 +38,7 @@
     <div class="part timeline">
       <h2>How many people you met?</h2>
       <dic class="container">
-        <div class="item">
-          <div class="no">
-            <p>-7</p>
-          </div>
-          <div class="label">
-            <p class="small">&nbsp;</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="no">
-            <p>-6</p>
-          </div>
-          <div class="label">
-            <p class="small">&nbsp;</p>
-          </div>
-        </div>
+
         <div class="item">
           <div class="no">
             <p>-5</p>
@@ -116,7 +105,7 @@
     </div>
     <!-- timeline -->
 
-    <div class="people">
+    <div class="people part">
       <div class="person">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> A</h4>
@@ -139,7 +128,7 @@
         </p>
         <p class="small">(Today)</p>
       </div>
-      <div class="person">
+      <div class="person empty">
         <a class="btn">Add person</a>
       </div>
     </div>
@@ -147,73 +136,36 @@
 
 
 
-    <!-- OLD LAYOUT -->
-
-    <div class="part person-select hide">
-      <h2>How many people you met?</h2>
-      <div class="three-column-grid">
-        <div class="column">
-          <div class="header">
-            <h3>&minus; 2</h3>
-          </div>
-
-
-        </div>
-        <div class="column">
-          <div class="header">
-            <h3>&minus; 1 (Yesterday)</h3>
-          </div>
-
-
-        </div>
-        <div class="column">
-          <div class="header">
-            <h3>Today</h3>
-          </div>
-
-          <div class="person">
-            <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
-            <h4><i class="fas fa-user"></i> No.1</h4>
-            <p class="small"><b>0.004%</b> chance of having COVID19
-            </p>
-          </div>
-
-          <!-- todo: dragable (on mobile too) -->
-        </div>
-      </div>
-      <!-- three column -->
-
-
-      <div class="three-column-grid hide">
-        <div class="column">
-          <a class="btn">Add person</a>
-          <!-- a or buttons? Up to you -->
-
-
-        </div>
-        <div class="column">
-          <button class="btn">Add person</button>
-
-
-        </div>
-        <div class="column">
-          <button class="btn">Add person</button>
-
-
-        </div>
-
-      </div>
-      <!-- three column -->
 
 
 
+
+
+    <div class="part country">
+      <h2>Optional</h2>
+
+      <h3>Where do you live?
+      <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select></h3>
+      <h3>What is your age group?
+      <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select></h3>
+      <input type="text">
 
 
     </div>
-    <!-- person-select -->
+    <!-- country -->
 
-    <div class="part country">
-      <h2>Where do you live?</h2>
+
+
+    <div class="part settings">
+      <h2>Adjust settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
 
       <select id="country-select">
         <option value="japan">Japan</option>
@@ -224,6 +176,18 @@
     </div>
     <!-- country -->
 
+
+    <div class="part results">
+      <h2>Adjust settings</h2>
+
+      <select id="country-select">
+        <option value="japan">Japan</option>
+        <option value="czech-republic">Czech Republic</option>
+        <option value="usa">United States</option>
+      </select>
+
+    </div>
+    <!-- country -->
 
 
 
