@@ -148,17 +148,21 @@
     <div class="part optional">
       <h2>Optional</h2>
 
-      <h3>Where do you live?
+      <h3 class="line-height">Where do you live?
       <select id="country-select">
+        <option value="">World</option>
         <option value="japan">Japan</option>
         <option value="czechia">Czechia</option>
         <option value="usa">United States</option>
       </select>
       </h3>
-      <h3>What is your age group?
+      <h3 class="line-height">What is your age group?
       <select id="age-select">
-        <option value="age01">age 1-9</option>
+        <option value="age01">Default</option>
+        <option value="age01">age 0-9</option>
         <option value="age10">age 10-19</option>
+        <option value="age10">age 20-29</option>
+        <option value="age10">age 30-39</option>
       </select></h3>
 
 
@@ -169,10 +173,10 @@
 
 
     <div class="part settings">
-      <h2>Settings <a href="" class="link combined delete">Show <i class="fas fa-plus-square"></i></a></h2>
+      <h2>Settings &emsp;<a href="" class="link combined delete">Show <i class="fas fa-plus-square"></i></a></h2>
 
       <h3>Undocumented cases</h3>
-      <p class="closer">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
+      <p class="closer line-height">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
 
       <h3>Chance to hospitalization (+ICU)</h3>
       <p class="closer line-height">
@@ -187,7 +191,7 @@
         <span class="nw">70-79 <input type="number" value="49.5"> %,</span>
         <span class="nw">80+ <input type="number" value="48"> %</span>
       </p>
-      <p class="closer small">Load data for <a href="" class="link">World (average)</a></p>
+      <p class="closer small">Load data for <a href="" class="link">World (average)</a> (distorted data)</p>
 
       <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
       <p class="closer line-height">
@@ -234,7 +238,9 @@
 
       <h1>Stay home, wear mask, wash hands & save lives.</h1>
       <h1><i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
-      <h3>More links: <a href="https://www.youtube.com/watch?v=HhNo_IOPOtU" class="link">How to Significantly Slow Coronavirus?</a></h3>
+      <h3>More links:</h3>
+      <h3 class="closer">
+        <i class="fal fa-arrow-right"></i> <a href="https://www.youtube.com/watch?v=HhNo_IOPOtU" class="link">How to Significantly Slow Coronavirus?</a> (youtube)</h3>
 
     </div>
     <!-- conclusion -->

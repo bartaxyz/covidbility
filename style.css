@@ -52,13 +52,13 @@ button {
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
 }
-p.closer {
+.closer {
   margin-top: -.5em;
 }
 p.small {
   font-size: 0.85em;
 }
-p.line-height {
+.line-height {
   line-height: 1.9em;
 }
 .nw {
