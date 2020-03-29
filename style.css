@@ -113,6 +113,9 @@ a.link:active
   position: relative;
   top: 2px;
 }
+a.link.combined {
+  text-decoration: none;
+}
 
 
 
