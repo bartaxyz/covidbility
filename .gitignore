@@ -4,3 +4,4 @@
 /dist
 .vscode/settings.json
 dist/index.js
+.DS_Store
