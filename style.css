@@ -19,10 +19,14 @@ body {
   background-color: var(--document-color);
 }
 
+input,
+select,
 code {
   font-family: 'Source Code Pro', monospace;
 }
-
+code {
+  white-space: nowrap;
+}
 h1,
 h2,
 h3 {
@@ -236,14 +240,9 @@ margin-top: 1em;
 
 
 /*
-  PERSON SELECT
+  PERSON
 */
 
-.person-select {}
-
-.person-select .header h4 {
-  font-weight: bold;
-}
 
 .person .link.delete {
   position: absolute;
@@ -270,4 +269,16 @@ margin-top: 1em;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0.5em;
+}
+
+
+/*
+  OPTIONAL & SETTINGS
+*/
+input,
+select {
+  font-size: 1em;
+}
+.settings input[type=number] {
+  width: 3em;
 }
