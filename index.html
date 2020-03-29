@@ -28,7 +28,7 @@
 
 
     <div class="part mainline">
-        <h1 class="main">You have <b class="highlight">3.305%</b> chance to get <b>infected</b>.</h1>
+        <h1 class="main">You have <b class="highlight"><span data-total-chance>3.305</span>&thinsp;%</b> chance to get <b>infected</b>.</h1>
         <p class="closer">(Based on data for World and meeting 2 people)</p>
         <!-- note: 1 person, 2 and more people-->
         <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a></p>
@@ -172,7 +172,9 @@
       <h2>Settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
 
       <h3>Multiplicator of undocumented cases.
-      <input type="number" value="10"></h3>
+      <input type="number" value="10" data-undocumented-cases-multiplicator></h3>
+      <h3>Multiplicator of undocumented cases.
+      <input type="number" value="10" data-undocumented-cases-multiplicator></h3>
 
     </div>
     <!-- settings -->
@@ -181,7 +183,7 @@
     <div class="part results" id="results">
       <h2>Results</h2>
 
-      <h1 class="main">You have <b class="highlight">3.305%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.<sup>1</sub></h1>
+      <h1 class="main">You have <b class="highlight"><span data-total-chance>3.305</span>%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.<sup>1</sub></h1>
       <h2 class="main">You have <b class="highlight">0.705%</b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization / ICU</b>.<sup>2</sub></h2>
 
       <h2 class="main">There is also <b class="highlight">0.025%</b> chance that someone else will <i class="fad fa-skull"></i> <b>die because of triage</b>.<sup>3</sub></h2>
@@ -211,47 +213,42 @@
     <!-- footer -->
 
 
-
-
-    <div id="data"></div>
-    <div id="debug"></div>
-
     <script>
-      const coronaEndpoint = 'https://corona.blloc.com';
-      const globalCoronaData = null;
+      // const coronaEndpoint = 'https://corona.blloc.com';
+      // const globalCoronaData = null;
 
-      const people = [];
+      // const people = [];
 
-      const countryList = [{
-        value: 'japan',
-        label: 'Japan',
-      }];
+      // const countryList = [{
+      //   value: 'japan',
+      //   label: 'Japan',
+      // }];
 
-      const populateCountryList = (countries) => {
-        const countrySelect = document.getElementById('country-select');
+      // const populateCountryList = (countries) => {
+      //   const countrySelect = document.getElementById('country-select');
 
-        countries.forEach(country => {
-          const countryOption = document.createElement('option');
-          countryOption.setAttribute('value', country.value);
-          countryOption.innerText = country.label;
-          countrySelect.appendChild(countryOption);
-        })
-      }
+      //   countries.forEach(country => {
+      //     const countryOption = document.createElement('option');
+      //     countryOption.setAttribute('value', country.value);
+      //     countryOption.innerText = country.label;
+      //     countrySelect.appendChild(countryOption);
+      //   })
+      // }
 
-      populateCountryList(countryList);
+      // populateCountryList(countryList);
 
-      const fetchCorona = async () => {
-        return await fetch(`${coronaEndpoint}/`)
-          .then((body) =>  body.json());
-      }
+      // const fetchCorona = async () => {
+      //   return await fetch(`${coronaEndpoint}/`)
+      //     .then((body) =>  body.json());
+      // }
 
-      const fetchCoronaCountry = () => {}
+      // const fetchCoronaCountry = () => {}
 
-      if (!globalCoronaData) {
-        const data = await fetchCorona();
+      // if (!globalCoronaData) {
+      //   const data = await fetchCorona();
 
-        document.getElementById('debug').innerHTML = JSON.stringify(data);
-      }
+      //   document.getElementById('debug').innerHTML = JSON.stringify(data);
+      // }
 
     </script>
 </body>
