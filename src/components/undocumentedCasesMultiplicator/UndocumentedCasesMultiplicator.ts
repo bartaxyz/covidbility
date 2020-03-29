@@ -1,16 +1,11 @@
-import { watch, write } from "../localstorage/index";
+import { watch, write } from "../../localstorage/index";
+import { InputComponent } from "../utils/InputComponent";
 
-export class UndocumentedCasesMultiplicator {
+export class UndocumentedCasesMultiplicator extends InputComponent {
   static component = "undocumented-cases-multiplicator";
 
-  element: HTMLInputElement;
-  isFocused: boolean = false;
-
   constructor(element: Element) {
-    this.element = element as HTMLInputElement;
-
-    this.element.addEventListener("focus", () => (this.isFocused = true));
-    this.element.addEventListener("blur", () => (this.isFocused = false));
+    super(element);
 
     watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
       if (!this.isFocused) {

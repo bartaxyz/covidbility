@@ -38,6 +38,9 @@ h3 {
   font-weight: 400;
 }
 
+.part > h2, .part > div > h2 {
+  font-weight: 700;
+}
 .highlight {
   border-bottom: 0.2em solid var(--highlight-color);
   box-shadow: inset 0px -.2em 0px 0px var(--highlight-color);
@@ -48,7 +51,7 @@ p,
 a,
 button {
   font-size: 1em;
-  line-height: 1.2em;
+  line-height: 1.25em;
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -137,6 +140,9 @@ a.link.combined {
 
 .part {
   margin-bottom: 5em;
+}
+.small-part {
+  margin-bottom: 2.5em;
 }
 .part.timeline {
   margin-bottom: 3em;
