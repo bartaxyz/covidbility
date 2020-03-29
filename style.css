@@ -20,12 +20,15 @@ body {
 }
 
 input,
-select,
-code {
+select {
   font-family: 'Source Code Pro', monospace;
+  border: 2px solid var(--block-color);
+  padding: .1em .5em;
+  border-radius: 4px;
 }
 code {
   white-space: nowrap;
+  font-family: 'Source Code Pro', monospace;
 }
 h1,
 h2,
@@ -54,6 +57,12 @@ p.closer {
 }
 p.small {
   font-size: 0.85em;
+}
+p.line-height {
+  line-height: 1.9em;
+}
+.nw {
+  white-space: nowrap;
 }
 
 a.btn,
@@ -210,6 +219,7 @@ margin-top: 1em;
     transform: rotate(-45deg);
     text-align: right;
     width: auto;
+    margin-top: 1em;
 
   }
 }
@@ -280,5 +290,12 @@ select {
   font-size: 1em;
 }
 .settings input[type=number] {
-  width: 3em;
+  width: 3.5em;
+}
+
+/*
+  RESULTS
+*/
+.results .notes {
+  margin-top: 2em;
 }
