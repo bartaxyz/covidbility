@@ -178,9 +178,12 @@
       </div>
 
       <div data-collapse-content>
-        <h3>Undocumented cases</h3>
-        <p class="closer line-height">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
+        <div class="small-part">
+          <h3>Undocumented cases</h3>
+          <p class="closer line-height">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
+        </div>
 
+        <div class="small-part">
         <h3>Chance to hospitalization (+ICU)</h3>
         <p class="closer line-height">
           <span class="nw">Average: <input type="number" value="20"> %,</span>
@@ -195,7 +198,9 @@
           <span class="nw">80+ <input type="number" value="48"> %</span>
         </p>
         <p class="closer small">Load data for <a href="" class="link">World (average)</a> (incomplete data)</p>
+      </div>
 
+      <div class="small-part">
         <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
         <p class="closer line-height">
           <span class="nw">Average: <input type="number" value="3.4"> %,</span>
@@ -210,6 +215,7 @@
           <span class="nw">80+ <input type="number" value="17.76"> %</span>
         </p>
         <p class="closer small">Load data for <a href="" class="link">World (average)</a>, <a href="" class="link">China</a>, <a href="" class="link">Italy</a>, <a href="" class="link">Netherlands</a>, <a href="" class="link">South Korea</a>, <a href="" class="link">Spain</a>
+        </div>
       </div>
     </div>
     <!-- settings -->
@@ -217,21 +223,25 @@
 
     <div class="part results" id="results">
       <h2>Results</h2>
-
+      <div class="small-part">
       <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
 
       <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
 
       <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
-      <h3>Compare with</h3>
-      <h3 class="closer ">Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</h3>
+</div>
 
+<div class="small-part">
+      <h3 class="">Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</h3>
+      <h3 class="">If you are young, there is chance that someone else will die because of triage.</h3>
+</div>
 
+<div class="small-part">
 <p class="small notes">Notes:<br>
   &ndash; Based on real-time data from <a href="https://github.com/adhambadr/corona-api" class="link">Corona API</a>, Covidbility = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.<br>
     &ndash; Default numbers based on multiple sources, <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" class="link">Coronavirus disease 2019</a><br>
     &ndash; Based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a></p>
-
+</div>
 
 
     </div>
@@ -257,44 +267,7 @@
     <!-- footer -->
 
 
-    <script>
-      // const coronaEndpoint = 'https://corona.blloc.com';
-      // const globalCoronaData = null;
 
-      // const people = [];
-
-      // const countryList = [{
-      //   value: 'japan',
-      //   label: 'Japan',
-      // }];
-
-      // const populateCountryList = (countries) => {
-      //   const countrySelect = document.getElementById('country-select');
-
-      //   countries.forEach(country => {
-      //     const countryOption = document.createElement('option');
-      //     countryOption.setAttribute('value', country.value);
-      //     countryOption.innerText = country.label;
-      //     countrySelect.appendChild(countryOption);
-      //   })
-      // }
-
-      // populateCountryList(countryList);
-
-      // const fetchCorona = async () => {
-      //   return await fetch(`${coronaEndpoint}/`)
-      //     .then((body) =>  body.json());
-      // }
-
-      // const fetchCoronaCountry = () => {}
-
-      // if (!globalCoronaData) {
-      //   const data = await fetchCorona();
-
-      //   document.getElementById('debug').innerHTML = JSON.stringify(data);
-      // }
-
-    </script>
 </body>
 
 </html>

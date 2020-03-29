@@ -37,6 +37,7 @@ h3 {
   color: var(--main-color);
   font-weight: 400;
 }
+
 .part > h2, .part > div > h2 {
   font-weight: 700;
 }
@@ -139,6 +140,9 @@ a.link.combined {
 
 .part {
   margin-bottom: 5em;
+}
+.small-part {
+  margin-bottom: 2.5em;
 }
 .part.timeline {
   margin-bottom: 3em;
