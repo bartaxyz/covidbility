@@ -37,6 +37,12 @@ export class TotalChance {
   }
 
   refresh() {
+    console.log([
+      this.undocumentedCasesMultiplicator,
+      this.currentPopulation,
+      this.currentConfirmed,
+      this.currentRecovered
+    ]);
     if (
       typeof this.undocumentedCasesMultiplicator === "undefined" ||
       typeof this.currentPopulation === "undefined" ||

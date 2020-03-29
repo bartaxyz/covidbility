@@ -1,8 +1,8 @@
 import { watch } from "../localstorage/index";
 import { LocalStorageSchema } from "../localstorage/schema";
 
-export class ChanceToDie {
-  static component = "chance-to-die";
+export class DeathChance {
+  static component = "death-chance";
 
   element: HTMLElement;
   undocumentedCasesMultiplicator:
