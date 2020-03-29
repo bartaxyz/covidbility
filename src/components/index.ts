@@ -1,7 +1,8 @@
+import { ChanceToDie } from "./ChanceToDie";
 import { TotalChance } from "./TotalChance";
 import { UndocumentedCasesMultiplicator } from "./UndocumentedCasesMultiplicator";
 
-const components = [TotalChance, UndocumentedCasesMultiplicator];
+const components = [ChanceToDie, TotalChance, UndocumentedCasesMultiplicator];
 
 export const refreshComponents = () => {
   components.forEach(Component => {
