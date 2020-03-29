@@ -22,17 +22,19 @@ Learn your chance to become infected by SARS-COV-2.
 - Showing % chance 🏥 of needing hospitalization / ICU
 - Showing % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity and age)
 
-## Serve Website
+## Contributing
 
-Build scripts once and then serve the website. Files under `./src` are not gonna be build upon change. To watch for changes, serve the website in development mode (below).
-
-First install dependencies
+Before doing anything with the repository code, make sure you have dependencies up to date
 
 ```bash
 npm install
 ```
 
-Then serve the website (scripts build will happen automatically)
+There are two main modes to run development in.
+
+### Serve Website
+
+Build scripts once and then serve the website. Files under `./src` are not gonna be build upon change. To watch for changes, serve the website in development mode (below).
 
 ```bash
 npm run serve
@@ -41,14 +43,6 @@ npm run serve
 ## Serve Website In Development Mode
 
 Build scripts in watch mode. Files under `./src` are watched for changes and build automatically. When a change occurs in any file, the website will refresh with newly built scripts.
-
-First install dependencies
-
-```bash
-npm install
-```
-
-Then run following command
 
 ```bash
 npm run develop
