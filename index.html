@@ -9,7 +9,7 @@
   <link href="style.css" rel="stylesheet">
   <script defer="" src="./js/all.min.js"></script>
 
-  <script src="./dist/index.js"></script>
+  <!--<script src="./dist/index.js"></script>-->
 </head>
 
 <body>
@@ -172,11 +172,37 @@
       <h2>Settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
 
       <h3>Undocumented cases</h3>
-      <p>Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
+      <p class="closer">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
 
-      <h3>Chance to hospitalization</h3>
-      <p>General <input type="number" value="20"> %</h3>, 1-9 <input type="number" value="10"> %</h3></p>
+      <h3>Chance to hospitalization (+ICU)</h3>
+      <p class="closer line-height">
+        <span class="nw">Average: <input type="number" value="20"> %,</span>
+        <span class="nw">age 1-9: <input type="number" value="10"> %,</span>
+        <span class="nw">11-19 <input type="number" value="10"> %,</span>
+        <span class="nw">21-29 <input type="number" value="10"> %,</span>
+        <span class="nw">31-39 <input type="number" value="10"> %,</span>
+        <span class="nw">41-49 <input type="number" value="10"> %,</span>
+        <span class="nw">51-59 <input type="number" value="10"> %,</span>
+        <span class="nw">61-69 <input type="number" value="10"> %,</span>
+        <span class="nw">71-79 <input type="number" value="10"> %,</span>
+        <span class="nw">80+ <input type="number" value="10"> %</span>
+      </p>
+      <p class="closer small">Load data for <a href="" class="link">World (average)</a></p>
 
+      <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
+      <p class="closer line-height">
+        <span class="nw">Average: <input type="number" value="3.4"> %,</span>
+        <span class="nw">age 0-9: <input type="number" value="0"> %,</span>
+        <span class="nw">10-19 <input type="number" value="0.1"> %,</span>
+        <span class="nw">20-29 <input type="number" value="0.08"> %,</span>
+        <span class="nw">30-39 <input type="number" value="0.16"> %,</span>
+        <span class="nw">40-49 <input type="number" value="0.32"> %,</span>
+        <span class="nw">50-59 <input type="number" value="0.9"> %,</span>
+        <span class="nw">60-69 <input type="number" value="3.38"> %,</span>
+        <span class="nw">70-79 <input type="number" value="9.28"> %,</span>
+        <span class="nw">80+ <input type="number" value="17.76"> %</span>
+      </p>
+      <p class="closer small">Load data for <a href="" class="link">World (average)</a>, <a href="" class="link">China</a>, <a href="" class="link">Italy</a>, <a href="" class="link">Netherlands</a>, <a href="" class="link">South Korea</a>, <a href="" class="link">Spain</a>
     </div>
     <!-- settings -->
 
@@ -184,16 +210,22 @@
     <div class="part results" id="results">
       <h2>Results</h2>
 
-      <h1 class="main">You have <b class="highlight"><span data-total-chance>0.2109</span>%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
-      <p class="small closer">Based on daily updated data from /link, multiplicator of undocumented cases and number of people you met.</p>
-
-      <h2 class="main">You have <b class="highlight">0.705%</b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization / ICU</b>.</h2>
-        <p class="small closer">Based on averaged data from multiple countries, link </p>
+      <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
 
 
-<h2 class="main ">You have <b class="highlight"><code>0.025%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h2>
-  <p>Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</p>
-  <p class="small">Based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a></p>
+      <h1 class="main">You have <b class="highlight"><code>0.705&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
+      <p class="closer">And possibly seeveral medical outcome.</p>
+
+
+      <h1 class="main ">You have <b class="highlight"><code>0.0071&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
+  <p class="closer">Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</p>
+
+
+<p class="small notes">Notes:<br>
+  &ndash; Based on real-time updated data from <a href="https://github.com/adhambadr/corona-api" class="link">Corona API</a>, Covidbility = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.<br>
+    &ndash; Based on multiple sources, <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" class="link">Coronavirus disease 2019</a><br>
+    &ndash; Based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a></p>
+
   <!--
       <h2 class="main ">There is also <b class="highlight">0.025%</b> chance that someone else will <i class="fad fa-skull"></i> <b>die because of triage</b>.<sup>3</sub></h2>-->
       <!-- lets avoid triage for now -->
@@ -206,14 +238,14 @@
 
     <div class="part conclusion">
 
-      <h1>Save lives, flatten the curve. <i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
+      <h1>Avoid contact, save lives, flatten the curve. <i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
     </div>
     <!-- conclusion -->
 
 
     <div class="part footer">
 
-      <p>Take with grain of salt, based on API and our research. Feel free to comment on GITHUB page. Made by Vladimir Mokry and Ondrej Barta. Big thanks to: People.</p>
+      <p>Take with grain of salt, feel free to comment on Github project page. Made by <a href="https://vmokry.com/" class="link">Vladimir Mokry</a> and <a href="https://ondrejbarta.xyz/" class="link">Ondrej Barta</a>.</p>
       </div>
     <!-- footer -->
 
