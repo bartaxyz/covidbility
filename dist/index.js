@@ -132,10 +132,10 @@
             watchers.push({ key, callback });
         };
     });
-    define("components/ChanceToDie", ["require", "exports", "localstorage/index"], function (require, exports, index_3) {
+    define("components/DeathChance", ["require", "exports", "localstorage/index"], function (require, exports, index_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class ChanceToDie {
+        class DeathChance {
             constructor(element) {
                 this.element = element;
                 index_3.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
@@ -164,8 +164,8 @@
                 this.element.innerText = Number((value >= 100 ? 100 : value).toFixed(4)).toString();
             }
         }
-        exports.ChanceToDie = ChanceToDie;
-        ChanceToDie.component = "chance-to-die";
+        exports.DeathChance = DeathChance;
+        DeathChance.component = "death-chance";
     });
     define("components/TotalChance", ["require", "exports", "localstorage/index"], function (require, exports, index_4) {
         "use strict";
@@ -191,6 +191,12 @@
                 });
             }
             refresh() {
+                console.log([
+                    this.undocumentedCasesMultiplicator,
+                    this.currentPopulation,
+                    this.currentConfirmed,
+                    this.currentRecovered
+                ]);
                 if (typeof this.undocumentedCasesMultiplicator === "undefined" ||
                     typeof this.currentPopulation === "undefined" ||
                     typeof this.currentConfirmed === "undefined" ||
@@ -232,10 +238,10 @@
         exports.UndocumentedCasesMultiplicator = UndocumentedCasesMultiplicator;
         UndocumentedCasesMultiplicator.component = "undocumented-cases-multiplicator";
     });
-    define("components/index", ["require", "exports", "components/ChanceToDie", "components/TotalChance", "components/UndocumentedCasesMultiplicator"], function (require, exports, ChanceToDie_1, TotalChance_1, UndocumentedCasesMultiplicator_1) {
+    define("components/index", ["require", "exports", "components/DeathChance", "components/TotalChance", "components/UndocumentedCasesMultiplicator"], function (require, exports, DeathChance_1, TotalChance_1, UndocumentedCasesMultiplicator_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const components = [ChanceToDie_1.ChanceToDie, TotalChance_1.TotalChance, UndocumentedCasesMultiplicator_1.UndocumentedCasesMultiplicator];
+        const components = [DeathChance_1.DeathChance, TotalChance_1.TotalChance, UndocumentedCasesMultiplicator_1.UndocumentedCasesMultiplicator];
         exports.refreshComponents = () => {
             components.forEach(Component => {
                 const elements = document.querySelectorAll(`[data-${Component.component}]`);
