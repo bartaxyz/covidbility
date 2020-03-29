@@ -1,16 +1,15 @@
 import { watch } from "../localstorage/index";
 import { LocalStorageSchema } from "../localstorage/schema";
 
-export class TotalChance {
-  static component = "total-chance";
+export class ChanceToDie {
+  static component = "chance-to-die";
 
   element: HTMLElement;
   undocumentedCasesMultiplicator:
     | LocalStorageSchema["undocumentedCasesMultiplicator"]
     | undefined;
   currentPopulation: LocalStorageSchema["currentPopulation"] | undefined;
-  currentConfirmed: LocalStorageSchema["currentConfirmed"] | undefined;
-  currentRecovered: LocalStorageSchema["currentRecovered"] | undefined;
+  currentDeaths: LocalStorageSchema["currentDeaths"] | undefined;
 
   constructor(element: Element) {
     this.element = element as HTMLElement;
@@ -25,13 +24,8 @@ export class TotalChance {
       this.refresh();
     });
 
-    watch("currentConfirmed", currentConfirmed => {
-      this.currentConfirmed = currentConfirmed;
-      this.refresh();
-    });
-
-    watch("currentRecovered", currentRecovered => {
-      this.currentRecovered = currentRecovered;
+    watch("currentDeaths", currentDeaths => {
+      this.currentDeaths = currentDeaths;
       this.refresh();
     });
   }
@@ -39,17 +33,15 @@ export class TotalChance {
   refresh() {
     if (
       typeof this.undocumentedCasesMultiplicator === "undefined" ||
-      typeof this.currentPopulation === "undefined" ||
-      typeof this.currentConfirmed === "undefined" ||
-      typeof this.currentRecovered === "undefined"
+      typeof this.currentDeaths === "undefined" ||
+      typeof this.currentPopulation === "undefined"
     ) {
       this.element.innerText = "-";
       return;
     }
 
     const value =
-      ((this.currentConfirmed - this.currentRecovered) /
-        this.currentPopulation) *
+      (this.currentDeaths / this.currentPopulation) *
       this.undocumentedCasesMultiplicator *
       100;
 
