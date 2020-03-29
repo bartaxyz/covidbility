@@ -28,9 +28,9 @@
 
 
     <div class="part mainline">
-        <h1 class="main">You have <b class="highlight">3.305%</b> chance to get <b>infected</b>.</h1>
-        <p class="closer">(Based on data for World and meeting 2 people)</p>
-        <!-- note: 1 person, 2 and more people-->
+        <h1 class="main">You have <b class="highlight"><code>0.2109&thinsp;%</code></b> chance to get <b>infected</b>.</h1>
+        <!-- note: 1 person, 2 and more people -->
+        <!-- Math behind cases / 7.8bil x 10 for each person -->
         <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a></p>
     </div>
     <!-- mainline -->
@@ -48,7 +48,7 @@
             <p>-5</p>
           </div>
           <div class="label">
-            <p class="small">&nbsp;</p>
+            <p class="small"><code>0%</code></p>
           </div>
         </div>
         <div class="item">
@@ -56,7 +56,7 @@
             <p>-4</p>
           </div>
           <div class="label">
-            <p class="small">&nbsp;</p>
+            <p class="small"><code>0%</code></p>
           </div>
         </div>
         <div class="item">
@@ -67,7 +67,7 @@
             <p>-3</p>
           </div>
           <div class="label">
-            <p class="small">&nbsp;</p>
+            <p class="small"><code>0%</code></p>
           </div>
         </div>
         <div class="item">
@@ -75,21 +75,21 @@
             <p>-2</p>
           </div>
           <div class="label">
-            <p class="small">&nbsp;</p>
+            <p class="small"><code>0%</code></p>
           </div>
         </div>
         <div class="item">
           <div class="item-person is-highlighted">
-            <h4><i class="fas fa-user"></i> B</h4>
-          </div>
-          <div class="item-person">
             <h4><i class="fas fa-user"></i> A</h4>
           </div>
+          <div class="item-person">
+            <h4><i class="fas fa-user"></i> B</h4>
+          </div>
           <div class="no">
-            <p>-1</p>
+            <p>Yest.</p>
           </div>
           <div class="label">
-            <p class="small">Yesterday</p>
+            <p class="small"><code>0.1352&thinsp;%</code></p>
           </div>
         </div>
         <div class="item">
@@ -97,10 +97,10 @@
             <h4><i class="fas fa-user"></i> C</h4>
           </div>
           <div class="no">
-            <p>0</p>
+            <p>Today</p>
           </div>
-          <div class="label today">
-            <p class="small">Today</p>
+          <div class="label">
+            <p class="small"><code>0.2109&thinsp;%</code></p>
           </div>
         </div>
 
@@ -114,21 +114,21 @@
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> A</h4>
 
-        <p class="small">has <b>0.004%</b> chance of having COVID19
+        <p class="small">has <b><code>0.0676&thinsp;%</code></b> chance of having COVID19
           <p class="small">(Yesterday)</p>
         </p>
       </div>
       <div class="person is-highlighted">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> B</h4>
-        <p class="small">has <b>0.004%</b> chance of having COVID19
+        <p class="small">has <b><code>0.0676&thinsp;%</code></b> chance of having COVID19
         </p>
         <p class="small">(Yesterday)</p>
       </div>
       <div class="person">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> C</h4>
-        <p class="small">has <b>0.012%</b> chance of having COVID19
+        <p class="small">has <b><code>0.0757&thinsp;%</code></b> chance of having COVID19
         </p>
         <p class="small">(Today)</p>
       </div>
@@ -151,14 +151,14 @@
       <h3>Where do you live?
       <select id="country-select">
         <option value="japan">Japan</option>
-        <option value="czech-republic">Czech Republic</option>
+        <option value="czechia">Czechia</option>
         <option value="usa">United States</option>
-      </select> <input type="text"></h3>
+      </select>
+      </h3>
       <h3>What is your age group?
-      <select id="country-select">
-        <option value="japan">Japan</option>
-        <option value="czech-republic">Czech Republic</option>
-        <option value="usa">United States</option>
+      <select id="age-select">
+        <option value="age01">age 1-9</option>
+        <option value="age10">age 10-19</option>
       </select></h3>
 
 
@@ -171,8 +171,11 @@
     <div class="part settings">
       <h2>Settings <a href="" class="link delete"><i class="fas fa-plus-square"></i></a></h2>
 
-      <h3>Multiplicator of undocumented cases.
-      <input type="number" value="10"></h3>
+      <h3>Undocumented cases</h3>
+      <p>Multiplicator: <input type="number" value="10"> &times;</p>
+
+      <h3>Chance to hospitalization</h3>
+      <p>General <input type="number" value="20"> %</h3>, 1-9 <input type="number" value="10"> %</h3></p>
 
     </div>
     <!-- settings -->
@@ -181,17 +184,21 @@
     <div class="part results" id="results">
       <h2>Results</h2>
 
-      <h1 class="main">You have <b class="highlight">3.305%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.<sup>1</sub></h1>
-      <h2 class="main">You have <b class="highlight">0.705%</b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization / ICU</b>.<sup>2</sub></h2>
+      <h1 class="main">You have <b class="highlight">0.2109%</b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
+      <p class="small closer">Based on daily updated data from /link, multiplicator of undocumented cases and number of people you met.</p>
 
-      <h2 class="main">There is also <b class="highlight">0.025%</b> chance that someone else will <i class="fad fa-skull"></i> <b>die because of triage</b>.<sup>3</sub></h2>
+      <h2 class="main">You have <b class="highlight">0.705%</b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization / ICU</b>.</h2>
+        <p class="small closer">Based on averaged data from multiple countries, link </p>
 
 
-      <p>Notes:<br/>
-        1 - based on diagnosed cases, undocumented cases and number of people you met.<br>
-        2 - based on age and source:<br>
-        3 - based on age and source:<br>
-      </p>
+<h2 class="main ">You have <b class="highlight"><code>0.025%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h2>
+  <p>Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</p>
+  <p class="small">Based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a></p>
+  <!--
+      <h2 class="main ">There is also <b class="highlight">0.025%</b> chance that someone else will <i class="fad fa-skull"></i> <b>die because of triage</b>.<sup>3</sub></h2>-->
+      <!-- lets avoid triage for now -->
+
+
 
     </div>
     <!-- results -->
