@@ -8,7 +8,8 @@
     "deploy": "npm run build && gh-pages -d dist",
     "build": "tsc-bundle ./tsconfig.json --outFile ./dist/index.js",
     "watch": "tsc-bundle ./tsconfig.json --outFile ./dist/index.js --watch",
-    "serve": "npm run build && live-server"
+    "serve": "npm run build && live-server",
+    "develop": "concurrently \"npm run watch\" \"live-server\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/bartaxyz/covidbility#readme",
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "gh-pages": "^2.2.0",
     "live-server": "^1.2.1",
     "typescript": "^3.8.3",

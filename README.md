@@ -22,6 +22,38 @@ Learn your chance to become infected by SARS-COV-2.
 - Showing % chance 🏥 of needing hospitalization / ICU
 - Showing % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity and age)
 
+## Serve Website
+
+Build scripts once and then serve the website. Files under `./src` are not gonna be build upon change. To watch for changes, serve the website in development mode (below).
+
+First install dependencies
+
+```bash
+npm install
+```
+
+Then serve the website (scripts build will happen automatically)
+
+```bash
+npm run serve
+```
+
+## Serve Website In Development Mode
+
+Build scripts in watch mode. Files under `./src` are watched for changes and build automatically. When a change occurs in any file, the website will refresh with newly built scripts.
+
+First install dependencies
+
+```bash
+npm install
+```
+
+Then run following command
+
+```bash
+npm run develop
+```
+
 ## Sources
 - "We estimate 86% of all infections were undocumented (95% CI: [82%–90%]) prior to 23 January 2020 travel restrictions." link: https://science.sciencemag.org/content/early/2020/03/24/science.abb3221
 
