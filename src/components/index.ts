@@ -1,8 +1,16 @@
 import { DeathChance } from "./DeathChance";
+import { HospitalizationChance } from "./HospitalizationChance";
 import { TotalChance } from "./TotalChance";
 import { UndocumentedCasesMultiplicator } from "./UndocumentedCasesMultiplicator";
+import { Collapse } from "./ui/Collapse";
 
-const components = [DeathChance, TotalChance, UndocumentedCasesMultiplicator];
+const components = [
+  Collapse,
+  DeathChance,
+  HospitalizationChance,
+  TotalChance,
+  UndocumentedCasesMultiplicator
+];
 
 export const refreshComponents = () => {
   components.forEach(Component => {

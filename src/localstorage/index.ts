@@ -50,3 +50,7 @@ export const watch = <T extends LocalStorageSchemaKey>(
   callback(read(key));
   watchers.push({ key, callback });
 };
+
+export const clear = () => {
+  localStorage.clear();
+}

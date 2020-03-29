@@ -172,41 +172,45 @@
 
 
 
-    <div class="part settings">
-      <h2>Settings &emsp;<a href="" class="link combined delete">Show <i class="fas fa-plus-square"></i></a></h2>
+    <div class="part settings" data-collapse>
+      <div data-collapse-header>
+        <h2>Settings &emsp;<a class="link combined delete" data-collapse-trigger>Show <i class="fas fa-plus-square"></i></a></h2>
+      </div>
 
-      <h3>Undocumented cases</h3>
-      <p class="closer line-height">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
+      <div data-collapse-content>
+        <h3>Undocumented cases</h3>
+        <p class="closer line-height">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</p>
 
-      <h3>Chance to hospitalization (+ICU)</h3>
-      <p class="closer line-height">
-        <span class="nw">Average: <input type="number" value="20"> %,</span>
-        <span class="nw">age 0-9: <input type="number" value="5.72"> %,</span>
-        <span class="nw">10-19 <input type="number" value="1.76"> %,</span>
-        <span class="nw">20-29 <input type="number" value="6.24"> %,</span>
-        <span class="nw">30-39 <input type="number" value="18.5"> %,</span>
-        <span class="nw">40-49 <input type="number" value="24"> %,</span>
-        <span class="nw">50-59 <input type="number" value="33"> %,</span>
-        <span class="nw">60-69 <input type="number" value="38.5"> %,</span>
-        <span class="nw">70-79 <input type="number" value="49.5"> %,</span>
-        <span class="nw">80+ <input type="number" value="48"> %</span>
-      </p>
-      <p class="closer small">Load data for <a href="" class="link">World (average)</a> (incomplete data)</p>
+        <h3>Chance to hospitalization (+ICU)</h3>
+        <p class="closer line-height">
+          <span class="nw">Average: <input type="number" value="20"> %,</span>
+          <span class="nw">age 0-9: <input type="number" value="5.72"> %,</span>
+          <span class="nw">10-19 <input type="number" value="1.76"> %,</span>
+          <span class="nw">20-29 <input type="number" value="6.24"> %,</span>
+          <span class="nw">30-39 <input type="number" value="18.5"> %,</span>
+          <span class="nw">40-49 <input type="number" value="24"> %,</span>
+          <span class="nw">50-59 <input type="number" value="33"> %,</span>
+          <span class="nw">60-69 <input type="number" value="38.5"> %,</span>
+          <span class="nw">70-79 <input type="number" value="49.5"> %,</span>
+          <span class="nw">80+ <input type="number" value="48"> %</span>
+        </p>
+        <p class="closer small">Load data for <a href="" class="link">World (average)</a> (incomplete data)</p>
 
-      <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
-      <p class="closer line-height">
-        <span class="nw">Average: <input type="number" value="3.4"> %,</span>
-        <span class="nw">age 0-9: <input type="number" value="0"> %,</span>
-        <span class="nw">10-19 <input type="number" value="0.1"> %,</span>
-        <span class="nw">20-29 <input type="number" value="0.08"> %,</span>
-        <span class="nw">30-39 <input type="number" value="0.16"> %,</span>
-        <span class="nw">40-49 <input type="number" value="0.32"> %,</span>
-        <span class="nw">50-59 <input type="number" value="0.9"> %,</span>
-        <span class="nw">60-69 <input type="number" value="3.38"> %,</span>
-        <span class="nw">70-79 <input type="number" value="9.28"> %,</span>
-        <span class="nw">80+ <input type="number" value="17.76"> %</span>
-      </p>
-      <p class="closer small">Load data for <a href="" class="link">World (average)</a>, <a href="" class="link">China</a>, <a href="" class="link">Italy</a>, <a href="" class="link">Netherlands</a>, <a href="" class="link">South Korea</a>, <a href="" class="link">Spain</a>
+        <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
+        <p class="closer line-height">
+          <span class="nw">Average: <input type="number" value="3.4"> %,</span>
+          <span class="nw">age 0-9: <input type="number" value="0"> %,</span>
+          <span class="nw">10-19 <input type="number" value="0.1"> %,</span>
+          <span class="nw">20-29 <input type="number" value="0.08"> %,</span>
+          <span class="nw">30-39 <input type="number" value="0.16"> %,</span>
+          <span class="nw">40-49 <input type="number" value="0.32"> %,</span>
+          <span class="nw">50-59 <input type="number" value="0.9"> %,</span>
+          <span class="nw">60-69 <input type="number" value="3.38"> %,</span>
+          <span class="nw">70-79 <input type="number" value="9.28"> %,</span>
+          <span class="nw">80+ <input type="number" value="17.76"> %</span>
+        </p>
+        <p class="closer small">Load data for <a href="" class="link">World (average)</a>, <a href="" class="link">China</a>, <a href="" class="link">Italy</a>, <a href="" class="link">Netherlands</a>, <a href="" class="link">South Korea</a>, <a href="" class="link">Spain</a>
+      </div>
     </div>
     <!-- settings -->
 
@@ -216,10 +220,9 @@
 
       <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
 
+      <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
 
-      <h1 class="main">You have <b class="highlight"><code>0.0421&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
-
-      <h1 class="main ">You have <b class="highlight"><code>0.0071&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
+      <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
   <p class="closer hide">Chance that you will die this year in vehicle crash is <b>0.0182&thinsp;%</b>.</p>
 
 
