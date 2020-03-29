@@ -40,7 +40,7 @@ Build scripts once and then serve the website. Files under `./src` are not gonna
 npm run serve
 ```
 
-## Serve Website In Development Mode
+### Serve Website In Development Mode
 
 Build scripts in watch mode. Files under `./src` are watched for changes and build automatically. When a change occurs in any file, the website will refresh with newly built scripts.
 
