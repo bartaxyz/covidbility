@@ -13,6 +13,7 @@ addEventListener("DOMContentLoaded", () => {
 
 // Clear data
 write("totalChance", 0);
+write("undocumentedCasesMultiplicator", 10);
 
 write("currentPopulation", getGlobalPopulation());
 

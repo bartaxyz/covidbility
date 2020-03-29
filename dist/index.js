@@ -260,6 +260,7 @@
         });
         // Clear data
         index_8.write("totalChance", 0);
+        index_8.write("undocumentedCasesMultiplicator", 10);
         index_8.write("currentPopulation", getGlobalPopulation_2.getGlobalPopulation());
         (() => __awaiter(void 0, void 0, void 0, function* () {
             const data = yield corona.getCurrent();
