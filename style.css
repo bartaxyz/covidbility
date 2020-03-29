@@ -52,13 +52,13 @@ button {
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
 }
-p.closer {
+.closer {
   margin-top: -.5em;
 }
 p.small {
   font-size: 0.85em;
 }
-p.line-height {
+.line-height {
   line-height: 1.9em;
 }
 .nw {
@@ -113,6 +113,9 @@ a.link:active
   position: relative;
   top: 2px;
 }
+a.link.combined {
+  text-decoration: none;
+}
 
 
 
@@ -158,7 +161,7 @@ a.link:active
 */
 
 .timeline .container {
-margin-top: 1em;
+  margin-top: 1em;
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -166,12 +169,14 @@ margin-top: 1em;
   justify-content: space-between;
   align-items: flex-end;
   flex-basis: auto;
+
 }
 
 .timeline .item {
   width: 15%;
   text-align: center;
   position: relative;
+
 }
 .timeline .container p,
 .timeline .container h4 {
