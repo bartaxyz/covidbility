@@ -1,19 +1,20 @@
 import { watch } from "../localstorage/index";
 import { LocalStorageSchema } from "../localstorage/schema";
+import { Component } from "./utils/Component";
 
-export class TotalChance {
+export class TotalChance extends Component {
   static component = "total-chance";
 
-  element: HTMLElement;
   undocumentedCasesMultiplicator:
     | LocalStorageSchema["undocumentedCasesMultiplicator"]
     | undefined;
   currentPopulation: LocalStorageSchema["currentPopulation"] | undefined;
   currentConfirmed: LocalStorageSchema["currentConfirmed"] | undefined;
   currentRecovered: LocalStorageSchema["currentRecovered"] | undefined;
+  currentDeaths: LocalStorageSchema["currentDeaths"] | undefined;
 
   constructor(element: Element) {
-    this.element = element as HTMLElement;
+    super(element);
 
     watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
       this.undocumentedCasesMultiplicator = undocumentedCasesMultiplicator;
@@ -34,33 +35,44 @@ export class TotalChance {
       this.currentRecovered = currentRecovered;
       this.refresh();
     });
+
+    watch("currentDeaths", currentDeaths => {
+      this.currentDeaths = currentDeaths;
+      this.refresh();
+    });
   }
 
-  refresh() {
-    console.log([
-      this.undocumentedCasesMultiplicator,
-      this.currentPopulation,
-      this.currentConfirmed,
-      this.currentRecovered
-    ]);
+  getTotalChance() {
     if (
       typeof this.undocumentedCasesMultiplicator === "undefined" ||
       typeof this.currentPopulation === "undefined" ||
       typeof this.currentConfirmed === "undefined" ||
-      typeof this.currentRecovered === "undefined"
+      typeof this.currentRecovered === "undefined" ||
+      typeof this.currentDeaths === "undefined"
     ) {
-      this.element.innerText = "-";
       return;
     }
 
-    const value =
-      ((this.currentConfirmed - this.currentRecovered) /
+    return (
+      ((this.currentConfirmed * this.undocumentedCasesMultiplicator -
+        this.currentRecovered -
+        this.currentDeaths) /
         this.currentPopulation) *
-      this.undocumentedCasesMultiplicator *
-      100;
+      100
+    );
+  }
 
-    this.element.innerText = Number(
-      (value >= 100 ? 100 : value).toFixed(4)
-    ).toString();
+  getNormalizedOutput(value: number) {
+    return Number((value >= 100 ? 100 : value).toFixed(4)).toString();
+  }
+
+  refresh() {
+    const value = this.getTotalChance();
+
+    if (value) {
+      this.element.innerText = this.getNormalizedOutput(value);
+    } else {
+      this.element.innerText = "-";
+    }
   }
 }

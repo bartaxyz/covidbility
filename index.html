@@ -31,14 +31,14 @@
         <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get <b>infected</b>.</h1>
         <!-- note: 1 person, 2 and more people -->
         <!-- Math behind cases / 7.8bil x 10 for each person -->
-        <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a href="#results" class="btn lite">Share <i class="fas fa-share"></i></a></p>
+        <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite">Share <i class="fas fa-share"></i></a></p>
     </div>
     <!-- mainline -->
 
 
 
 
-    <div class="part timeline">
+    <div class="part timeline" data-disabled-section>
       <h2>How many people did you met?</h2>
       <p class="closer">People that did not wear a mask under 2 meter (6 feet) of distance.</p>
       <div class="container">
@@ -109,7 +109,7 @@
     </div>
     <!-- timeline -->
 
-    <div class="people part">
+    <div class="people part" data-disabled-section>
       <div class="person is-highlighted">
         <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
         <h4><i class="fas fa-user"></i> A</h4>
@@ -149,21 +149,30 @@
       <h2>Optional</h2>
 
       <h3 class="line-height">Where do you live?
-      <select id="country-select">
-        <option value="">World</option>
-        <option value="japan">Japan</option>
-        <option value="czechia">Czechia</option>
-        <option value="usa">United States</option>
-      </select>
+        <select id="country-select" data-country-select>
+          <option value="World">World</option>
+          <option disabled>──────────</option>
+          <option value="Japan">Japan</option>
+          <option value="USA">United States</option>
+          <option value="Italy">Italy</option>
+        </select>
       </h3>
+
       <h3 class="line-height">What is your age group?
-      <select id="age-select">
-        <option value="age01">Default</option>
-        <option value="age01">age 0-9</option>
-        <option value="age10">age 10-19</option>
-        <option value="age10">age 20-29</option>
-        <option value="age10">age 30-39</option>
-      </select></h3>
+        <select id="age-select" data-age-select>
+          <option value="average">Default</option>
+          <option disabled>──────────</option>
+          <option value="0">age 0–9</option>
+          <option value="1">age 10–19</option>
+          <option value="2">age 20–29</option>
+          <option value="3">age 30–39</option>
+          <option value="4">age 40–49</option>
+          <option value="5">age 50–59</option>
+          <option value="6">age 60–69</option>
+          <option value="7">age 70–79</option>
+          <option value="8">age 80+</option>
+        </select>
+      </h3>
 
 
 
@@ -181,41 +190,52 @@
         <div class="small-part">
           <h3>Undocumented cases</h3>
           <p class="closer line-height"><span class="nw">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</span></p>
-          <p class="closer small">Load data for <a href="" class="link">World (average)</a></p>
+          <p class="closer small">Load data for <a class="link" data-undocumented-cases-multiplicator-load-data>World (average)</a></p>
         </div>
 
         <div class="small-part">
         <h3>Chance to hospitalization (+ICU)</h3>
         <p class="closer line-height">
-          <span class="nw">Average: <input type="number" value="20"> %,</span>
-          <span class="nw">age 0-9: <input type="number" value="5.72"> %,</span>
-          <span class="nw">10-19 <input type="number" value="1.76"> %,</span>
-          <span class="nw">20-29 <input type="number" value="6.24"> %,</span>
-          <span class="nw">30-39 <input type="number" value="18.5"> %,</span>
-          <span class="nw">40-49 <input type="number" value="24"> %,</span>
-          <span class="nw">50-59 <input type="number" value="33"> %,</span>
-          <span class="nw">60-69 <input type="number" value="38.5"> %,</span>
-          <span class="nw">70-79 <input type="number" value="49.5"> %,</span>
-          <span class="nw">80+ <input type="number" value="48"> %</span>
+          <span class="nw">Average: <input type="number" disabled data-hospitalization-input="average"> %,</span>
+          <span class="nw">age 0-9: <input type="number" data-hospitalization-input="0"> %,</span>
+          <span class="nw">10-19 <input type="number" data-hospitalization-input="1"> %,</span>
+          <span class="nw">20-29 <input type="number" data-hospitalization-input="2"> %,</span>
+          <span class="nw">30-39 <input type="number" data-hospitalization-input="3"> %,</span>
+          <span class="nw">40-49 <input type="number" data-hospitalization-input="4"> %,</span>
+          <span class="nw">50-59 <input type="number" data-hospitalization-input="5"> %,</span>
+          <span class="nw">60-69 <input type="number" data-hospitalization-input="6"> %,</span>
+          <span class="nw">70-79 <input type="number" data-hospitalization-input="7"> %,</span>
+          <span class="nw">80+ <input type="number" data-hospitalization-input="8"> %</span>
         </p>
-        <p class="closer small">Load data for <a href="" class="link">World (average)</a> (incomplete data)</p>
+        <p class="closer small">
+          Load data for
+          <a class="link" data-hospitalization-input-load-data="average">World (average)</a>,
+          <a class="link" data-hospitalization-input-load-data="spain">Spain</a>,
+          <a class="link" data-hospitalization-input-load-data="usa">USA</a> (incomplete data)</p>
       </div>
 
       <div class="small-part">
         <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
         <p class="closer line-height">
-          <span class="nw">Average: <input type="number" value="3.4"> %,</span>
-          <span class="nw">age 0-9: <input type="number" value="0"> %,</span>
-          <span class="nw">10-19 <input type="number" value="0.1"> %,</span>
-          <span class="nw">20-29 <input type="number" value="0.08"> %,</span>
-          <span class="nw">30-39 <input type="number" value="0.16"> %,</span>
-          <span class="nw">40-49 <input type="number" value="0.32"> %,</span>
-          <span class="nw">50-59 <input type="number" value="0.9"> %,</span>
-          <span class="nw">60-69 <input type="number" value="3.38"> %,</span>
-          <span class="nw">70-79 <input type="number" value="9.28"> %,</span>
-          <span class="nw">80+ <input type="number" value="17.76"> %</span>
+          <span class="nw">Average: <input type="number" disabled data-death-input="average"> %,</span>
+          <span class="nw">age 0-9: <input type="number" data-death-input="0"> %,</span>
+          <span class="nw">10-19 <input type="number" data-death-input="1"> %,</span>
+          <span class="nw">20-29 <input type="number" data-death-input="2"> %,</span>
+          <span class="nw">30-39 <input type="number" data-death-input="3"> %,</span>
+          <span class="nw">40-49 <input type="number" data-death-input="4"> %,</span>
+          <span class="nw">50-59 <input type="number" data-death-input="5"> %,</span>
+          <span class="nw">60-69 <input type="number" data-death-input="6"> %,</span>
+          <span class="nw">70-79 <input type="number" data-death-input="7"> %,</span>
+          <span class="nw">80+ <input type="number" data-death-input="8"> %</span>
         </p>
-        <p class="closer small">Load data for <a href="" class="link">World (average)</a>, <a href="" class="link">China</a>, <a href="" class="link">Italy</a>, <a href="" class="link">Netherlands</a>, <a href="" class="link">South Korea</a>, <a href="" class="link">Spain</a>
+        <p class="closer small">
+          Load data for
+          <a class="link" data-death-input-load-data="average">World (average)</a>,
+          <a class="link" data-death-input-load-data="china">China</a>,
+          <a class="link" data-death-input-load-data="italy">Italy</a>,
+          <a class="link" data-death-input-load-data="netherlands">Netherlands</a>,
+          <a class="link" data-death-input-load-data="southKorea">South Korea</a>,
+          <a class="link" data-death-input-load-data="spain">Spain</a>
         </div>
       </div>
     </div>

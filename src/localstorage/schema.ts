@@ -6,8 +6,12 @@ export interface LocalStorageSchema {
   currentRecovered: number;
   currentDeaths: number;
 
+  deathRates: number[];
+  hospitalizationRates: number[];
+
   // user input
-  country: string;
+  country: "global" | string;
+  age: "average" | number;
 
   // settings
   undocumentedCasesMultiplicator: number;

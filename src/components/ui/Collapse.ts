@@ -5,9 +5,9 @@ export class Collapse {
   static component = "collapse";
 
   element: HTMLElement;
-  header: HTMLElement;
-  trigger: HTMLElement;
-  content: HTMLElement;
+  header: HTMLElement | null;
+  trigger: HTMLElement | null;
+  content: HTMLElement | null;
   open = false;
 
   constructor(element: Element) {
@@ -28,9 +28,9 @@ export class Collapse {
         this.open = !this.open;
         this.refresh();
       });
-	}
-	
-	this.refresh();
+    }
+
+    this.refresh();
   }
 
   refresh() {
