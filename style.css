@@ -37,7 +37,9 @@ h3 {
   color: var(--main-color);
   font-weight: 400;
 }
-
+.part > h2, .part > div > h2 {
+  font-weight: 700;
+}
 .highlight {
   border-bottom: 0.2em solid var(--highlight-color);
   box-shadow: inset 0px -.2em 0px 0px var(--highlight-color);
