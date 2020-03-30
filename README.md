@@ -1,10 +1,9 @@
 # Covidbility
 <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
-### Outputs
-- Show % chance 🦠 of becoming infected today, and days before.
-- Show % chance 🏥 of needing hospitalization / ICU
-- Show % chance ⚰️ of death 
+- Show % chance of becoming infected today, and days before.
+- Show % chance of needing hospitalization / ICU
+- Show % chance of death 
 
 ## Roadmap 
 ### Done
@@ -51,9 +50,6 @@ Build scripts in watch mode. Files under `./src` are watched for changes and bui
 ```bash
 npm run develop
 ```
-
-
-
 
 ## Sources
 - "We estimate 86% of all infections were undocumented (95% CI: [82%–90%]) prior to 23 January 2020 travel restrictions." link: https://science.sciencemag.org/content/early/2020/03/24/science.abb3221
