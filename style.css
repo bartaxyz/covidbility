@@ -151,7 +151,23 @@ a.link.combined {
 .part.timeline {
   margin-bottom: 3em;
 }
-
+@media screen and (min-width: 48em) {
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 1.875em;
+  }
+  h3 {
+    font-size: 1.4625em;
+  }
+  .part {
+    margin-bottom: 6.25em;
+  }
+  .small-part {
+    margin-bottom: 3.125em;
+  }
+}
 .three-column-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
