@@ -1,6 +1,8 @@
 // ui
 import { Collapse } from "./ui/Collapse";
 import { DisabledSection } from "./ui/DisabledSection";
+// people
+import { People } from "./people/People";
 // undocumented cases multiplicator
 import { UndocumentedCasesMultiplicator } from "./undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator";
 import { UndocumentedCasesMultiplicatorLoadData } from "./undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData";
@@ -21,6 +23,8 @@ const components = [
   // ui
   Collapse,
   DisabledSection,
+  // people
+  People,
   // undocumented cases multiplicator
   UndocumentedCasesMultiplicator,
   UndocumentedCasesMultiplicatorLoadData,

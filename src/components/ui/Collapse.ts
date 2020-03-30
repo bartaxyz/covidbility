@@ -52,9 +52,6 @@ export class Collapse {
       this.content.style.display = this.open ? "block" : "none";
     }
 
-    console.log(this.closedElements);
-    console.log(this.openElements);
-
     this.closedElements.map(
       element => (element.style.display = this.open ? "none" : "inline")
     );

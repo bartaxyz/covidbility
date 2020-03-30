@@ -216,7 +216,7 @@ export const population = [
     population: 1179551
   },
   {
-    country: "Czech Republic",
+    country: "Czechia",
     population: 10618303
   },
   {
@@ -908,7 +908,7 @@ export const population = [
     population: 66181585
   },
   {
-    country: "USA",
+    country: "US",
     population: 324459463
   },
   {

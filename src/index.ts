@@ -5,16 +5,13 @@ import { deathRate } from "./data/deathRate";
 import { hospitalizationRate } from "./data/hospitalizationRate";
 import { ageRanges } from "./data/ageRanges";
 import { getPopulation } from "./data/utils/getPopulation";
+import { getCorona } from "./api/corona/getCorona";
 
 const { corona } = api;
-
-console.log("Hello World");
 
 addEventListener("DOMContentLoaded", () => {
   initComponents();
 });
-
-console.log(ageRanges);
 
 // Clear data
 // TODO: Load data from url
@@ -26,7 +23,11 @@ write("age", "average");
 write("currentPopulation", getPopulation("World"));
 
 (async () => {
-  const data = await corona.getCurrent();
+  // await corona.getCurrent();
+
+  const worldData = (await getCorona())["World"];
+
+  const data = worldData[worldData.length - 1];
 
   write("currentConfirmed", data.confirmed);
   write("currentRecovered", data.recovered);
