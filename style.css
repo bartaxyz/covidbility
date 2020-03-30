@@ -41,6 +41,9 @@ h3 {
 .part > h2, .part > div > h2 {
   font-weight: 700;
 }
+.part > div > h2 a {
+  font-weight: 400;
+}
 .highlight {
   border-bottom: 0.2em solid var(--highlight-color);
   box-shadow: inset 0px -.2em 0px 0px var(--highlight-color);
@@ -106,6 +109,7 @@ button.btn.lite:hover {
 }
 a.link {
   color: var(--link-color);
+  cursor: pointer;
 }
 
 a.link:hover {
