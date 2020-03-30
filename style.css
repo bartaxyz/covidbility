@@ -138,12 +138,13 @@ a.link.combined {
 .container {
   margin: auto;
   max-width: 60em;
-  padding-left: .5em;
-  padding-right: .5em;
+
 }
 
 .part {
   margin-bottom: 5em;
+  padding-left: .5em;
+  padding-right: .5em;
 }
 .small-part {
   margin-bottom: 2.5em;
