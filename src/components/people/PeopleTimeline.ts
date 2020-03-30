@@ -14,8 +14,8 @@ export class PeopleTimeline extends Component {
   refreshChances() {
     const elements = this.element.querySelectorAll("[data-chance]");
 
-    elements.forEach(async (element: Element) => {
-      const day = parseInt(element.getAttribute("data-chance"), 10);
+    elements.forEach(async (element: any) => {
+      const day = parseInt(element.getAttribute("data-chance")!, 10);
       const chance = await getChance(day);
       element.innerText = chance ? normalizeOutput(chance) : "-";
     });
