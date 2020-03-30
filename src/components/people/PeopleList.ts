@@ -58,8 +58,6 @@ export class PeopleList extends Component {
       write("people", this.people!);
     });
 
-    console.log(await getChance(0));
-
     const chance = await getChance(person.day);
 
     personItem.querySelector("[data-chance]").innerText = chance
@@ -80,14 +78,13 @@ export class PeopleList extends Component {
   async refreshPeopleList() {
     this.clearChildren();
 
-    console.log("element", this.element);
-
     this.people?.forEach(async (person, index) => {
       this.element.appendChild(await this.renderItem(person, index));
     });
 
+    await getChance(0);
     setTimeout(() => {
       this.element.appendChild(this.renderEmptyItem());
-    }, 0);
+    }, 10);
   }
 }

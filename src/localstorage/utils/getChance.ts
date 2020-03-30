@@ -1,6 +1,28 @@
-import { read } from "../index";
+import { read, watch } from "../index";
 import { getPopulation } from "../../data/utils/getPopulation";
 import { getCorona } from "../../api/corona/getCorona";
+
+export const watchChances = (callback: () => void) => {
+  watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
+    callback();
+  });
+
+  watch("currentPopulation", currentPopulation => {
+    callback();
+  });
+
+  watch("currentConfirmed", currentConfirmed => {
+    callback();
+  });
+
+  watch("currentRecovered", currentRecovered => {
+    callback();
+  });
+
+  watch("currentDeaths", currentDeaths => {
+    callback();
+  });
+};
 
 export const getChance = async (day: number = 0) => {
   const undocumentedCasesMultiplicator = read("undocumentedCasesMultiplicator");

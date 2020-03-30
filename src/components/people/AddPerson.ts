@@ -1,5 +1,5 @@
 import { Component } from "../utils/Component";
-import { read, write } from "../../localstorage/index";
+import { read, write, watch } from "../../localstorage/index";
 
 export class AddPerson extends Component {
   static component = "add-person";
@@ -9,21 +9,32 @@ export class AddPerson extends Component {
   constructor(element: Element) {
     super(element);
 
-    console.log("add-person");
-
     this.element.addEventListener("click", () => {
       const people = read("people")!;
 
-      const name = this.letters[people.length]
-        ? this.letters[people.length]
-        : "" + (people.length - this.letters.length);
-
       people.push({
-        name,
+        name: this.getNewName(),
         day: 0
       });
 
       write("people", people);
     });
+  }
+
+  getNewName(additionalIndex = 0) {
+    const people = read("people")!;
+    if (people.length === 0) {
+      return "A";
+    }
+
+    const lastName = people[people.length - 1].name;
+
+    if (lastName === "Z") {
+      return "1";
+    } else if (isNaN(+lastName)) {
+      return this.letters[this.letters.indexOf(lastName) + 1];
+    }
+
+    return `${+lastName + 1}`;
   }
 }

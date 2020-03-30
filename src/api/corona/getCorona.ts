@@ -24,25 +24,27 @@ export const getCorona = async () => {
 
   const dataKeys = Object.keys(data);
 
-  const World = data["China"].map((chinaDatapoint, chinaIndex) => {
-    const worldDataPoint: TimeSeriesDataType = {
-      date: chinaDatapoint.date,
-      confirmed: 0,
-      deaths: 0,
-      recovered: 0
-    };
+  if (!data["World"]) {
+    const World = data["China"].map((chinaDatapoint, chinaIndex) => {
+      const worldDataPoint: TimeSeriesDataType = {
+        date: chinaDatapoint.date,
+        confirmed: 0,
+        deaths: 0,
+        recovered: 0
+      };
 
-    dataKeys.forEach(key => {
-      const current = data[key][chinaIndex];
-      worldDataPoint.confirmed += current.confirmed;
-      worldDataPoint.deaths += current.deaths;
-      worldDataPoint.recovered += current.recovered;
+      dataKeys.forEach(key => {
+        const current = data[key][chinaIndex];
+        worldDataPoint.confirmed += current.confirmed;
+        worldDataPoint.deaths += current.deaths;
+        worldDataPoint.recovered += current.recovered;
+      });
+
+      return worldDataPoint;
     });
 
-    return worldDataPoint;
-  });
-
-  data.World = World;
+    data.World = World;
+  }
 
   cachedData = data;
 

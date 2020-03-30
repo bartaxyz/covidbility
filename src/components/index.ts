@@ -2,9 +2,10 @@
 import { Collapse } from "./ui/Collapse";
 import { DisabledSection } from "./ui/DisabledSection";
 // people
-import { AddPerson } from './people/AddPerson';
+import { AddPerson } from "./people/AddPerson";
 import { People } from "./people/People";
 import { PeopleList } from "./people/PeopleList";
+import { PeopleTimeline } from "./people/PeopleTimeline";
 // undocumented cases multiplicator
 import { UndocumentedCasesMultiplicator } from "./undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator";
 import { UndocumentedCasesMultiplicatorLoadData } from "./undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData";
@@ -29,6 +30,7 @@ const components = [
   AddPerson,
   People,
   PeopleList,
+  PeopleTimeline,
   // undocumented cases multiplicator
   UndocumentedCasesMultiplicator,
   UndocumentedCasesMultiplicatorLoadData,
