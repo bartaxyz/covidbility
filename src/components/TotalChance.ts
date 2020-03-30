@@ -5,13 +5,11 @@ import { Component } from "./utils/Component";
 export class TotalChance extends Component {
   static component = "total-chance";
 
-  undocumentedCasesMultiplicator:
-    | LocalStorageSchema["undocumentedCasesMultiplicator"]
-    | undefined;
-  currentPopulation: LocalStorageSchema["currentPopulation"] | undefined;
-  currentConfirmed: LocalStorageSchema["currentConfirmed"] | undefined;
-  currentRecovered: LocalStorageSchema["currentRecovered"] | undefined;
-  currentDeaths: LocalStorageSchema["currentDeaths"] | undefined;
+  undocumentedCasesMultiplicator?: LocalStorageSchema["undocumentedCasesMultiplicator"];
+  currentPopulation?: LocalStorageSchema["currentPopulation"];
+  currentConfirmed?: LocalStorageSchema["currentConfirmed"];
+  currentRecovered?: LocalStorageSchema["currentRecovered"];
+  currentDeaths?: LocalStorageSchema["currentDeaths"];
 
   constructor(element: Element) {
     super(element);
