@@ -3,6 +3,7 @@ import { getCurrent } from "../api/corona/getCurrent";
 import { LocalStorageSchema } from "../localstorage/schema";
 import { write } from "../localstorage/index";
 import { getPopulation } from "../data/utils/getPopulation";
+import { getCorona } from "../api/corona/getCorona";
 
 export class CountrySelect extends SelectComponent {
   static component = "country-select";
@@ -16,17 +17,17 @@ export class CountrySelect extends SelectComponent {
       write("country", this.element.value);
       this.country = this.element.value;
 
-      const data = await getCurrent(
-        this.element.value === "World" ? undefined : this.element.value
-      );
+      if (!this.country) return;
 
-      console.log(data);
+      const data = (await getCorona())[this.country];
 
-      if (!data || !this.element.value) return;
+      const lastDataPoint = data[data.length - 1];
 
-      write("currentConfirmed", data.confirmed);
-      write("currentDeaths", data.deaths);
-      write("currentRecovered", data.recovered);
+      if (!data || !lastDataPoint || !this.element.value) return;
+
+      write("currentConfirmed", lastDataPoint.confirmed);
+      write("currentDeaths", lastDataPoint.deaths);
+      write("currentRecovered", lastDataPoint.recovered);
       write("currentPopulation", getPopulation(this.element.value));
     });
   }

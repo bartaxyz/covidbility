@@ -22,9 +22,9 @@ export class HospitalizationChance extends TotalChance {
     })
   }
 
-  refresh() {
+  async refresh() {
     const currentHospitalizationProbability = this.getCurrentHospitalizationProbability();
-    const totalChance = this.getTotalChance();
+    const totalChance = await this.getTotalChance();
 
     if (
       typeof currentHospitalizationProbability === "undefined" ||

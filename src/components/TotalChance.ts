@@ -1,17 +1,17 @@
 import { watch } from "../localstorage/index";
 import { LocalStorageSchema } from "../localstorage/schema";
 import { Component } from "./utils/Component";
+import { getChance } from "../localstorage/utils/getChance";
+import { normalizeOutput } from "../localstorage/utils/normalizeOutput";
 
 export class TotalChance extends Component {
   static component = "total-chance";
 
-  undocumentedCasesMultiplicator:
-    | LocalStorageSchema["undocumentedCasesMultiplicator"]
-    | undefined;
-  currentPopulation: LocalStorageSchema["currentPopulation"] | undefined;
-  currentConfirmed: LocalStorageSchema["currentConfirmed"] | undefined;
-  currentRecovered: LocalStorageSchema["currentRecovered"] | undefined;
-  currentDeaths: LocalStorageSchema["currentDeaths"] | undefined;
+  undocumentedCasesMultiplicator?: LocalStorageSchema["undocumentedCasesMultiplicator"];
+  currentPopulation?: LocalStorageSchema["currentPopulation"];
+  currentConfirmed?: LocalStorageSchema["currentConfirmed"];
+  currentRecovered?: LocalStorageSchema["currentRecovered"];
+  currentDeaths?: LocalStorageSchema["currentDeaths"];
 
   constructor(element: Element) {
     super(element);
@@ -42,32 +42,16 @@ export class TotalChance extends Component {
     });
   }
 
-  getTotalChance() {
-    if (
-      typeof this.undocumentedCasesMultiplicator === "undefined" ||
-      typeof this.currentPopulation === "undefined" ||
-      typeof this.currentConfirmed === "undefined" ||
-      typeof this.currentRecovered === "undefined" ||
-      typeof this.currentDeaths === "undefined"
-    ) {
-      return;
-    }
-
-    return (
-      ((this.currentConfirmed * this.undocumentedCasesMultiplicator -
-        this.currentRecovered -
-        this.currentDeaths) /
-        this.currentPopulation) *
-      100
-    );
+  async getTotalChance() {
+    return await getChance(0);
   }
 
   getNormalizedOutput(value: number) {
-    return Number((value >= 100 ? 100 : value).toFixed(4)).toString();
+    return normalizeOutput(value);
   }
 
-  refresh() {
-    const value = this.getTotalChance();
+  async refresh() {
+    const value = await this.getTotalChance();
 
     if (value) {
       this.element.innerText = this.getNormalizedOutput(value);

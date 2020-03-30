@@ -18,7 +18,6 @@ export class AgeSelect extends InputComponent {
     });
 
     this.element.addEventListener("change", () => {
-      console.log(this.element.value);
       if (this.element.value === "average") {
         write("age", this.element.value);
       } else {

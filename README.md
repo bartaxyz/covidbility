@@ -1,26 +1,30 @@
 # Covidbility
-Learn your chance to become infected by SARS-COV-2.
+### <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
-## ToDo
+- Show % chance of becoming infected today, and days before.
+- Show % chance of needing hospitalization / ICU
+- Show % chance of death 
+
+## Roadmap 
+### Core
 - [x] Find good data source of daily updated of infected in-country 
-- [ ] Find good data source of Intense Care Units
 - [x] Find good data source of probabilities, research
-- [ ] Built a mathematical model
+- [x] Built a mathematical model
 - [x] Design
+- [x] Script
 
-## Mission 
-- Showing user % chance of getting infected based on number of people and time of spending with them
+### Someday
+- [ ] Aditional settings for people you met: 
+  - [ ] Wearing Mask / Low risk / Short time
+- [ ] Automatic change of settings based on selected country
+- [ ] Sharing options
 
-## Inputs
-- Country
-- Number of people
-- (Optional) Age
-
-## Outputs 📈
-- Showing % chance 🦠 of becoming infected today, and days before and after
-- Showing % chance 🤒 of showing symptoms in 5-12 days
-- Showing % chance 🏥 of needing hospitalization / ICU
-- Showing % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity and age)
+### Nice-to-have
+- [ ] More datasets for Settings
+- [ ] Add cities or regions
+- [ ] Find good data source of ICU
+- [ ] Show chance of somone else to die because of triage
+- [ ] Split hospitalization & ICU
 
 ## Contributing
 
