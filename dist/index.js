@@ -1319,6 +1319,9 @@
                     this.people = people;
                     this.refreshPeopleList();
                 });
+                getChance_1.watchChances(() => {
+                    this.refreshPeopleList();
+                });
             }
             renderEmptyItem() {
                 const template = this.emptyItemTemplate.content.children[0];

@@ -2,7 +2,7 @@ import { Component } from "../utils/Component";
 import { watch, write } from "../../localstorage/index";
 import { LocalStorageSchema } from "../../localstorage/schema";
 import { AddPerson } from "./AddPerson";
-import { getChance } from "../../localstorage/utils/getChance";
+import { getChance, watchChances } from "../../localstorage/utils/getChance";
 import { normalizeOutput } from "../../localstorage/utils/normalizeOutput";
 
 export class PeopleList extends Component {
@@ -24,6 +24,10 @@ export class PeopleList extends Component {
       this.people = people;
       this.refreshPeopleList();
     });
+
+    watchChances(() => {
+      this.refreshPeopleList();
+    })
   }
 
   renderEmptyItem() {
