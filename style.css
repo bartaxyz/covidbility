@@ -194,16 +194,23 @@ a.link.combined {
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: stretch;
   flex-basis: auto;
-
+  min-height: 180px;
 }
 
 .timeline .item {
   width: 15%;
   text-align: center;
   position: relative;
-
+  display: flex;
+  flex-direction: column;
+}
+.timeline .drag-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .timeline .container p,
 .timeline .container h4 {

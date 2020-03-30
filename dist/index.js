@@ -1378,11 +1378,19 @@
     define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput"], function (require, exports, Component_4, getChance_2, normalizeOutput_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
+        console.log("PeopleTimeline", new Draggable.Sortable());
         class PeopleTimeline extends Component_4.Component {
             constructor(element) {
                 super(element);
                 console.log("people-timeline");
                 this.refreshChances();
+                new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
+                    draggable: `.item-person`,
+                    mirror: {
+                        constrainDimensions: true
+                    },
+                    plugins: [Draggable.Plugins.ResizeMirror]
+                });
             }
             refreshChances() {
                 const elements = this.element.querySelectorAll("[data-chance]");
