@@ -1,16 +1,17 @@
 # Covidbility
-<a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
+### <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
 - Show % chance of becoming infected today, and days before.
 - Show % chance of needing hospitalization / ICU
 - Show % chance of death 
 
 ## Roadmap 
-### Done
+### Core
 - [x] Find good data source of daily updated of infected in-country 
 - [x] Find good data source of probabilities, research
 - [x] Built a mathematical model
 - [x] Design
+- [x] Script
 
 ### Someday
 - [ ] Aditional settings for people you met: 
