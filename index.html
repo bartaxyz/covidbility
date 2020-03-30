@@ -9,6 +9,7 @@
   <link href="style.css" rel="stylesheet">
   <script defer="" src="./js/all.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
   <script src="./dist/index.js"></script>
 </head>
 
@@ -38,7 +39,7 @@
 
 
     <div data-people>
-      <div class="part timeline">
+      <div class="part timeline" data-people-timeline>
         <h2>How many people did you met?</h2>
         <p class="closer">People that did not wear a mask under 2 meter (6 feet) of distance for a significant time.</p>
         <div class="container">
@@ -48,7 +49,7 @@
               <p>-5</p>
             </div>
             <div class="label">
-              <p class="small"><code>0%</code></p>
+              <p class="small"><code><span data-chance="5">-</span>%</code></p>
             </div>
           </div>
           <div class="item">
@@ -56,18 +57,18 @@
               <p>-4</p>
             </div>
             <div class="label">
-              <p class="small"><code>0%</code></p>
+              <p class="small"><code><span data-chance="4">-</span>%</code></p>
             </div>
           </div>
           <div class="item">
-            <div class="item-person is-ghosted">
+            <div class="item-person is-ghosted" data-disabled-section>
               <h4><i class="fas fa-user"></i> B</h4>
             </div>
             <div class="no">
               <p>-3</p>
             </div>
             <div class="label">
-              <p class="small"><code>0%</code></p>
+              <p class="small"><code><span data-chance="3">-</span>%</code></p>
             </div>
           </div>
           <div class="item">
@@ -75,32 +76,32 @@
               <p>-2</p>
             </div>
             <div class="label">
-              <p class="small"><code>0%</code></p>
+              <p class="small"><code><span data-chance="2">-</span>%</code></p>
             </div>
           </div>
           <div class="item">
-            <div class="item-person is-highlighted">
+            <div class="item-person is-highlighted" data-disabled-section>
               <h4><i class="fas fa-user"></i> A</h4>
             </div>
-            <div class="item-person">
+            <div class="item-person" data-disabled-section>
               <h4><i class="fas fa-user"></i> B</h4>
             </div>
             <div class="no">
               <p>Yest.</p>
             </div>
             <div class="label">
-              <p class="small"><code>0&thinsp;%</code></p>
+              <p class="small"><code><span data-chance="1">-</span>&thinsp;%</code></p>
             </div>
           </div>
           <div class="item">
-            <div class="item-person">
+            <div class="item-person" data-disabled-section>
               <h4><i class="fas fa-user"></i> C</h4>
             </div>
             <div class="no">
               <p>Today</p>
             </div>
             <div class="label">
-              <p class="small"><code><span data-total-chance>0.2109</span>&thinsp;%</code></p>
+              <p class="small"><code><span data-chance="0">-</span>&thinsp;%</code></p>
             </div>
           </div>
 
@@ -170,17 +171,17 @@
 
       <h3 class="line-height">What is your age group?
         <select id="age-select" data-age-select>
-          <option value="average">All ages</option>
+          <option value="0">All ages</option>
           <option disabled>──────────</option>
-          <option value="0">age 0–9</option>
-          <option value="1">age 10–19</option>
-          <option value="2">age 20–29</option>
-          <option value="3">age 30–39</option>
-          <option value="4">age 40–49</option>
-          <option value="5">age 50–59</option>
-          <option value="6">age 60–69</option>
-          <option value="7">age 70–79</option>
-          <option value="8">age 80+</option>
+          <option value="1">age 0–9</option>
+          <option value="2">age 10–19</option>
+          <option value="3">age 20–29</option>
+          <option value="4">age 30–39</option>
+          <option value="5">age 40–49</option>
+          <option value="6">age 50–59</option>
+          <option value="7">age 60–69</option>
+          <option value="8">age 70–79</option>
+          <option value="9">age 80+</option>
         </select>
       </h3>
 
@@ -206,16 +207,16 @@
         <div class="small-part">
         <h3>Chance to hospitalization (+ICU)</h3>
         <p class="closer line-height">
-          <span class="nw">All ages: <input type="number" disabled data-hospitalization-input="average"> %,</span>
-          <span class="nw">age 0-9: <input type="number" data-hospitalization-input="0"> %,</span>
-          <span class="nw">10-19 <input type="number" data-hospitalization-input="1"> %,</span>
-          <span class="nw">20-29 <input type="number" data-hospitalization-input="2"> %,</span>
-          <span class="nw">30-39 <input type="number" data-hospitalization-input="3"> %,</span>
-          <span class="nw">40-49 <input type="number" data-hospitalization-input="4"> %,</span>
-          <span class="nw">50-59 <input type="number" data-hospitalization-input="5"> %,</span>
-          <span class="nw">60-69 <input type="number" data-hospitalization-input="6"> %,</span>
-          <span class="nw">70-79 <input type="number" data-hospitalization-input="7"> %,</span>
-          <span class="nw">80+ <input type="number" data-hospitalization-input="8"> %</span>
+          <span class="nw">All ages: <input type="number" data-hospitalization-input="0"> %,</span>
+          <span class="nw">age 0-9: <input type="number" data-hospitalization-input="1"> %,</span>
+          <span class="nw">10-19 <input type="number" data-hospitalization-input="2"> %,</span>
+          <span class="nw">20-29 <input type="number" data-hospitalization-input="3"> %,</span>
+          <span class="nw">30-39 <input type="number" data-hospitalization-input="4"> %,</span>
+          <span class="nw">40-49 <input type="number" data-hospitalization-input="5"> %,</span>
+          <span class="nw">50-59 <input type="number" data-hospitalization-input="6"> %,</span>
+          <span class="nw">60-69 <input type="number" data-hospitalization-input="7"> %,</span>
+          <span class="nw">70-79 <input type="number" data-hospitalization-input="8"> %,</span>
+          <span class="nw">80+ <input type="number" data-hospitalization-input="9"> %</span>
         </p>
         <p class="closer small">
           Load data for
@@ -227,16 +228,16 @@
       <div class="small-part">
         <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
         <p class="closer line-height">
-          <span class="nw">All ages: <input type="number" disabled data-death-input="average"> %,</span>
-          <span class="nw">age 0-9: <input type="number" data-death-input="0"> %,</span>
-          <span class="nw">10-19 <input type="number" data-death-input="1"> %,</span>
-          <span class="nw">20-29 <input type="number" data-death-input="2"> %,</span>
-          <span class="nw">30-39 <input type="number" data-death-input="3"> %,</span>
-          <span class="nw">40-49 <input type="number" data-death-input="4"> %,</span>
-          <span class="nw">50-59 <input type="number" data-death-input="5"> %,</span>
-          <span class="nw">60-69 <input type="number" data-death-input="6"> %,</span>
-          <span class="nw">70-79 <input type="number" data-death-input="7"> %,</span>
-          <span class="nw">80+ <input type="number" data-death-input="8"> %</span>
+          <span class="nw">All ages: <input type="number" data-death-input="0"> %,</span>
+          <span class="nw">age 0-9: <input type="number" data-death-input="1"> %,</span>
+          <span class="nw">10-19 <input type="number" data-death-input="2"> %,</span>
+          <span class="nw">20-29 <input type="number" data-death-input="3"> %,</span>
+          <span class="nw">30-39 <input type="number" data-death-input="4"> %,</span>
+          <span class="nw">40-49 <input type="number" data-death-input="5"> %,</span>
+          <span class="nw">50-59 <input type="number" data-death-input="6"> %,</span>
+          <span class="nw">60-69 <input type="number" data-death-input="7"> %,</span>
+          <span class="nw">70-79 <input type="number" data-death-input="8"> %,</span>
+          <span class="nw">80+ <input type="number" data-death-input="9"> %</span>
         </p>
         <p class="closer small">
           Load data for

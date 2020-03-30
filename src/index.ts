@@ -3,7 +3,6 @@ import { initComponents } from "./components/index";
 import { write } from "./localstorage/index";
 import { deathRate } from "./data/deathRate";
 import { hospitalizationRate } from "./data/hospitalizationRate";
-import { ageRanges } from "./data/ageRanges";
 import { getPopulation } from "./data/utils/getPopulation";
 import { getCorona } from "./api/corona/getCorona";
 
@@ -18,8 +17,17 @@ addEventListener("DOMContentLoaded", () => {
 write("undocumentedCasesMultiplicator", 10);
 write("deathRates", deathRate.average);
 write("hospitalizationRates", hospitalizationRate.average);
-write("age", "average");
-write("people", []);
+write("age", 0);
+write("people", [
+  {
+    day: 0,
+    name: "A"
+  },
+  {
+    day: 1,
+    name: "B"
+  }
+]);
 
 write("currentPopulation", getPopulation("World"));
 

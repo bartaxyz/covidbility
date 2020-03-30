@@ -1,49 +1,38 @@
-import { watch } from "../localstorage/index";
-import { LocalStorageSchema } from "../localstorage/schema";
 import { Component } from "./utils/Component";
-import { getChance } from "../localstorage/utils/getChance";
+import { getChance, watchChances } from "../localstorage/utils/getChance";
 import { normalizeOutput } from "../localstorage/utils/normalizeOutput";
+import { read, watch } from "../localstorage/index";
 
 export class TotalChance extends Component {
   static component = "total-chance";
 
-  undocumentedCasesMultiplicator?: LocalStorageSchema["undocumentedCasesMultiplicator"];
-  currentPopulation?: LocalStorageSchema["currentPopulation"];
-  currentConfirmed?: LocalStorageSchema["currentConfirmed"];
-  currentRecovered?: LocalStorageSchema["currentRecovered"];
-  currentDeaths?: LocalStorageSchema["currentDeaths"];
-
   constructor(element: Element) {
     super(element);
 
-    watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
-      this.undocumentedCasesMultiplicator = undocumentedCasesMultiplicator;
+    watchChances(() => {
       this.refresh();
     });
 
-    watch("currentPopulation", currentPopulation => {
-      this.currentPopulation = currentPopulation;
-      this.refresh();
-    });
-
-    watch("currentConfirmed", currentConfirmed => {
-      this.currentConfirmed = currentConfirmed;
-      this.refresh();
-    });
-
-    watch("currentRecovered", currentRecovered => {
-      this.currentRecovered = currentRecovered;
-      this.refresh();
-    });
-
-    watch("currentDeaths", currentDeaths => {
-      this.currentDeaths = currentDeaths;
+    watch("people", () => {
       this.refresh();
     });
   }
 
   async getTotalChance() {
-    return await getChance(0);
+    const people = read("people")!;
+    const peopleChances: number[] = [];
+
+    for (let i = 0; i < people.length; ++i) {
+      peopleChances.push((await getChance(people[i].day))!);
+    }
+
+    return (
+      (1 -
+        peopleChances.reduce((previous, current) => {
+          return previous * (1 - current / 100);
+        }, 1)) *
+      100
+    );
   }
 
   getNormalizedOutput(value: number) {
