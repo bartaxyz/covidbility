@@ -1355,22 +1355,20 @@
                 });
             }
             clearChildren() {
-                const { children } = this.element;
-                Array.from(children).forEach((child) => {
-                    this.element.removeChild(child);
-                });
+                this.element.innerHTML = "";
             }
             refreshPeopleList() {
                 var _a;
                 return __awaiter(this, void 0, void 0, function* () {
                     this.clearChildren();
+                    const emptyItem = this.renderEmptyItem();
+                    this.element.appendChild(emptyItem);
                     (_a = this.people) === null || _a === void 0 ? void 0 : _a.forEach((person, index) => __awaiter(this, void 0, void 0, function* () {
-                        this.element.appendChild(yield this.renderItem(person, index));
+                        try {
+                            this.element.insertBefore(yield this.renderItem(person, index), emptyItem);
+                        }
+                        catch (e) { }
                     }));
-                    yield getChance_1.getChance(0);
-                    setTimeout(() => {
-                        this.element.appendChild(this.renderEmptyItem());
-                    }, 10);
                 });
             }
         }

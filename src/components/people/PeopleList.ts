@@ -25,9 +25,9 @@ export class PeopleList extends Component {
       this.refreshPeopleList();
     });
 
-    watchChances(() => {
+    watchChances(() => {
       this.refreshPeopleList();
-    })
+    });
   }
 
   renderEmptyItem() {
@@ -72,23 +72,23 @@ export class PeopleList extends Component {
   }
 
   clearChildren() {
-    const { children } = this.element;
-
-    Array.from(children).forEach((child: Element) => {
-      this.element.removeChild(child);
-    });
+    this.element.innerHTML = "";
   }
 
   async refreshPeopleList() {
     this.clearChildren();
 
-    this.people?.forEach(async (person, index) => {
-      this.element.appendChild(await this.renderItem(person, index));
-    });
+    const emptyItem = this.renderEmptyItem();
 
-    await getChance(0);
-    setTimeout(() => {
-      this.element.appendChild(this.renderEmptyItem());
-    }, 10);
+    this.element.appendChild(emptyItem);
+
+    this.people?.forEach(async (person, index) => {
+      try {
+        this.element.insertBefore(
+          await this.renderItem(person, index),
+          emptyItem
+        );
+      } catch (e) {}
+    });
   }
 }
