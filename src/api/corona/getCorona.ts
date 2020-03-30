@@ -10,18 +10,17 @@ type TimeSeriesType = {
 };
 
 let cachedData: TimeSeriesType;
-let called = false;
+
+let fetchPromise: Promise<TimeSeriesType> = fetch(
+  "https://pomber.github.io/covid19/timeseries.json"
+).then(response => response.json());
 
 export const getCorona = async () => {
-  if (called) {
+  if (cachedData) {
     return cachedData;
-  } else {
-    called = true;
   }
 
-  const data: TimeSeriesType = await fetch(
-    "https://pomber.github.io/covid19/timeseries.json"
-  ).then(response => response.json());
+  const data: TimeSeriesType = await fetchPromise;
 
   const dataKeys = Object.keys(data);
 

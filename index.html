@@ -37,106 +37,113 @@
 
 
 
+    <div data-people>
+      <div class="part timeline">
+        <h2>How many people did you met?</h2>
+        <p class="closer">People that did not wear a mask under 2 meter (6 feet) of distance for a significant time.</p>
+        <div class="container">
 
-    <div class="part timeline" data-disabled-section>
-      <h2>How many people did you met?</h2>
-      <p class="closer">People that did not wear a mask under 2 meter (6 feet) of distance for a significant time.</p>
-      <div class="container">
+          <div class="item">
+            <div class="no">
+              <p>-5</p>
+            </div>
+            <div class="label">
+              <p class="small"><code>0%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="no">
+              <p>-4</p>
+            </div>
+            <div class="label">
+              <p class="small"><code>0%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-person is-ghosted">
+              <h4><i class="fas fa-user"></i> B</h4>
+            </div>
+            <div class="no">
+              <p>-3</p>
+            </div>
+            <div class="label">
+              <p class="small"><code>0%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="no">
+              <p>-2</p>
+            </div>
+            <div class="label">
+              <p class="small"><code>0%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-person is-highlighted">
+              <h4><i class="fas fa-user"></i> A</h4>
+            </div>
+            <div class="item-person">
+              <h4><i class="fas fa-user"></i> B</h4>
+            </div>
+            <div class="no">
+              <p>Yest.</p>
+            </div>
+            <div class="label">
+              <p class="small"><code>0&thinsp;%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-person">
+              <h4><i class="fas fa-user"></i> C</h4>
+            </div>
+            <div class="no">
+              <p>Today</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-total-chance>0.2109</span>&thinsp;%</code></p>
+            </div>
+          </div>
 
-        <div class="item">
-          <div class="no">
-            <p>-5</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0%</code></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="no">
-            <p>-4</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0%</code></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-person is-ghosted">
-            <h4><i class="fas fa-user"></i> B</h4>
-          </div>
-          <div class="no">
-            <p>-3</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0%</code></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="no">
-            <p>-2</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0%</code></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-person is-highlighted">
-            <h4><i class="fas fa-user"></i> A</h4>
-          </div>
-          <div class="item-person">
-            <h4><i class="fas fa-user"></i> B</h4>
-          </div>
-          <div class="no">
-            <p>Yest.</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0.1352&thinsp;%</code></p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-person">
-            <h4><i class="fas fa-user"></i> C</h4>
-          </div>
-          <div class="no">
-            <p>Today</p>
-          </div>
-          <div class="label">
-            <p class="small"><code>0.2109&thinsp;%</code></p>
-          </div>
         </div>
 
       </div>
+      <!-- timeline -->
 
-    </div>
-    <!-- timeline -->
+      <template id="template-person-list-item">
+        <div class="person">
+          <a class="link delete" data-remove><i class="fas fa-minus-circle"></i></a>
+          <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
 
-    <div class="people part" data-disabled-section>
-      <div class="person is-highlighted">
-        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
-        <h4><i class="fas fa-user"></i> A</h4>
+          <p class="small">has <b><code><span data-chance>0.0676</span>&thinsp;%</code></b> chance of having COVID19
+            <p class="small">(<span data-day>Today</span>)</p>
+          </p>
+        </div>
+      </template>
 
-        <p class="small">has <b><code>0.0676&thinsp;%</code></b> chance of having COVID19
+      <template id="template-person-list-empty-item">
+        <div class="person empty">
+          <a class="btn" data-add-person>Add person</a>
+        </div>
+      </template>
+
+      <div data-people-list class="people part">
+        <div class="person ">
+          <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
+          <h4><i class="fas fa-user"></i> B</h4>
+          <p class="small">has <b><code>0.0676&thinsp;%</code></b> chance of having COVID19
+          </p>
           <p class="small">(Yesterday)</p>
-        </p>
+        </div>
+        <div class="person">
+          <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
+          <h4><i class="fas fa-user"></i> C</h4>
+          <p class="small">has <b><code>0.0757&thinsp;%</code></b> chance of having COVID19
+          </p>
+          <p class="small">(Today)</p>
+        </div>
       </div>
-      <div class="person ">
-        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
-        <h4><i class="fas fa-user"></i> B</h4>
-        <p class="small">has <b><code>0.0676&thinsp;%</code></b> chance of having COVID19
-        </p>
-        <p class="small">(Yesterday)</p>
-      </div>
-      <div class="person">
-        <a href="" class="link delete"><i class="fas fa-minus-circle"></i></a>
-        <h4><i class="fas fa-user"></i> C</h4>
-        <p class="small">has <b><code>0.0757&thinsp;%</code></b> chance of having COVID19
-        </p>
-        <p class="small">(Today)</p>
-      </div>
-      <div class="person empty">
-        <a class="btn">Add person</a>
-      </div>
+      <!-- people -->
     </div>
-    <!-- people -->
 
 
 

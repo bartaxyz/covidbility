@@ -22,9 +22,9 @@ export class DeathChance extends TotalChance {
     });
   }
 
-  refresh() {
+  async refresh() {
     const currentDeathProbability = this.getCurrentDeathProbability();
-    const totalChance = this.getTotalChance();
+    const totalChance = await this.getTotalChance();
 
     if (
       typeof currentDeathProbability === "undefined" ||

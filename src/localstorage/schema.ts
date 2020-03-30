@@ -1,5 +1,10 @@
 export type LocalStorageSchemaKey = keyof LocalStorageSchema;
 
+export interface PeopleType {
+  name: string;
+  day: number;
+}
+
 export interface LocalStorageSchema {
   currentPopulation: number;
   currentConfirmed: number;
@@ -8,6 +13,9 @@ export interface LocalStorageSchema {
 
   deathRates: number[];
   hospitalizationRates: number[];
+
+  // people
+  people: PeopleType[];
 
   // user input
   country: "global" | string;

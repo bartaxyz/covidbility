@@ -19,8 +19,11 @@ write("undocumentedCasesMultiplicator", 10);
 write("deathRates", deathRate.average);
 write("hospitalizationRates", hospitalizationRate.average);
 write("age", "average");
+write("people", []);
 
 write("currentPopulation", getPopulation("World"));
+
+console.log("Hello World");
 
 (async () => {
   // await corona.getCurrent();
