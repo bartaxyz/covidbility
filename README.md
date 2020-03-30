@@ -1,13 +1,12 @@
 # Covidbility
-<a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novwl coronavirus.
+<a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
-### Outputs 📈
-- Show % chance 🦠 of becoming infected today, and days before and after
-- ~~Show % chance 🤒 of showing symptoms in 5-12 days~~
+### Outputs
+- Show % chance 🦠 of becoming infected today, and days before.
 - Show % chance 🏥 of needing hospitalization / ICU
-- Show % chance ⚰️ of death BUT ALSO % chance that because triage **someone else had to die** (based on ICU capacity and age)
+- Show % chance ⚰️ of death 
 
-## Roadmap 🚀
+## Roadmap 
 ### Done
 - [x] Find good data source of daily updated of infected in-country 
 - [x] Find good data source of probabilities, research
@@ -24,6 +23,7 @@
 - [ ] More datasets for Settings
 - [ ] Add cities or regions
 - [ ] Find good data source of ICU
+- [ ] Show chance of somone else to die because of triage
 - [ ] Split hospitalization & ICU
 
 ## Contributing
