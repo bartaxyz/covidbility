@@ -1375,21 +1375,42 @@
         exports.PeopleList = PeopleList;
         PeopleList.component = "people-list";
     });
-    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput"], function (require, exports, Component_4, getChance_2, normalizeOutput_2) {
+    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_4, getChance_2, normalizeOutput_2, index_6) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        console.log("PeopleTimeline", new Draggable.Sortable());
         class PeopleTimeline extends Component_4.Component {
             constructor(element) {
                 super(element);
                 console.log("people-timeline");
+                this.itemTemplate = document.getElementById("template-timeline-item");
+                this.containers = Array.from(document.querySelectorAll("[data-drag-container]"));
                 this.refreshChances();
+                this.refreshTimeline();
                 new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
                     draggable: `.item-person`,
                     mirror: {
                         constrainDimensions: true
                     },
+                    classes: {
+                        // mirror: 'is-ghosted',
+                        // 'source:origina': 'is-ghosted',
+                        'source:dragging': 'is-ghosted',
+                    },
                     plugins: [Draggable.Plugins.ResizeMirror]
+                });
+            }
+            renderItem(person) {
+                const template = this.itemTemplate.content.children[0];
+                const personItem = template.cloneNode(true);
+                personItem.addEventListener("mouseover", () => personItem.classList.add("is-highlighted"));
+                personItem.addEventListener("mouseout", () => personItem.classList.remove("is-highlighted"));
+                personItem.querySelector("[data-name]").innerText = person.name;
+                return personItem;
+            }
+            refreshTimeline() {
+                const people = index_6.read('people');
+                people === null || people === void 0 ? void 0 : people.forEach((person) => {
+                    this.renderItem(person);
                 });
             }
             refreshChances() {
@@ -1421,13 +1442,13 @@
         }
         exports.InputComponent = InputComponent;
     });
-    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_6, InputComponent_1) {
+    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_7, InputComponent_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class UndocumentedCasesMultiplicator extends InputComponent_1.InputComponent {
             constructor(element) {
                 super(element);
-                index_6.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
+                index_7.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
                     if (!this.isFocused) {
                         this.element.value = undocumentedCasesMultiplicator
                             ? `${undocumentedCasesMultiplicator}`
@@ -1435,28 +1456,28 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    index_6.write("undocumentedCasesMultiplicator", this.element.value ? parseInt(this.element.value, 10) : 0);
+                    index_7.write("undocumentedCasesMultiplicator", this.element.value ? parseInt(this.element.value, 10) : 0);
                 });
             }
         }
         exports.UndocumentedCasesMultiplicator = UndocumentedCasesMultiplicator;
         UndocumentedCasesMultiplicator.component = "undocumented-cases-multiplicator";
     });
-    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", ["require", "exports", "localstorage/index", "components/utils/Component"], function (require, exports, index_7, Component_6) {
+    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", ["require", "exports", "localstorage/index", "components/utils/Component"], function (require, exports, index_8, Component_6) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class UndocumentedCasesMultiplicatorLoadData extends Component_6.Component {
             constructor(element) {
                 super(element);
                 this.element.addEventListener("click", () => {
-                    index_7.write("undocumentedCasesMultiplicator", 10);
+                    index_8.write("undocumentedCasesMultiplicator", 10);
                 });
             }
         }
         exports.UndocumentedCasesMultiplicatorLoadData = UndocumentedCasesMultiplicatorLoadData;
         UndocumentedCasesMultiplicatorLoadData.component = "undocumented-cases-multiplicator-load-data";
     });
-    define("components/TotalChance", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_7, getChance_3, normalizeOutput_3, index_8) {
+    define("components/TotalChance", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_7, getChance_3, normalizeOutput_3, index_9) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class TotalChance extends Component_7.Component {
@@ -1465,13 +1486,13 @@
                 getChance_3.watchChances(() => {
                     this.refresh();
                 });
-                index_8.watch("people", () => {
+                index_9.watch("people", () => {
                     this.refresh();
                 });
             }
             getTotalChance() {
                 return __awaiter(this, void 0, void 0, function* () {
-                    const people = index_8.read("people");
+                    const people = index_9.read("people");
                     const peopleChances = [];
                     for (let i = 0; i < people.length; ++i) {
                         peopleChances.push((yield getChance_3.getChance(people[i].day)));
@@ -1501,17 +1522,17 @@
         exports.TotalChance = TotalChance;
         TotalChance.component = "total-chance";
     });
-    define("components/hospitalization/HospitalizationChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_9, TotalChance_1) {
+    define("components/hospitalization/HospitalizationChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_10, TotalChance_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class HospitalizationChance extends TotalChance_1.TotalChance {
             constructor(element) {
                 super(element);
-                index_9.watch('age', (age) => {
+                index_10.watch('age', (age) => {
                     this.age = age;
                     this.refresh();
                 });
-                index_9.watch('hospitalizationRates', (hospitalizationRates) => {
+                index_10.watch('hospitalizationRates', (hospitalizationRates) => {
                     this.hospitalizationRates = hospitalizationRates;
                     this.refresh();
                 });
@@ -1530,8 +1551,8 @@
                 });
             }
             getCurrentHospitalizationProbability() {
-                const hospitalizationRates = index_9.read("hospitalizationRates");
-                const age = index_9.read("age");
+                const hospitalizationRates = index_10.read("hospitalizationRates");
+                const age = index_10.read("age");
                 if (!hospitalizationRates)
                     return;
                 if (age === "average") {
@@ -1545,7 +1566,7 @@
         exports.HospitalizationChance = HospitalizationChance;
         HospitalizationChance.component = "hospitalization-chance";
     });
-    define("components/hospitalization/HospitalizationInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_10, InputComponent_2) {
+    define("components/hospitalization/HospitalizationInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_11, InputComponent_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class HospitalizationInput extends InputComponent_2.InputComponent {
@@ -1559,7 +1580,7 @@
                 else {
                     this.index = parseInt(this.element.getAttribute(`data-${HospitalizationInput.component}`), 10);
                 }
-                index_10.watch("hospitalizationRates", hospitalizationRates => {
+                index_11.watch("hospitalizationRates", hospitalizationRates => {
                     if (!this.isFocused && hospitalizationRates) {
                         if (typeof this.index !== "undefined" &&
                             typeof hospitalizationRates[this.index] !== "undefined" &&
@@ -1572,10 +1593,10 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    const hospitalizationRates = index_10.read("hospitalizationRates");
+                    const hospitalizationRates = index_11.read("hospitalizationRates");
                     if (typeof this.index !== "undefined" && hospitalizationRates) {
                         hospitalizationRates[this.index] = this.getValueInt();
-                        index_10.write("hospitalizationRates", hospitalizationRates);
+                        index_11.write("hospitalizationRates", hospitalizationRates);
                     }
                 });
             }
@@ -1592,7 +1613,7 @@
             average: [20, 5.72, 1.76, 6.24, 18.5, 24, 33, 38.5, 49.5, 48]
         };
     });
-    define("components/hospitalization/HospitalizationInputLoadData", ["require", "exports", "localstorage/index", "data/hospitalizationRate", "components/utils/Component"], function (require, exports, index_11, hospitalizationRate_1, Component_8) {
+    define("components/hospitalization/HospitalizationInputLoadData", ["require", "exports", "localstorage/index", "data/hospitalizationRate", "components/utils/Component"], function (require, exports, index_12, hospitalizationRate_1, Component_8) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class HospitalizationInputLoadData extends Component_8.Component {
@@ -1602,7 +1623,7 @@
                 this.element.addEventListener("click", () => {
                     const rates = hospitalizationRate_1.hospitalizationRate[this.key];
                     if (rates) {
-                        index_11.write("hospitalizationRates", rates);
+                        index_12.write("hospitalizationRates", rates);
                     }
                 });
             }
@@ -1610,17 +1631,17 @@
         exports.HospitalizationInputLoadData = HospitalizationInputLoadData;
         HospitalizationInputLoadData.component = "hospitalization-input-load-data";
     });
-    define("components/death/DeathChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_12, TotalChance_2) {
+    define("components/death/DeathChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_13, TotalChance_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class DeathChance extends TotalChance_2.TotalChance {
             constructor(element) {
                 super(element);
-                index_12.watch("age", age => {
+                index_13.watch("age", age => {
                     this.age = age;
                     this.refresh();
                 });
-                index_12.watch("deathRates", deathRates => {
+                index_13.watch("deathRates", deathRates => {
                     this.deathRates = deathRates;
                     this.refresh();
                 });
@@ -1639,8 +1660,8 @@
                 });
             }
             getCurrentDeathProbability() {
-                const deathRates = index_12.read("deathRates");
-                const age = index_12.read("age");
+                const deathRates = index_13.read("deathRates");
+                const age = index_13.read("age");
                 if (!deathRates)
                     return;
                 if (age === "average") {
@@ -1655,7 +1676,7 @@
         exports.DeathChance = DeathChance;
         DeathChance.component = "death-chance";
     });
-    define("components/death/DeathInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_13, InputComponent_3) {
+    define("components/death/DeathInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_14, InputComponent_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class DeathInput extends InputComponent_3.InputComponent {
@@ -1669,7 +1690,7 @@
                 else {
                     this.index = parseInt(this.element.getAttribute(`data-${DeathInput.component}`), 10);
                 }
-                index_13.watch("deathRates", deathRates => {
+                index_14.watch("deathRates", deathRates => {
                     if (!this.isFocused && deathRates) {
                         if (typeof this.index !== "undefined" &&
                             typeof deathRates[this.index] !== "undefined" &&
@@ -1682,10 +1703,10 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    const deathRates = index_13.read("deathRates");
+                    const deathRates = index_14.read("deathRates");
                     if (typeof this.index !== "undefined" && deathRates) {
                         deathRates[this.index] = this.getValueInt();
-                        index_13.write("deathRates", deathRates);
+                        index_14.write("deathRates", deathRates);
                     }
                 });
             }
@@ -1705,7 +1726,7 @@
             average: [3.4, 0, 0.1, 0.08, 0.16, 0.32, 0.9, 3.38, 9.28, 17.76]
         };
     });
-    define("components/death/DeathInputLoadData", ["require", "exports", "localstorage/index", "data/deathRate", "components/utils/Component"], function (require, exports, index_14, deathRate_1, Component_9) {
+    define("components/death/DeathInputLoadData", ["require", "exports", "localstorage/index", "data/deathRate", "components/utils/Component"], function (require, exports, index_15, deathRate_1, Component_9) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class DeathInputLoadData extends Component_9.Component {
@@ -1715,7 +1736,7 @@
                 this.element.addEventListener("click", () => {
                     const rates = deathRate_1.deathRate[this.key];
                     if (rates) {
-                        index_14.write("deathRates", rates);
+                        index_15.write("deathRates", rates);
                     }
                 });
             }
@@ -1723,14 +1744,14 @@
         exports.DeathInputLoadData = DeathInputLoadData;
         DeathInputLoadData.component = "death-input-load-data";
     });
-    define("components/AgeSelect", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_15, InputComponent_4) {
+    define("components/AgeSelect", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_16, InputComponent_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class AgeSelect extends InputComponent_4.InputComponent {
             constructor(element) {
                 super(element);
                 this.isAverage = false;
-                index_15.watch("age", age => {
+                index_16.watch("age", age => {
                     const ageString = `${age}`;
                     if (ageString !== this.element.value && age) {
                         this.element.value = ageString;
@@ -1738,10 +1759,10 @@
                 });
                 this.element.addEventListener("change", () => {
                     if (this.element.value === "average") {
-                        index_15.write("age", this.element.value);
+                        index_16.write("age", this.element.value);
                     }
                     else {
-                        index_15.write("age", parseInt(this.element.value, 10));
+                        index_16.write("age", parseInt(this.element.value, 10));
                     }
                 });
             }
@@ -1760,14 +1781,14 @@
         }
         exports.SelectComponent = SelectComponent;
     });
-    define("components/CountrySelect", ["require", "exports", "components/utils/SelectComponent", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, SelectComponent_1, index_16, getPopulation_2, getCorona_2) {
+    define("components/CountrySelect", ["require", "exports", "components/utils/SelectComponent", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, SelectComponent_1, index_17, getPopulation_2, getCorona_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class CountrySelect extends SelectComponent_1.SelectComponent {
             constructor(element) {
                 super(element);
                 this.element.addEventListener("change", () => __awaiter(this, void 0, void 0, function* () {
-                    index_16.write("country", this.element.value);
+                    index_17.write("country", this.element.value);
                     this.country = this.element.value;
                     if (!this.country)
                         return;
@@ -1775,10 +1796,10 @@
                     const lastDataPoint = data[data.length - 1];
                     if (!data || !lastDataPoint || !this.element.value)
                         return;
-                    index_16.write("currentConfirmed", lastDataPoint.confirmed);
-                    index_16.write("currentDeaths", lastDataPoint.deaths);
-                    index_16.write("currentRecovered", lastDataPoint.recovered);
-                    index_16.write("currentPopulation", getPopulation_2.getPopulation(this.element.value));
+                    index_17.write("currentConfirmed", lastDataPoint.confirmed);
+                    index_17.write("currentDeaths", lastDataPoint.deaths);
+                    index_17.write("currentRecovered", lastDataPoint.recovered);
+                    index_17.write("currentPopulation", getPopulation_2.getPopulation(this.element.value));
                 }));
             }
         }
@@ -1821,20 +1842,21 @@
         };
         exports.initComponents = exports.refreshComponents;
     });
-    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_17, index_18, index_19, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
+    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_18, index_19, index_20, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const { corona } = index_17.api;
+        const { corona } = index_18.api;
         addEventListener("DOMContentLoaded", () => {
-            index_18.initComponents();
+            index_19.initComponents();
         });
         // Clear data
         // TODO: Load data from url
-        index_19.write("undocumentedCasesMultiplicator", 10);
-        index_19.write("deathRates", deathRate_2.deathRate.average);
-        index_19.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
-        index_19.write("age", 0);
-        index_19.write("people", [
+        index_20.write('country', 'World');
+        index_20.write("undocumentedCasesMultiplicator", 10);
+        index_20.write("deathRates", deathRate_2.deathRate.average);
+        index_20.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
+        index_20.write("age", 0);
+        index_20.write("people", [
             {
                 day: 0,
                 name: "A"
@@ -1844,15 +1866,15 @@
                 name: "B"
             }
         ]);
-        index_19.write("currentPopulation", getPopulation_3.getPopulation("World"));
+        index_20.write("currentPopulation", getPopulation_3.getPopulation("World"));
         console.log("Hello World");
         (() => __awaiter(void 0, void 0, void 0, function* () {
             // await corona.getCurrent();
             const worldData = (yield getCorona_3.getCorona())["World"];
             const data = worldData[worldData.length - 1];
-            index_19.write("currentConfirmed", data.confirmed);
-            index_19.write("currentRecovered", data.recovered);
-            index_19.write("currentDeaths", data.deaths);
+            index_20.write("currentConfirmed", data.confirmed);
+            index_20.write("currentRecovered", data.recovered);
+            index_20.write("currentDeaths", data.deaths);
         }))();
     });
     
