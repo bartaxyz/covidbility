@@ -1,5 +1,5 @@
 # Covidbility
-### <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
+### <a href="https://bartaxyz.github.io/covid-o-meter/">Learn your chance</a> to get infected by novel coronavirus.
 
 - Show % chance of becoming infected today, and days before.
 - Show % chance of needing hospitalization / ICU
