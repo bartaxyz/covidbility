@@ -72,7 +72,7 @@ export class PeopleTimeline extends Component {
       ({ overContainer }: { overContainer: HTMLElement }) => {
         this.draggingOverContainer = overContainer.getAttribute(
           "data-drag-container"
-        );
+        )!;
       }
     );
 
