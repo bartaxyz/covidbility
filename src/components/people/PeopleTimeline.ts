@@ -2,7 +2,7 @@ import { Component } from "../utils/Component";
 import { getChance } from "../../localstorage/utils/getChance";
 import { normalizeOutput } from "../../localstorage/utils/normalizeOutput";
 import { LocalStorageSchema } from "../../localstorage/schema";
-import { read } from "../../localstorage/index";
+import { read, watch } from "../../localstorage/index";
 
 export class PeopleTimeline extends Component {
   static component = "people-timeline";
@@ -21,6 +21,10 @@ export class PeopleTimeline extends Component {
     this.refreshChances();
 
     this.refreshTimeline();
+
+    watch('country', () => {
+      this.refreshChances();
+    })
 
     new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
       draggable: `.item-person`,
