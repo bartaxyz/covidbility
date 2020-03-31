@@ -329,6 +329,7 @@ a.link.combined {
 input,
 select {
   font-size: 1em;
+  max-width: 240px;
 }
 .settings input[type=number] {
   width: 3.5em;
