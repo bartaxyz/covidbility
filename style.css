@@ -175,7 +175,7 @@ a.link.combined {
   grid-column-gap: 1em;
   clear: both;
 }
-.footer { margin-top: 10em;}
+.footer { margin-top: 10em; margin-bottom: 2.5em;}
 /*
   INTRO
 */
