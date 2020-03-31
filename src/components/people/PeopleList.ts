@@ -2,7 +2,7 @@ import { Component } from "../utils/Component";
 import { watch, write } from "../../localstorage/index";
 import { LocalStorageSchema } from "../../localstorage/schema";
 import { AddPerson } from "./AddPerson";
-import { getChance } from "../../localstorage/utils/getChance";
+import { getChance, watchChances } from "../../localstorage/utils/getChance";
 import { normalizeOutput } from "../../localstorage/utils/normalizeOutput";
 
 export class PeopleList extends Component {
@@ -22,6 +22,10 @@ export class PeopleList extends Component {
 
     watch("people", people => {
       this.people = people;
+      this.refreshPeopleList();
+    });
+
+    watchChances(() => {
       this.refreshPeopleList();
     });
   }
@@ -68,23 +72,23 @@ export class PeopleList extends Component {
   }
 
   clearChildren() {
-    const { children } = this.element;
-
-    Array.from(children).forEach((child: Element) => {
-      this.element.removeChild(child);
-    });
+    this.element.innerHTML = "";
   }
 
   async refreshPeopleList() {
     this.clearChildren();
 
-    this.people?.forEach(async (person, index) => {
-      this.element.appendChild(await this.renderItem(person, index));
-    });
+    const emptyItem = this.renderEmptyItem();
 
-    await getChance(0);
-    setTimeout(() => {
-      this.element.appendChild(this.renderEmptyItem());
-    }, 10);
+    this.element.appendChild(emptyItem);
+
+    this.people?.forEach(async (person, index) => {
+      try {
+        this.element.insertBefore(
+          await this.renderItem(person, index),
+          emptyItem
+        );
+      } catch (e) {}
+    });
   }
 }

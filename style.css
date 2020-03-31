@@ -194,16 +194,31 @@ a.link.combined {
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: stretch;
   flex-basis: auto;
+}
 
+.draggable-container--is-dragging {
+  // background: red;
+}
+
+.draggable-mirror {
+  background: red;
 }
 
 .timeline .item {
   width: 15%;
   text-align: center;
   position: relative;
-
+  display: flex;
+  flex-direction: column;
+}
+.timeline .drag-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 40px;
 }
 .timeline .container p,
 .timeline .container h4 {
@@ -211,10 +226,12 @@ a.link.combined {
 }
 
 .timeline .item-person {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: .5em;
   border-radius: 4px;
-  padding: 1em 0;
+  height: 52px;
   background-color: var(--block-color);
   cursor: move;
   border: 2px solid var(--none-color);
