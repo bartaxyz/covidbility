@@ -3,7 +3,6 @@ import { Collapse } from "./ui/Collapse";
 import { DisabledSection } from "./ui/DisabledSection";
 // people
 import { AddPerson } from "./people/AddPerson";
-import { People } from "./people/People";
 import { PeopleList } from "./people/PeopleList";
 import { PeopleTimeline } from "./people/PeopleTimeline";
 // undocumented cases multiplicator
@@ -28,7 +27,6 @@ const components = [
   DisabledSection,
   // people
   AddPerson,
-  People,
   PeopleList,
   PeopleTimeline,
   // undocumented cases multiplicator

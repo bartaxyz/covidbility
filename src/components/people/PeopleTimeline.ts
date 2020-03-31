@@ -127,14 +127,12 @@ export class PeopleTimeline extends Component {
     const people = read("people")!;
 
     this.containers.forEach(container => {
-      console.log(container);
       // Remove all content from container
       container.element.innerHTML = "";
 
       const currentPeople = people.filter(
         person => person.day === container.day
       );
-      console.log(currentPeople);
 
       currentPeople!.forEach(person => {
         container.element.appendChild(this.renderItem(person));

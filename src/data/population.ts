@@ -280,7 +280,7 @@ export const population = [
     population: 49290
   },
   {
-    country: "Fiji Islands",
+    country: "Fiji",
     population: 905502
   },
   {
@@ -372,7 +372,7 @@ export const population = [
     population: null
   },
   {
-    country: "Holy See (Vatican City State)",
+    country: "Holy See",
     population: 1000
   },
   {
@@ -476,7 +476,7 @@ export const population = [
     population: 4731906
   },
   {
-    country: "Libyan Arab Jamahiriya",
+    country: "Libya",
     population: 5605000
   },
   {
@@ -708,7 +708,7 @@ export const population = [
     population: 19679306
   },
   {
-    country: "Russian Federation",
+    country: "Russia",
     population: 143989754
   },
   {
@@ -808,7 +808,7 @@ export const population = [
     population: 46354321
   },
   {
-    country: "SriLanka",
+    country: "Sri Lanka",
     population: 20876917
   },
   {
