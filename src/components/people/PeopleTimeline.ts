@@ -3,40 +3,44 @@ import { getChance } from "../../localstorage/utils/getChance";
 import { normalizeOutput } from "../../localstorage/utils/normalizeOutput";
 import { LocalStorageSchema } from "../../localstorage/schema";
 import { read, watch } from "../../localstorage/index";
+import { getCombinedChance } from "../../data/utils/getCombinedChance";
 
 export class PeopleTimeline extends Component {
   static component = "people-timeline";
 
   itemTemplate: any;
-  containers: HTMLElement[];
+  containers: { element: HTMLElement; day: number }[];
 
   constructor(element: Element) {
     super(element);
 
-    console.log("people-timeline");
-
     this.itemTemplate = document.getElementById("template-timeline-item")!;
-    this.containers = Array.from(document.querySelectorAll("[data-drag-container]"));
+    this.containers = Array.from<HTMLElement>(
+      document.querySelectorAll("[data-drag-container]")
+    ).map(element => {
+      return {
+        element,
+        day: parseInt(element.getAttribute("data-drag-container")!, 10)
+      };
+    });
 
     this.refreshChances();
 
     this.refreshTimeline();
 
-    watch('country', () => {
+    watch("country", () => {
       this.refreshChances();
-    })
+    });
 
     new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
       draggable: `.item-person`,
-      mirror: {
-        constrainDimensions: true
-      },
-      classes: {
-        // mirror: 'is-ghosted',
-        // 'source:origina': 'is-ghosted',
-        'source:dragging': 'is-ghosted',
-      },
+      mirror: { constrainDimensions: true },
+      classes: { "source:dragging": "is-ghosted" },
       plugins: [Draggable.Plugins.ResizeMirror]
+    });
+
+    watch("people", () => {
+      this.refreshChances();
     });
   }
 
@@ -57,11 +61,13 @@ export class PeopleTimeline extends Component {
   }
 
   refreshTimeline() {
-    const people = read('people');
-    people?.forEach((person) => {
+    const people = read("people");
+    people?.forEach(person => {
       this.renderItem(person);
-    })
+    });
   }
+
+  getPeopleChances() {}
 
   refreshChances() {
     const elements = this.element.querySelectorAll("[data-chance]");
@@ -69,7 +75,16 @@ export class PeopleTimeline extends Component {
     elements.forEach(async (element: any) => {
       const day = parseInt(element.getAttribute("data-chance")!, 10);
       const chance = await getChance(day);
-      element.innerText = chance ? normalizeOutput(chance) : "-";
+
+      const people = read("people")?.filter(person => person.day === day);
+
+      const combinedChance = getCombinedChance(
+        Array(people!.length).fill(chance)
+      );
+
+      element.innerText = combinedChance
+        ? normalizeOutput(combinedChance)
+        : "0";
     });
   }
 }

@@ -1375,31 +1375,43 @@
         exports.PeopleList = PeopleList;
         PeopleList.component = "people-list";
     });
-    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_4, getChance_2, normalizeOutput_2, index_6) {
+    define("data/utils/getCombinedChance", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.getCombinedChance = (peopleChances) => {
+            return ((1 -
+                peopleChances.reduce((previous, current) => {
+                    return previous * (1 - current / 100);
+                }, 1)) *
+                100);
+        };
+    });
+    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index", "data/utils/getCombinedChance"], function (require, exports, Component_4, getChance_2, normalizeOutput_2, index_6, getCombinedChance_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class PeopleTimeline extends Component_4.Component {
             constructor(element) {
                 super(element);
-                console.log("people-timeline");
                 this.itemTemplate = document.getElementById("template-timeline-item");
-                this.containers = Array.from(document.querySelectorAll("[data-drag-container]"));
+                this.containers = Array.from(document.querySelectorAll("[data-drag-container]")).map(element => {
+                    return {
+                        element,
+                        day: parseInt(element.getAttribute("data-drag-container"), 10)
+                    };
+                });
                 this.refreshChances();
                 this.refreshTimeline();
-                index_6.watch('country', () => {
+                index_6.watch("country", () => {
                     this.refreshChances();
                 });
                 new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
                     draggable: `.item-person`,
-                    mirror: {
-                        constrainDimensions: true
-                    },
-                    classes: {
-                        // mirror: 'is-ghosted',
-                        // 'source:origina': 'is-ghosted',
-                        'source:dragging': 'is-ghosted',
-                    },
+                    mirror: { constrainDimensions: true },
+                    classes: { "source:dragging": "is-ghosted" },
                     plugins: [Draggable.Plugins.ResizeMirror]
+                });
+                index_6.watch("people", () => {
+                    this.refreshChances();
                 });
             }
             renderItem(person) {
@@ -1411,17 +1423,23 @@
                 return personItem;
             }
             refreshTimeline() {
-                const people = index_6.read('people');
-                people === null || people === void 0 ? void 0 : people.forEach((person) => {
+                const people = index_6.read("people");
+                people === null || people === void 0 ? void 0 : people.forEach(person => {
                     this.renderItem(person);
                 });
             }
+            getPeopleChances() { }
             refreshChances() {
                 const elements = this.element.querySelectorAll("[data-chance]");
                 elements.forEach((element) => __awaiter(this, void 0, void 0, function* () {
+                    var _a;
                     const day = parseInt(element.getAttribute("data-chance"), 10);
                     const chance = yield getChance_2.getChance(day);
-                    element.innerText = chance ? normalizeOutput_2.normalizeOutput(chance) : "-";
+                    const people = (_a = index_6.read("people")) === null || _a === void 0 ? void 0 : _a.filter(person => person.day === day);
+                    const combinedChance = getCombinedChance_1.getCombinedChance(Array(people.length).fill(chance));
+                    element.innerText = combinedChance
+                        ? normalizeOutput_2.normalizeOutput(combinedChance)
+                        : "0";
                 }));
             }
         }

@@ -198,14 +198,6 @@ a.link.combined {
   flex-basis: auto;
 }
 
-.draggable-container--is-dragging {
-  // background: red;
-}
-
-.draggable-mirror {
-  background: red;
-}
-
 .timeline .item {
   width: 15%;
   text-align: center;
