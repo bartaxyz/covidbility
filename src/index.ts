@@ -14,7 +14,7 @@ addEventListener("DOMContentLoaded", () => {
 
 // Clear data
 // TODO: Load data from url
-write('country', 'World');
+write("country", "World");
 write("undocumentedCasesMultiplicator", 10);
 write("deathRates", deathRate.average);
 write("hospitalizationRates", hospitalizationRate.average);
@@ -23,10 +23,6 @@ write("people", [
   {
     day: 0,
     name: "A"
-  },
-  {
-    day: 1,
-    name: "B"
   }
 ]);
 
