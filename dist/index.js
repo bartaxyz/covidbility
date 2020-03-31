@@ -1386,6 +1386,9 @@
                 this.containers = Array.from(document.querySelectorAll("[data-drag-container]"));
                 this.refreshChances();
                 this.refreshTimeline();
+                index_6.watch('country', () => {
+                    this.refreshChances();
+                });
                 new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
                     draggable: `.item-person`,
                     mirror: {
