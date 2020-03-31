@@ -13,7 +13,6 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 // Clear data
-// TODO: Load data from url
 write("country", "World");
 write("undocumentedCasesMultiplicator", 10);
 write("deathRates", deathRate.average);
