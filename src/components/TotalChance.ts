@@ -42,7 +42,7 @@ export class TotalChance extends Component {
   async refresh() {
     const value = await this.getTotalChance();
 
-    if (value) {
+    if (typeof value !== "undefined") {
       this.element.innerText = this.getNormalizedOutput(value);
     } else {
       this.element.innerText = "-";

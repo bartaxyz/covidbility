@@ -174,6 +174,9 @@
             constructor(element) {
                 super(element);
                 this.letters = "ABCDEFGHIKLMNOPQRSTVXYZ";
+                index_2.watch("people", people => {
+                    this.people = people;
+                });
                 this.element.addEventListener("click", () => {
                     const people = index_2.read("people");
                     people.push({
@@ -183,12 +186,24 @@
                     index_2.write("people", people);
                 });
             }
-            getNewName(additionalIndex = 0) {
+            getNewName() {
                 const people = index_2.read("people");
                 if (people.length === 0) {
                     return "A";
                 }
                 const lastName = people[people.length - 1].name;
+                const firstAvailableLetter = Array.from(this.letters).find(letter => {
+                    let isAvailable = true;
+                    people.forEach(person => {
+                        if (person.name === letter) {
+                            isAvailable = false;
+                        }
+                    });
+                    return isAvailable;
+                });
+                if (firstAvailableLetter) {
+                    return firstAvailableLetter;
+                }
                 if (lastName === "Z") {
                     return "1";
                 }
@@ -200,30 +215,6 @@
         }
         exports.AddPerson = AddPerson;
         AddPerson.component = "add-person";
-    });
-    define("components/people/People", ["require", "exports", "components/utils/Component", "localstorage/index"], function (require, exports, Component_2, index_3) {
-        "use strict";
-        Object.defineProperty(exports, "__esModule", { value: true });
-        class People extends Component_2.Component {
-            constructor(element) {
-                super(element);
-                this.personTemplate = document.getElementById("template-person");
-                index_3.watch("people", people => {
-                    this.people = people;
-                    this.refreshPeopleList();
-                });
-            }
-            renderPerson() {
-                const personElement = this.personTemplate.content.children[0];
-                return personElement;
-            }
-            refreshPeopleList() {
-                console.log("refreshPeopleList");
-                console.log(this.personTemplate);
-            }
-        }
-        exports.People = People;
-        People.component = "people";
     });
     define("data/population", ["require", "exports"], function (require, exports) {
         "use strict";
@@ -510,7 +501,7 @@
                 population: 49290
             },
             {
-                country: "Fiji Islands",
+                country: "Fiji",
                 population: 905502
             },
             {
@@ -602,7 +593,7 @@
                 population: null
             },
             {
-                country: "Holy See (Vatican City State)",
+                country: "Holy See",
                 population: 1000
             },
             {
@@ -706,7 +697,7 @@
                 population: 4731906
             },
             {
-                country: "Libyan Arab Jamahiriya",
+                country: "Libya",
                 population: 5605000
             },
             {
@@ -938,7 +929,7 @@
                 population: 19679306
             },
             {
-                country: "Russian Federation",
+                country: "Russia",
                 population: 143989754
             },
             {
@@ -1038,7 +1029,7 @@
                 population: 46354321
             },
             {
-                country: "SriLanka",
+                country: "Sri Lanka",
                 population: 20876917
             },
             {
@@ -1253,29 +1244,29 @@
             return data;
         });
     });
-    define("localstorage/utils/getChance", ["require", "exports", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_4, getPopulation_1, getCorona_1) {
+    define("localstorage/utils/getChance", ["require", "exports", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_3, getPopulation_1, getCorona_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         exports.watchChances = (callback) => {
-            index_4.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
+            index_3.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
                 callback();
             });
-            index_4.watch("currentPopulation", currentPopulation => {
+            index_3.watch("currentPopulation", currentPopulation => {
                 callback();
             });
-            index_4.watch("currentConfirmed", currentConfirmed => {
+            index_3.watch("currentConfirmed", currentConfirmed => {
                 callback();
             });
-            index_4.watch("currentRecovered", currentRecovered => {
+            index_3.watch("currentRecovered", currentRecovered => {
                 callback();
             });
-            index_4.watch("currentDeaths", currentDeaths => {
+            index_3.watch("currentDeaths", currentDeaths => {
                 callback();
             });
         };
         exports.getChance = (day = 0) => __awaiter(void 0, void 0, void 0, function* () {
-            const undocumentedCasesMultiplicator = index_4.read("undocumentedCasesMultiplicator");
-            const country = index_4.read("country") || "World";
+            const undocumentedCasesMultiplicator = index_3.read("undocumentedCasesMultiplicator");
+            const country = index_3.read("country") || "World";
             const currentPopulation = getPopulation_1.getPopulation(country);
             const corona = yield getCorona_1.getCorona();
             if (typeof corona === "undefined") {
@@ -1307,15 +1298,15 @@
             return Number((value >= 100 ? 100 : value).toFixed(4)).toString();
         };
     });
-    define("components/people/PeopleList", ["require", "exports", "components/utils/Component", "localstorage/index", "components/people/AddPerson", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput"], function (require, exports, Component_3, index_5, AddPerson_1, getChance_1, normalizeOutput_1) {
+    define("components/people/PeopleList", ["require", "exports", "components/utils/Component", "localstorage/index", "components/people/AddPerson", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput"], function (require, exports, Component_2, index_4, AddPerson_1, getChance_1, normalizeOutput_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class PeopleList extends Component_3.Component {
+        class PeopleList extends Component_2.Component {
             constructor(element) {
                 super(element);
                 this.itemTemplate = document.getElementById("template-person-list-item");
                 this.emptyItemTemplate = document.getElementById("template-person-list-empty-item");
-                index_5.watch("people", people => {
+                index_4.watch("people", people => {
                     this.people = people;
                     this.refreshPeopleList();
                 });
@@ -1350,7 +1341,7 @@
                     personItem.querySelector("[data-remove]").addEventListener("click", () => {
                         var _a;
                         (_a = this.people) === null || _a === void 0 ? void 0 : _a.splice(index, 1);
-                        index_5.write("people", this.people);
+                        index_4.write("people", this.people);
                     });
                     const chance = yield getChance_1.getChance(person.day);
                     personItem.querySelector("[data-chance]").innerText = chance
@@ -1391,10 +1382,10 @@
                 100);
         };
     });
-    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index", "data/utils/getCombinedChance"], function (require, exports, Component_4, getChance_2, normalizeOutput_2, index_6, getCombinedChance_1) {
+    define("components/people/PeopleTimeline", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index", "data/utils/getCombinedChance"], function (require, exports, Component_3, getChance_2, normalizeOutput_2, index_5, getCombinedChance_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class PeopleTimeline extends Component_4.Component {
+        class PeopleTimeline extends Component_3.Component {
             constructor(element) {
                 super(element);
                 this.people = [];
@@ -1408,10 +1399,10 @@
                 this.refreshChances();
                 this.refreshTimeline();
                 this.initDraggable();
-                index_6.watch("country", () => {
+                index_5.watch("country", () => {
                     this.refreshChances();
                 });
-                index_6.watch("people", people => {
+                index_5.watch("people", people => {
                     this.refreshChances();
                     this.refreshDraggable();
                 });
@@ -1427,7 +1418,7 @@
                     plugins: [Draggable.Plugins.ResizeMirror]
                 });
                 this.draggable.on("drag:start", ({ originalSource }) => {
-                    const people = index_6.read("people");
+                    const people = index_5.read("people");
                     const name = originalSource.getAttribute("data-person");
                     this.draggingPerson = people.find(person => person.name === name);
                 });
@@ -1435,10 +1426,10 @@
                     this.draggingOverContainer = overContainer.getAttribute("data-drag-container");
                 });
                 this.draggable.on("drag:stop", () => {
-                    const people = index_6.read("people");
+                    const people = index_5.read("people");
                     const personIndex = people.findIndex(person => person.name === this.draggingPerson.name);
                     people[personIndex].day = parseInt(this.draggingOverContainer, 10);
-                    index_6.write("people", people);
+                    index_5.write("people", people);
                     this.refreshChances();
                 });
             }
@@ -1466,13 +1457,11 @@
                 return personItem;
             }
             refreshTimeline() {
-                const people = index_6.read("people");
+                const people = index_5.read("people");
                 this.containers.forEach(container => {
-                    console.log(container);
                     // Remove all content from container
                     container.element.innerHTML = "";
                     const currentPeople = people.filter(person => person.day === container.day);
-                    console.log(currentPeople);
                     currentPeople.forEach(person => {
                         container.element.appendChild(this.renderItem(person));
                     });
@@ -1485,7 +1474,7 @@
                     var _a;
                     const day = parseInt(element.getAttribute("data-chance"), 10);
                     const chance = yield getChance_2.getChance(day);
-                    const people = (_a = index_6.read("people")) === null || _a === void 0 ? void 0 : _a.filter(person => person.day === day);
+                    const people = (_a = index_5.read("people")) === null || _a === void 0 ? void 0 : _a.filter(person => person.day === day);
                     const combinedChance = getCombinedChance_1.getCombinedChance(Array(people.length).fill(chance));
                     element.innerText = combinedChance
                         ? normalizeOutput_2.normalizeOutput(combinedChance)
@@ -1496,10 +1485,10 @@
         exports.PeopleTimeline = PeopleTimeline;
         PeopleTimeline.component = "people-timeline";
     });
-    define("components/utils/InputComponent", ["require", "exports", "components/utils/Component"], function (require, exports, Component_5) {
+    define("components/utils/InputComponent", ["require", "exports", "components/utils/Component"], function (require, exports, Component_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class InputComponent extends Component_5.Component {
+        class InputComponent extends Component_4.Component {
             constructor(element) {
                 super(element);
                 this.isFocused = false;
@@ -1513,13 +1502,13 @@
         }
         exports.InputComponent = InputComponent;
     });
-    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_7, InputComponent_1) {
+    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_6, InputComponent_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class UndocumentedCasesMultiplicator extends InputComponent_1.InputComponent {
             constructor(element) {
                 super(element);
-                index_7.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
+                index_6.watch("undocumentedCasesMultiplicator", undocumentedCasesMultiplicator => {
                     if (!this.isFocused) {
                         this.element.value = undocumentedCasesMultiplicator
                             ? `${undocumentedCasesMultiplicator}`
@@ -1527,43 +1516,43 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    index_7.write("undocumentedCasesMultiplicator", this.element.value ? parseInt(this.element.value, 10) : 0);
+                    index_6.write("undocumentedCasesMultiplicator", this.element.value ? parseInt(this.element.value, 10) : 0);
                 });
             }
         }
         exports.UndocumentedCasesMultiplicator = UndocumentedCasesMultiplicator;
         UndocumentedCasesMultiplicator.component = "undocumented-cases-multiplicator";
     });
-    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", ["require", "exports", "localstorage/index", "components/utils/Component"], function (require, exports, index_8, Component_6) {
+    define("components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", ["require", "exports", "localstorage/index", "components/utils/Component"], function (require, exports, index_7, Component_5) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class UndocumentedCasesMultiplicatorLoadData extends Component_6.Component {
+        class UndocumentedCasesMultiplicatorLoadData extends Component_5.Component {
             constructor(element) {
                 super(element);
                 this.element.addEventListener("click", () => {
-                    index_8.write("undocumentedCasesMultiplicator", 10);
+                    index_7.write("undocumentedCasesMultiplicator", 10);
                 });
             }
         }
         exports.UndocumentedCasesMultiplicatorLoadData = UndocumentedCasesMultiplicatorLoadData;
         UndocumentedCasesMultiplicatorLoadData.component = "undocumented-cases-multiplicator-load-data";
     });
-    define("components/TotalChance", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_7, getChance_3, normalizeOutput_3, index_9) {
+    define("components/TotalChance", ["require", "exports", "components/utils/Component", "localstorage/utils/getChance", "localstorage/utils/normalizeOutput", "localstorage/index"], function (require, exports, Component_6, getChance_3, normalizeOutput_3, index_8) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class TotalChance extends Component_7.Component {
+        class TotalChance extends Component_6.Component {
             constructor(element) {
                 super(element);
                 getChance_3.watchChances(() => {
                     this.refresh();
                 });
-                index_9.watch("people", () => {
+                index_8.watch("people", () => {
                     this.refresh();
                 });
             }
             getTotalChance() {
                 return __awaiter(this, void 0, void 0, function* () {
-                    const people = index_9.read("people");
+                    const people = index_8.read("people");
                     const peopleChances = [];
                     for (let i = 0; i < people.length; ++i) {
                         peopleChances.push((yield getChance_3.getChance(people[i].day)));
@@ -1581,7 +1570,7 @@
             refresh() {
                 return __awaiter(this, void 0, void 0, function* () {
                     const value = yield this.getTotalChance();
-                    if (value) {
+                    if (typeof value !== "undefined") {
                         this.element.innerText = this.getNormalizedOutput(value);
                     }
                     else {
@@ -1593,17 +1582,17 @@
         exports.TotalChance = TotalChance;
         TotalChance.component = "total-chance";
     });
-    define("components/hospitalization/HospitalizationChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_10, TotalChance_1) {
+    define("components/hospitalization/HospitalizationChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_9, TotalChance_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class HospitalizationChance extends TotalChance_1.TotalChance {
             constructor(element) {
                 super(element);
-                index_10.watch('age', (age) => {
+                index_9.watch('age', (age) => {
                     this.age = age;
                     this.refresh();
                 });
-                index_10.watch('hospitalizationRates', (hospitalizationRates) => {
+                index_9.watch('hospitalizationRates', (hospitalizationRates) => {
                     this.hospitalizationRates = hospitalizationRates;
                     this.refresh();
                 });
@@ -1622,8 +1611,8 @@
                 });
             }
             getCurrentHospitalizationProbability() {
-                const hospitalizationRates = index_10.read("hospitalizationRates");
-                const age = index_10.read("age");
+                const hospitalizationRates = index_9.read("hospitalizationRates");
+                const age = index_9.read("age");
                 if (!hospitalizationRates)
                     return;
                 if (age === "average") {
@@ -1637,7 +1626,7 @@
         exports.HospitalizationChance = HospitalizationChance;
         HospitalizationChance.component = "hospitalization-chance";
     });
-    define("components/hospitalization/HospitalizationInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_11, InputComponent_2) {
+    define("components/hospitalization/HospitalizationInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_10, InputComponent_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class HospitalizationInput extends InputComponent_2.InputComponent {
@@ -1651,7 +1640,7 @@
                 else {
                     this.index = parseInt(this.element.getAttribute(`data-${HospitalizationInput.component}`), 10);
                 }
-                index_11.watch("hospitalizationRates", hospitalizationRates => {
+                index_10.watch("hospitalizationRates", hospitalizationRates => {
                     if (!this.isFocused && hospitalizationRates) {
                         if (typeof this.index !== "undefined" &&
                             typeof hospitalizationRates[this.index] !== "undefined" &&
@@ -1664,10 +1653,10 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    const hospitalizationRates = index_11.read("hospitalizationRates");
+                    const hospitalizationRates = index_10.read("hospitalizationRates");
                     if (typeof this.index !== "undefined" && hospitalizationRates) {
                         hospitalizationRates[this.index] = this.getValueInt();
-                        index_11.write("hospitalizationRates", hospitalizationRates);
+                        index_10.write("hospitalizationRates", hospitalizationRates);
                     }
                 });
             }
@@ -1684,17 +1673,17 @@
             average: [20, 5.72, 1.76, 6.24, 18.5, 24, 33, 38.5, 49.5, 48]
         };
     });
-    define("components/hospitalization/HospitalizationInputLoadData", ["require", "exports", "localstorage/index", "data/hospitalizationRate", "components/utils/Component"], function (require, exports, index_12, hospitalizationRate_1, Component_8) {
+    define("components/hospitalization/HospitalizationInputLoadData", ["require", "exports", "localstorage/index", "data/hospitalizationRate", "components/utils/Component"], function (require, exports, index_11, hospitalizationRate_1, Component_7) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class HospitalizationInputLoadData extends Component_8.Component {
+        class HospitalizationInputLoadData extends Component_7.Component {
             constructor(element) {
                 super(element);
                 this.key = this.element.getAttribute(`data-${HospitalizationInputLoadData.component}`);
                 this.element.addEventListener("click", () => {
                     const rates = hospitalizationRate_1.hospitalizationRate[this.key];
                     if (rates) {
-                        index_12.write("hospitalizationRates", rates);
+                        index_11.write("hospitalizationRates", rates);
                     }
                 });
             }
@@ -1702,17 +1691,17 @@
         exports.HospitalizationInputLoadData = HospitalizationInputLoadData;
         HospitalizationInputLoadData.component = "hospitalization-input-load-data";
     });
-    define("components/death/DeathChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_13, TotalChance_2) {
+    define("components/death/DeathChance", ["require", "exports", "localstorage/index", "components/TotalChance"], function (require, exports, index_12, TotalChance_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class DeathChance extends TotalChance_2.TotalChance {
             constructor(element) {
                 super(element);
-                index_13.watch("age", age => {
+                index_12.watch("age", age => {
                     this.age = age;
                     this.refresh();
                 });
-                index_13.watch("deathRates", deathRates => {
+                index_12.watch("deathRates", deathRates => {
                     this.deathRates = deathRates;
                     this.refresh();
                 });
@@ -1731,8 +1720,8 @@
                 });
             }
             getCurrentDeathProbability() {
-                const deathRates = index_13.read("deathRates");
-                const age = index_13.read("age");
+                const deathRates = index_12.read("deathRates");
+                const age = index_12.read("age");
                 if (!deathRates)
                     return;
                 if (age === "average") {
@@ -1747,7 +1736,7 @@
         exports.DeathChance = DeathChance;
         DeathChance.component = "death-chance";
     });
-    define("components/death/DeathInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_14, InputComponent_3) {
+    define("components/death/DeathInput", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_13, InputComponent_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class DeathInput extends InputComponent_3.InputComponent {
@@ -1761,7 +1750,7 @@
                 else {
                     this.index = parseInt(this.element.getAttribute(`data-${DeathInput.component}`), 10);
                 }
-                index_14.watch("deathRates", deathRates => {
+                index_13.watch("deathRates", deathRates => {
                     if (!this.isFocused && deathRates) {
                         if (typeof this.index !== "undefined" &&
                             typeof deathRates[this.index] !== "undefined" &&
@@ -1774,10 +1763,10 @@
                     }
                 });
                 this.element.addEventListener("input", () => {
-                    const deathRates = index_14.read("deathRates");
+                    const deathRates = index_13.read("deathRates");
                     if (typeof this.index !== "undefined" && deathRates) {
                         deathRates[this.index] = this.getValueInt();
-                        index_14.write("deathRates", deathRates);
+                        index_13.write("deathRates", deathRates);
                     }
                 });
             }
@@ -1797,17 +1786,17 @@
             average: [3.4, 0, 0.1, 0.08, 0.16, 0.32, 0.9, 3.38, 9.28, 17.76]
         };
     });
-    define("components/death/DeathInputLoadData", ["require", "exports", "localstorage/index", "data/deathRate", "components/utils/Component"], function (require, exports, index_15, deathRate_1, Component_9) {
+    define("components/death/DeathInputLoadData", ["require", "exports", "localstorage/index", "data/deathRate", "components/utils/Component"], function (require, exports, index_14, deathRate_1, Component_8) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class DeathInputLoadData extends Component_9.Component {
+        class DeathInputLoadData extends Component_8.Component {
             constructor(element) {
                 super(element);
                 this.key = this.element.getAttribute(`data-${DeathInputLoadData.component}`);
                 this.element.addEventListener("click", () => {
                     const rates = deathRate_1.deathRate[this.key];
                     if (rates) {
-                        index_15.write("deathRates", rates);
+                        index_14.write("deathRates", rates);
                     }
                 });
             }
@@ -1815,14 +1804,14 @@
         exports.DeathInputLoadData = DeathInputLoadData;
         DeathInputLoadData.component = "death-input-load-data";
     });
-    define("components/AgeSelect", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_16, InputComponent_4) {
+    define("components/AgeSelect", ["require", "exports", "localstorage/index", "components/utils/InputComponent"], function (require, exports, index_15, InputComponent_4) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class AgeSelect extends InputComponent_4.InputComponent {
             constructor(element) {
                 super(element);
                 this.isAverage = false;
-                index_16.watch("age", age => {
+                index_15.watch("age", age => {
                     const ageString = `${age}`;
                     if (ageString !== this.element.value && age) {
                         this.element.value = ageString;
@@ -1830,10 +1819,10 @@
                 });
                 this.element.addEventListener("change", () => {
                     if (this.element.value === "average") {
-                        index_16.write("age", this.element.value);
+                        index_15.write("age", this.element.value);
                     }
                     else {
-                        index_16.write("age", parseInt(this.element.value, 10));
+                        index_15.write("age", parseInt(this.element.value, 10));
                     }
                 });
             }
@@ -1841,10 +1830,10 @@
         exports.AgeSelect = AgeSelect;
         AgeSelect.component = "age-select";
     });
-    define("components/utils/SelectComponent", ["require", "exports", "components/utils/Component"], function (require, exports, Component_10) {
+    define("components/utils/SelectComponent", ["require", "exports", "components/utils/Component"], function (require, exports, Component_9) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        class SelectComponent extends Component_10.Component {
+        class SelectComponent extends Component_9.Component {
             constructor(element) {
                 super(element);
                 this.element = element;
@@ -1852,14 +1841,14 @@
         }
         exports.SelectComponent = SelectComponent;
     });
-    define("components/CountrySelect", ["require", "exports", "components/utils/SelectComponent", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, SelectComponent_1, index_17, getPopulation_2, getCorona_2) {
+    define("components/CountrySelect", ["require", "exports", "components/utils/SelectComponent", "localstorage/index", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, SelectComponent_1, index_16, getPopulation_2, getCorona_2) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         class CountrySelect extends SelectComponent_1.SelectComponent {
             constructor(element) {
                 super(element);
                 this.element.addEventListener("change", () => __awaiter(this, void 0, void 0, function* () {
-                    index_17.write("country", this.element.value);
+                    index_16.write("country", this.element.value);
                     this.country = this.element.value;
                     if (!this.country)
                         return;
@@ -1867,17 +1856,17 @@
                     const lastDataPoint = data[data.length - 1];
                     if (!data || !lastDataPoint || !this.element.value)
                         return;
-                    index_17.write("currentConfirmed", lastDataPoint.confirmed);
-                    index_17.write("currentDeaths", lastDataPoint.deaths);
-                    index_17.write("currentRecovered", lastDataPoint.recovered);
-                    index_17.write("currentPopulation", getPopulation_2.getPopulation(this.element.value));
+                    index_16.write("currentConfirmed", lastDataPoint.confirmed);
+                    index_16.write("currentDeaths", lastDataPoint.deaths);
+                    index_16.write("currentRecovered", lastDataPoint.recovered);
+                    index_16.write("currentPopulation", getPopulation_2.getPopulation(this.element.value));
                 }));
             }
         }
         exports.CountrySelect = CountrySelect;
         CountrySelect.component = "country-select";
     });
-    define("components/index", ["require", "exports", "components/ui/Collapse", "components/ui/DisabledSection", "components/people/AddPerson", "components/people/People", "components/people/PeopleList", "components/people/PeopleTimeline", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", "components/hospitalization/HospitalizationChance", "components/hospitalization/HospitalizationInput", "components/hospitalization/HospitalizationInputLoadData", "components/death/DeathChance", "components/death/DeathInput", "components/death/DeathInputLoadData", "components/AgeSelect", "components/CountrySelect", "components/TotalChance"], function (require, exports, Collapse_1, DisabledSection_1, AddPerson_2, People_1, PeopleList_1, PeopleTimeline_1, UndocumentedCasesMultiplicator_1, UndocumentedCasesMultiplicatorLoadData_1, HospitalizationChance_1, HospitalizationInput_1, HospitalizationInputLoadData_1, DeathChance_1, DeathInput_1, DeathInputLoadData_1, AgeSelect_1, CountrySelect_1, TotalChance_3) {
+    define("components/index", ["require", "exports", "components/ui/Collapse", "components/ui/DisabledSection", "components/people/AddPerson", "components/people/PeopleList", "components/people/PeopleTimeline", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", "components/hospitalization/HospitalizationChance", "components/hospitalization/HospitalizationInput", "components/hospitalization/HospitalizationInputLoadData", "components/death/DeathChance", "components/death/DeathInput", "components/death/DeathInputLoadData", "components/AgeSelect", "components/CountrySelect", "components/TotalChance"], function (require, exports, Collapse_1, DisabledSection_1, AddPerson_2, PeopleList_1, PeopleTimeline_1, UndocumentedCasesMultiplicator_1, UndocumentedCasesMultiplicatorLoadData_1, HospitalizationChance_1, HospitalizationInput_1, HospitalizationInputLoadData_1, DeathChance_1, DeathInput_1, DeathInputLoadData_1, AgeSelect_1, CountrySelect_1, TotalChance_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const components = [
@@ -1886,7 +1875,6 @@
             DisabledSection_1.DisabledSection,
             // people
             AddPerson_2.AddPerson,
-            People_1.People,
             PeopleList_1.PeopleList,
             PeopleTimeline_1.PeopleTimeline,
             // undocumented cases multiplicator
@@ -1913,21 +1901,21 @@
         };
         exports.initComponents = exports.refreshComponents;
     });
-    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_18, index_19, index_20, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
+    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_17, index_18, index_19, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const { corona } = index_18.api;
+        const { corona } = index_17.api;
         addEventListener("DOMContentLoaded", () => {
-            index_19.initComponents();
+            index_18.initComponents();
         });
         // Clear data
         // TODO: Load data from url
-        index_20.write('country', 'World');
-        index_20.write("undocumentedCasesMultiplicator", 10);
-        index_20.write("deathRates", deathRate_2.deathRate.average);
-        index_20.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
-        index_20.write("age", 0);
-        index_20.write("people", [
+        index_19.write('country', 'World');
+        index_19.write("undocumentedCasesMultiplicator", 10);
+        index_19.write("deathRates", deathRate_2.deathRate.average);
+        index_19.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
+        index_19.write("age", 0);
+        index_19.write("people", [
             {
                 day: 0,
                 name: "A"
@@ -1937,15 +1925,15 @@
                 name: "B"
             }
         ]);
-        index_20.write("currentPopulation", getPopulation_3.getPopulation("World"));
+        index_19.write("currentPopulation", getPopulation_3.getPopulation("World"));
         console.log("Hello World");
         (() => __awaiter(void 0, void 0, void 0, function* () {
             // await corona.getCurrent();
             const worldData = (yield getCorona_3.getCorona())["World"];
             const data = worldData[worldData.length - 1];
-            index_20.write("currentConfirmed", data.confirmed);
-            index_20.write("currentRecovered", data.recovered);
-            index_20.write("currentDeaths", data.deaths);
+            index_19.write("currentConfirmed", data.confirmed);
+            index_19.write("currentRecovered", data.recovered);
+            index_19.write("currentDeaths", data.deaths);
         }))();
     });
     
