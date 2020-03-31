@@ -1333,8 +1333,13 @@
                 return __awaiter(this, void 0, void 0, function* () {
                     const template = this.itemTemplate.content.children[0];
                     const personItem = template.cloneNode(true);
-                    personItem.addEventListener("mouseover", () => personItem.classList.add("is-highlighted"));
-                    personItem.addEventListener("mouseout", () => personItem.classList.remove("is-highlighted"));
+                    personItem.setAttribute("data-person", person.name);
+                    personItem.addEventListener("mouseover", () => Array.from(document.querySelectorAll(`[data-person="${person.name}"]`)).forEach(element => {
+                        element.classList.add("is-highlighted");
+                    }));
+                    personItem.addEventListener("mouseout", () => Array.from(document.querySelectorAll(`[data-person="${person.name}"]`)).forEach(element => {
+                        element.classList.remove("is-highlighted");
+                    }));
                     personItem.querySelector("[data-name]").innerText = person.name;
                     personItem.querySelector("[data-day]").innerText =
                         person.day === 0
@@ -1392,6 +1397,7 @@
         class PeopleTimeline extends Component_4.Component {
             constructor(element) {
                 super(element);
+                this.people = [];
                 this.itemTemplate = document.getElementById("template-timeline-item");
                 this.containers = Array.from(document.querySelectorAll("[data-drag-container]")).map(element => {
                     return {
@@ -1401,31 +1407,75 @@
                 });
                 this.refreshChances();
                 this.refreshTimeline();
+                this.initDraggable();
                 index_6.watch("country", () => {
                     this.refreshChances();
                 });
-                new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
+                index_6.watch("people", people => {
+                    this.refreshChances();
+                    this.refreshDraggable();
+                });
+            }
+            destroyDraggable() {
+                this.draggable.destroy();
+            }
+            initDraggable() {
+                this.draggable = new Draggable.Sortable(document.querySelectorAll("[data-drag-container]"), {
                     draggable: `.item-person`,
                     mirror: { constrainDimensions: true },
                     classes: { "source:dragging": "is-ghosted" },
                     plugins: [Draggable.Plugins.ResizeMirror]
                 });
-                index_6.watch("people", () => {
+                this.draggable.on("drag:start", ({ originalSource }) => {
+                    const people = index_6.read("people");
+                    const name = originalSource.getAttribute("data-person");
+                    this.draggingPerson = people.find(person => person.name === name);
+                });
+                this.draggable.on("drag:over:container", ({ overContainer }) => {
+                    this.draggingOverContainer = overContainer.getAttribute("data-drag-container");
+                });
+                this.draggable.on("drag:stop", () => {
+                    const people = index_6.read("people");
+                    const personIndex = people.findIndex(person => person.name === this.draggingPerson.name);
+                    people[personIndex].day = parseInt(this.draggingOverContainer, 10);
+                    index_6.write("people", people);
                     this.refreshChances();
                 });
+            }
+            refreshDraggable() {
+                if (!this.draggable) {
+                    this.initDraggable();
+                }
+                else {
+                    this.draggable.destroy();
+                    this.refreshTimeline();
+                    this.initDraggable();
+                }
             }
             renderItem(person) {
                 const template = this.itemTemplate.content.children[0];
                 const personItem = template.cloneNode(true);
-                personItem.addEventListener("mouseover", () => personItem.classList.add("is-highlighted"));
-                personItem.addEventListener("mouseout", () => personItem.classList.remove("is-highlighted"));
+                personItem.addEventListener("mouseover", () => Array.from(document.querySelectorAll(`[data-person="${person.name}"]`)).forEach(element => {
+                    element.classList.add("is-highlighted");
+                }));
+                personItem.addEventListener("mouseout", () => Array.from(document.querySelectorAll(`[data-person="${person.name}"]`)).forEach(element => {
+                    element.classList.remove("is-highlighted");
+                }));
                 personItem.querySelector("[data-name]").innerText = person.name;
+                personItem.setAttribute("data-person", person.name);
                 return personItem;
             }
             refreshTimeline() {
                 const people = index_6.read("people");
-                people === null || people === void 0 ? void 0 : people.forEach(person => {
-                    this.renderItem(person);
+                this.containers.forEach(container => {
+                    console.log(container);
+                    // Remove all content from container
+                    container.element.innerHTML = "";
+                    const currentPeople = people.filter(person => person.day === container.day);
+                    console.log(currentPeople);
+                    currentPeople.forEach(person => {
+                        container.element.appendChild(this.renderItem(person));
+                    });
                 });
             }
             getPeopleChances() { }

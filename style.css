@@ -132,7 +132,7 @@ a.link.combined {
 */
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .container {
