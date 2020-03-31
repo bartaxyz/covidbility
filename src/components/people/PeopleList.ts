@@ -41,11 +41,21 @@ export class PeopleList extends Component {
     const template = this.itemTemplate.content.children[0];
     const personItem = template.cloneNode(true);
 
+    personItem.setAttribute("data-person", person.name);
+
     personItem.addEventListener("mouseover", () =>
-      personItem.classList.add("is-highlighted")
+      Array.from<HTMLElement>(
+        document.querySelectorAll(`[data-person="${person.name}"]`)
+      ).forEach(element => {
+        element.classList.add("is-highlighted");
+      })
     );
     personItem.addEventListener("mouseout", () =>
-      personItem.classList.remove("is-highlighted")
+      Array.from<HTMLElement>(
+        document.querySelectorAll(`[data-person="${person.name}"]`)
+      ).forEach(element => {
+        element.classList.remove("is-highlighted");
+      })
     );
 
     personItem.querySelector("[data-name]").innerText = person.name;
