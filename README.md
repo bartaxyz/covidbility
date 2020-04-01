@@ -18,6 +18,7 @@
   - [ ] Wearing Mask / Low risk / Short time
 - [ ] Automatic change of settings based on selected country
 - [ ] Sharing options
+- [ ] Support other languages
 
 ### Nice-to-have
 - [ ] More datasets for Settings
