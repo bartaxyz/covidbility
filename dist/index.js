@@ -1909,7 +1909,6 @@
             index_18.initComponents();
         });
         // Clear data
-        // TODO: Load data from url
         index_19.write("country", "World");
         index_19.write("undocumentedCasesMultiplicator", 10);
         index_19.write("deathRates", deathRate_2.deathRate.average);
