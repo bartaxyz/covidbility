@@ -19,7 +19,7 @@
 - [ ] Automatic change of settings based on selected country
 - [ ] Sharing options
 - [ ] Support other languages
-- [ ] Automatic deployment on GitHub Pages
+- [x] Automatic deployment on GitHub Pages
 
 ### Nice-to-have
 - [ ] More datasets for Settings
