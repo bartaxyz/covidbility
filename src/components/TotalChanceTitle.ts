@@ -1,6 +1,7 @@
 import { Component } from "./utils/Component";
 import { watch, read } from "../localstorage/index";
 import { LocalStorageSchema } from "../localstorage/schema";
+import { countries } from "../data/countries";
 
 export class TotalChanceTitle extends Component {
   static component = "total-chance-title";
@@ -54,7 +55,10 @@ export class TotalChanceTitleCountry extends Component {
       "[data-country-name]"
     ) as HTMLElement;
     if (countryNameElement) {
-      countryNameElement.innerText = this.country;
+      const countryName = countries.find(
+        (country) => country.value === this.country
+      )?.text;
+      countryNameElement.innerText = countryName || this.country;
     }
   }
 }
