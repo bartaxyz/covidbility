@@ -5,6 +5,8 @@ import { deathRate } from "./data/deathRate";
 import { hospitalizationRate } from "./data/hospitalizationRate";
 import { getPopulation } from "./data/utils/getPopulation";
 import { getCorona } from "./api/corona/getCorona";
+import { getIPApi } from "./api/ipapi";
+import { countries } from "./data/countries";
 
 const { corona } = api;
 
@@ -13,6 +15,7 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 // Clear data
+
 write("country", "World");
 write("undocumentedCasesMultiplicator", 10);
 write("deathRates", deathRate.average);
@@ -21,8 +24,8 @@ write("age", 0);
 write("people", [
   {
     day: 0,
-    name: "A"
-  }
+    name: "A",
+  },
 ]);
 
 write("currentPopulation", getPopulation("World"));
@@ -31,6 +34,18 @@ console.log("Hello World");
 
 (async () => {
   // await corona.getCurrent();
+
+  const ipCountryName = (await getIPApi()).country_name;
+
+  if (ipCountryName) {
+    const result = countries.find(
+      (country) =>
+        country.text === ipCountryName || country.value === ipCountryName
+    );
+    if (result) {
+      write("country", result.value);
+    }
+  }
 
   const worldData = (await getCorona())["World"];
 
