@@ -1866,7 +1866,59 @@
         exports.CountrySelect = CountrySelect;
         CountrySelect.component = "country-select";
     });
-    define("components/index", ["require", "exports", "components/ui/Collapse", "components/ui/DisabledSection", "components/people/AddPerson", "components/people/PeopleList", "components/people/PeopleTimeline", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", "components/hospitalization/HospitalizationChance", "components/hospitalization/HospitalizationInput", "components/hospitalization/HospitalizationInputLoadData", "components/death/DeathChance", "components/death/DeathInput", "components/death/DeathInputLoadData", "components/AgeSelect", "components/CountrySelect", "components/TotalChance"], function (require, exports, Collapse_1, DisabledSection_1, AddPerson_2, PeopleList_1, PeopleTimeline_1, UndocumentedCasesMultiplicator_1, UndocumentedCasesMultiplicatorLoadData_1, HospitalizationChance_1, HospitalizationInput_1, HospitalizationInputLoadData_1, DeathChance_1, DeathInput_1, DeathInputLoadData_1, AgeSelect_1, CountrySelect_1, TotalChance_3) {
+    define("components/TotalChanceTitle", ["require", "exports", "components/utils/Component", "localstorage/index"], function (require, exports, Component_10, index_17) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        class TotalChanceTitle extends Component_10.Component {
+            constructor(element) {
+                super(element);
+                this.country = index_17.read("country");
+                index_17.watch("country", (country) => {
+                    this.country = country;
+                    this.refresh();
+                });
+            }
+            refresh() {
+                return __awaiter(this, void 0, void 0, function* () {
+                    if (this.country === "World") {
+                        this.element.style.display = "";
+                    }
+                    else {
+                        this.element.style.display = "none";
+                    }
+                });
+            }
+        }
+        exports.TotalChanceTitle = TotalChanceTitle;
+        TotalChanceTitle.component = "total-chance-title";
+        class TotalChanceTitleCountry extends Component_10.Component {
+            constructor(element) {
+                super(element);
+                this.country = index_17.read("country");
+                index_17.watch("country", (country) => {
+                    this.country = country;
+                    this.refresh();
+                });
+            }
+            refresh() {
+                return __awaiter(this, void 0, void 0, function* () {
+                    if (this.country === "World") {
+                        this.element.style.display = "none";
+                    }
+                    else {
+                        this.element.style.display = "";
+                    }
+                    const countryNameElement = this.element.querySelector("[data-country-name]");
+                    if (countryNameElement) {
+                        countryNameElement.innerText = this.country;
+                    }
+                });
+            }
+        }
+        exports.TotalChanceTitleCountry = TotalChanceTitleCountry;
+        TotalChanceTitleCountry.component = "total-chance-title-country";
+    });
+    define("components/index", ["require", "exports", "components/ui/Collapse", "components/ui/DisabledSection", "components/people/AddPerson", "components/people/PeopleList", "components/people/PeopleTimeline", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicator", "components/undocumentedCasesMultiplicator/UndocumentedCasesMultiplicatorLoadData", "components/hospitalization/HospitalizationChance", "components/hospitalization/HospitalizationInput", "components/hospitalization/HospitalizationInputLoadData", "components/death/DeathChance", "components/death/DeathInput", "components/death/DeathInputLoadData", "components/AgeSelect", "components/CountrySelect", "components/TotalChance", "components/TotalChanceTitle"], function (require, exports, Collapse_1, DisabledSection_1, AddPerson_2, PeopleList_1, PeopleTimeline_1, UndocumentedCasesMultiplicator_1, UndocumentedCasesMultiplicatorLoadData_1, HospitalizationChance_1, HospitalizationInput_1, HospitalizationInputLoadData_1, DeathChance_1, DeathInput_1, DeathInputLoadData_1, AgeSelect_1, CountrySelect_1, TotalChance_3, TotalChanceTitle_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         const components = [
@@ -1891,44 +1943,46 @@
             // components
             AgeSelect_1.AgeSelect,
             CountrySelect_1.CountrySelect,
-            TotalChance_3.TotalChance
+            TotalChance_3.TotalChance,
+            TotalChanceTitle_1.TotalChanceTitle,
+            TotalChanceTitle_1.TotalChanceTitleCountry,
         ];
         exports.refreshComponents = () => {
-            components.forEach(Component => {
+            components.forEach((Component) => {
                 const elements = document.querySelectorAll(`[data-${Component.component}]`);
-                Array.from(elements).map(element => new Component(element));
+                Array.from(elements).map((element) => new Component(element));
             });
         };
         exports.initComponents = exports.refreshComponents;
     });
-    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_17, index_18, index_19, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
+    define("index", ["require", "exports", "api/index", "components/index", "localstorage/index", "data/deathRate", "data/hospitalizationRate", "data/utils/getPopulation", "api/corona/getCorona"], function (require, exports, index_18, index_19, index_20, deathRate_2, hospitalizationRate_2, getPopulation_3, getCorona_3) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
-        const { corona } = index_17.api;
+        const { corona } = index_18.api;
         addEventListener("DOMContentLoaded", () => {
-            index_18.initComponents();
+            index_19.initComponents();
         });
         // Clear data
-        index_19.write("country", "World");
-        index_19.write("undocumentedCasesMultiplicator", 10);
-        index_19.write("deathRates", deathRate_2.deathRate.average);
-        index_19.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
-        index_19.write("age", 0);
-        index_19.write("people", [
+        index_20.write("country", "World");
+        index_20.write("undocumentedCasesMultiplicator", 10);
+        index_20.write("deathRates", deathRate_2.deathRate.average);
+        index_20.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
+        index_20.write("age", 0);
+        index_20.write("people", [
             {
                 day: 0,
                 name: "A"
             }
         ]);
-        index_19.write("currentPopulation", getPopulation_3.getPopulation("World"));
+        index_20.write("currentPopulation", getPopulation_3.getPopulation("World"));
         console.log("Hello World");
         (() => __awaiter(void 0, void 0, void 0, function* () {
             // await corona.getCurrent();
             const worldData = (yield getCorona_3.getCorona())["World"];
             const data = worldData[worldData.length - 1];
-            index_19.write("currentConfirmed", data.confirmed);
-            index_19.write("currentRecovered", data.recovered);
-            index_19.write("currentDeaths", data.deaths);
+            index_20.write("currentConfirmed", data.confirmed);
+            index_20.write("currentRecovered", data.recovered);
+            index_20.write("currentDeaths", data.deaths);
         }))();
     });
     

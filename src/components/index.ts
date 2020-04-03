@@ -20,6 +20,7 @@ import { DeathInputLoadData } from "./death/DeathInputLoadData";
 import { AgeSelect } from "./AgeSelect";
 import { CountrySelect } from "./CountrySelect";
 import { TotalChance } from "./TotalChance";
+import { TotalChanceTitle, TotalChanceTitleCountry } from "./TotalChanceTitle";
 
 const components = [
   // ui
@@ -43,14 +44,16 @@ const components = [
   // components
   AgeSelect,
   CountrySelect,
-  TotalChance
+  TotalChance,
+  TotalChanceTitle,
+  TotalChanceTitleCountry,
 ];
 
 export const refreshComponents = () => {
-  components.forEach(Component => {
+  components.forEach((Component) => {
     const elements = document.querySelectorAll(`[data-${Component.component}]`);
 
-    Array.from(elements).map(element => new Component(element));
+    Array.from(elements).map((element) => new Component(element));
   });
 };
 
