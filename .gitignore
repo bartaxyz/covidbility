@@ -1,9 +1,0 @@
-
-/node_modules
-
-/gh-pages
-
-/dist
-.vscode/settings.json
-dist/index.js
-.DS_Store
