@@ -2649,7 +2649,7 @@
             },
         ]);
         index_20.write("currentPopulation", getPopulation_3.getPopulation("World"));
-        console.log("Script Loaded Correctly");
+        console.log("Script Loaded Successfully");
         (() => __awaiter(void 0, void 0, void 0, function* () {
             // await corona.getCurrent();
             const ipCountryName = (yield ipapi_1.getIPApi()).country_name;

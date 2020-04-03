@@ -30,7 +30,7 @@ write("people", [
 
 write("currentPopulation", getPopulation("World"));
 
-console.log("Script Loaded Correctly");
+console.log("Script Loaded Successfully");
 
 (async () => {
   // await corona.getCurrent();
