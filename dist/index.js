@@ -1847,7 +1847,15 @@
         class CountrySelect extends SelectComponent_1.SelectComponent {
             constructor(element) {
                 super(element);
+                index_16.watch("country", (country) => {
+                    if (!country || this.country === country)
+                        return;
+                    this.country = country;
+                    this.element.value = this.country;
+                });
                 this.element.addEventListener("change", () => __awaiter(this, void 0, void 0, function* () {
+                    if (index_16.read("country") === this.element.value)
+                        return;
                     index_16.write("country", this.element.value);
                     this.country = this.element.value;
                     if (!this.country)
