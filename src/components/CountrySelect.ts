@@ -1,7 +1,7 @@
 import { SelectComponent } from "./utils/SelectComponent";
 import { getCurrent } from "../api/corona/getCurrent";
 import { LocalStorageSchema } from "../localstorage/schema";
-import { write } from "../localstorage/index";
+import { write, watch, read } from "../localstorage/index";
 import { getPopulation } from "../data/utils/getPopulation";
 import { getCorona } from "../api/corona/getCorona";
 
@@ -13,7 +13,14 @@ export class CountrySelect extends SelectComponent {
   constructor(element: Element) {
     super(element);
 
+    watch("country", (country) => {
+      if (this.country === country) return;
+      this.country = country;
+      this.element.value = this.country;
+    });
+
     this.element.addEventListener("change", async () => {
+      if (read("country") === this.element.value) return;
       write("country", this.element.value);
       this.country = this.element.value;
 
