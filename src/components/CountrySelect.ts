@@ -14,7 +14,7 @@ export class CountrySelect extends SelectComponent {
     super(element);
 
     watch("country", (country) => {
-      if (this.country === country) return;
+      if (!country || this.country === country) return;
       this.country = country;
       this.element.value = this.country;
     });
