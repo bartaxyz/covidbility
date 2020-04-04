@@ -60,12 +60,21 @@ h3 {
 
 h4,
 p,
+a.link,
+a.btn,
+button.link,
+button.a {
+  color: var(--main-color);
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h4,
+p,
 a,
 button {
   font-size: 1em;
   line-height: 1.25em;
-  color: var(--main-color);
-  font-family: 'Source Sans Pro', sans-serif;
+
 }
 
 .closer {
