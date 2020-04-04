@@ -59,7 +59,7 @@
 
       <!-- note: 1 person, 2 and more people -->
       <!-- Math behind cases / 7.8bil x 10 for each person -->
-      <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a></p>
+      <p><a href="#results" class="btn default">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a></p>
     </div>
 
     <template id="template-timeline-item">
@@ -146,11 +146,21 @@
 
       <div data-people-list class="people part">
         <div class="person">
-          <a class="link delete" data-remove><i class="fas fa-minus-circle"></i></a>
+          <a class="link delete" data-remove><i class="fas fa-times-circle"></i></a>
           <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
 
-          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19
-            <span class="small">(<span data-day>Today</span>)</span>
+          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19<br>
+            <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span><br>
+            <a href="" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a>
+          </p>
+        </div>
+        <div class="person">
+          <a class="link delete" data-remove><i class="fas fa-times-circle"></i></a>
+          <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
+
+          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19<br>
+            <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span><br>
+            <a href="" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a>
           </p>
         </div>
         <div class="person empty">
