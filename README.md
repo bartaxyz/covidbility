@@ -1,4 +1,7 @@
 # Covidbility
+
+![GitHub Pages Deployment](https://github.com/bartaxyz/covidbility/workflows/GitHub%20Pages%20Deployment/badge.svg)
+
 ### <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
 - Show % chance of becoming infected today, and days before.
