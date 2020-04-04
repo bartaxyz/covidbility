@@ -26,10 +26,12 @@ select {
   padding: .1em .5em;
   border-radius: 4px;
 }
+
 code {
   white-space: nowrap;
   font-family: 'Source Code Pro', monospace;
 }
+
 h1,
 h2,
 h3 {
@@ -38,12 +40,19 @@ h3 {
   font-weight: 400;
 }
 
-.part > h2, .part > div > h2 {
+.part > h2,
+.part > div > h2 {
   font-weight: 700;
 }
+
 .part > div > h2 a {
   font-weight: 400;
 }
+
+.part.mainline > h2 {
+  font-weight: 400;
+}
+
 .highlight {
   border-bottom: 0.2em solid var(--highlight-color);
   box-shadow: inset 0px -.2em 0px 0px var(--highlight-color);
@@ -58,15 +67,19 @@ button {
   color: var(--main-color);
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 .closer {
   margin-top: -.5em;
 }
+
 p.small {
   font-size: 0.85em;
 }
+
 .line-height {
   line-height: 1.9em;
 }
+
 .nw {
   white-space: nowrap;
 }
@@ -85,15 +98,18 @@ button.btn {
   text-decoration: none;
   font-weight: 700;
 }
+
 a.btn:hover,
 button.btn:hover {
   background-color: var(--link-color-hover);
 }
+
 a.btn:active,
 button.btn:active {
   position: relative;
   top: 2px;
 }
+
 a.btn.lite,
 button.btn.lite {
   background-color: var(--document-color);
@@ -101,12 +117,14 @@ button.btn.lite {
   border: 2px solid var(--half-main-color);
 
 }
+
 a.btn.lite:hover,
 button.btn.lite:hover {
   background-color: var(--document-color);
   color: var(--main-color);
   border: 2px solid var(--main-color);
 }
+
 a.link {
   color: var(--link-color);
   cursor: pointer;
@@ -115,11 +133,12 @@ a.link {
 a.link:hover {
   color: var(--link-color-hover);
 }
-a.link:active
- {
+
+a.link:active {
   position: relative;
   top: 2px;
 }
+
 a.link.combined {
   text-decoration: none;
 }
@@ -138,7 +157,6 @@ a.link.combined {
 .container {
   margin: auto;
   max-width: 60em;
-
 }
 
 .part {
@@ -146,12 +164,15 @@ a.link.combined {
   padding-left: .5em;
   padding-right: .5em;
 }
+
 .small-part {
   margin-bottom: 2.5em;
 }
+
 .part.timeline {
   margin-bottom: 3em;
 }
+
 @media screen and (min-width: 48em) {
   h1 {
     font-size: 2.5em;
@@ -169,13 +190,19 @@ a.link.combined {
     margin-bottom: 3.125em;
   }
 }
+
 .three-column-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1em;
   clear: both;
 }
-.footer { margin-top: 10em; margin-bottom: 2.5em;}
+
+.footer {
+  margin-top: 10em;
+  margin-bottom: 2.5em;
+}
+
 /*
   INTRO
 */
@@ -205,6 +232,7 @@ a.link.combined {
   display: flex;
   flex-direction: column;
 }
+
 .timeline .drag-container {
   flex-grow: 1;
   display: flex;
@@ -212,6 +240,7 @@ a.link.combined {
   justify-content: flex-end;
   padding-top: 40px;
 }
+
 .timeline .container p,
 .timeline .container h4 {
   margin: 0;
@@ -283,17 +312,15 @@ a.link.combined {
   }
 }
 
-.people .person p
-  {
-    margin: 0;
-  }
+.people .person p {
+  margin: 0;
+}
 
 
 
 /*
   PERSON
 */
-
 
 .person .link.delete {
   position: absolute;
@@ -312,10 +339,12 @@ a.link.combined {
   margin-bottom: .5em;
   position: relative;
 }
+
 .person.empty {
   background-color: var(--half-block-color);
   border: 2px solid var(--none-color);
 }
+
 .person h4 {
   font-weight: 700;
   margin-top: 0;
@@ -326,11 +355,13 @@ a.link.combined {
 /*
   OPTIONAL & SETTINGS
 */
+
 input,
 select {
   font-size: 1em;
   max-width: 240px;
 }
+
 .settings input[type=number] {
   width: 3.5em;
 }
@@ -338,6 +369,7 @@ select {
 /*
   RESULTS
 */
+
 .results .notes {
   margin-top: 2em;
 }
