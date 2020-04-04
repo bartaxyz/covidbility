@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covidbility - Learn your chance to get COVID-19</title>
   <meta name="description" content="An online tool that counts the probability of getting infection based on the number of people you met.">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:400,700|Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700%7CSource+Sans+Pro:400,700%7CSource+Serif+Pro:400,700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
   <script defer="" src="./js/all.min.js"></script>
 
@@ -30,21 +30,21 @@
 
 <body>
   <div class="container">
-    <div class="part header">
-      <h2 style=""><i class="fal fa-shield-virus"></i> Covidbility</h2>
-
-    </div>
     <!-- header -->
+    <div class="part header">
+      <h2><i class="fal fa-shield-virus"></i> Covidbility</h2>
+    </div>
 
     <div class="part mainline">
       <h3>Learn your <b>covidbility</b>.</h3>
       <h3><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br>
-        A number that represents how likely one person gets infected by a novel coronavirus.<h3>
+        A number that represents how likely one person gets infected by a novel coronavirus.
+      </h3>
     </div>
 
-
+    <!-- mainline -->
     <div class="part mainline">
-        <h1 class="main" data-total-chance-title>
+      <h1 class="main" data-total-chance-title>
           You have
           <b class="highlight">
             <code>
@@ -52,9 +52,9 @@
             </code>
           </b>
           chance to get <b>infected</b>.
-        </h1>
-        
-        <h1 class="main" data-total-chance-title-country style="display:none;">
+       </h1>
+       
+       <h1 class="main" data-total-chance-title-country style="display:none;">
           In <b data-country-name>-</b> you have
           <b class="highlight">
             <code>
@@ -62,13 +62,12 @@
             </code>
           </b>
           chance to get <b>infected</b>.
-        </h1>
+       </h1>
 
-        <!-- note: 1 person, 2 and more people -->
-        <!-- Math behind cases / 7.8bil x 10 for each person -->
-        <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a></p>
+       <!-- note: 1 person, 2 and more people -->
+       <!-- Math behind cases / 7.8bil x 10 for each person -->
+       <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a></p>
     </div>
-    <!-- mainline -->
 
     <template id="template-timeline-item">
       <div class="item-person">
@@ -157,7 +156,7 @@
           <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
 
           <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19
-            <p class="small">(<span data-day>Today</span>)</p>
+            <span class="small">(<span data-day>Today</span>)</span>
           </p>
         </div>
       </template>
@@ -172,13 +171,7 @@
       <!-- people -->
     </div>
 
-
-
-
-
-
-
-
+    <!-- optional -->
     <div class="part optional">
       <h2>Optional</h2>
 
@@ -368,13 +361,10 @@
         </select>
       </h3>
 
-
-
     </div>
-    <!-- optional -->
 
 
-
+    <!-- settings -->
     <div class="part settings" data-collapse>
       <div data-collapse-header>
         <h2>Settings &emsp;<a class="link combined delete" data-collapse-trigger><span data-collapse-trigger-label>Show</span> <span data-collapse-open><i class="fas fa-minus-square"></i></span><span data-collapse-closed><i class="fas fa-plus-square"></i></span></a></h2>
@@ -388,104 +378,97 @@
         </div>
 
         <div class="small-part">
-        <h3>Chance to hospitalization (+ICU)</h3>
-        <p class="closer line-height">
-          <span class="nw">All ages: <input type="number" data-hospitalization-input="0"> %,</span>
-          <span class="nw">age 0-9: <input type="number" data-hospitalization-input="1"> %,</span>
-          <span class="nw">10-19 <input type="number" data-hospitalization-input="2"> %,</span>
-          <span class="nw">20-29 <input type="number" data-hospitalization-input="3"> %,</span>
-          <span class="nw">30-39 <input type="number" data-hospitalization-input="4"> %,</span>
-          <span class="nw">40-49 <input type="number" data-hospitalization-input="5"> %,</span>
-          <span class="nw">50-59 <input type="number" data-hospitalization-input="6"> %,</span>
-          <span class="nw">60-69 <input type="number" data-hospitalization-input="7"> %,</span>
-          <span class="nw">70-79 <input type="number" data-hospitalization-input="8"> %,</span>
-          <span class="nw">80+ <input type="number" data-hospitalization-input="9"> %</span>
-        </p>
-        <p class="closer small">
-          Load data for
-          <a class="link" data-hospitalization-input-load-data="average">World (average)</a>,
-          <a class="link" data-hospitalization-input-load-data="spain">Spain</a>,
-          <a class="link" data-hospitalization-input-load-data="usa">USA (derived)</a>
-        </p>
-      </div>
+          <h3>Chance to hospitalization (+ICU)</h3>
+          <p class="closer line-height">
+            <span class="nw">All ages: <input type="number" data-hospitalization-input="0"> %,</span>
+            <span class="nw">age 0-9: <input type="number" data-hospitalization-input="1"> %,</span>
+            <span class="nw">10-19 <input type="number" data-hospitalization-input="2"> %,</span>
+            <span class="nw">20-29 <input type="number" data-hospitalization-input="3"> %,</span>
+            <span class="nw">30-39 <input type="number" data-hospitalization-input="4"> %,</span>
+            <span class="nw">40-49 <input type="number" data-hospitalization-input="5"> %,</span>
+            <span class="nw">50-59 <input type="number" data-hospitalization-input="6"> %,</span>
+            <span class="nw">60-69 <input type="number" data-hospitalization-input="7"> %,</span>
+            <span class="nw">70-79 <input type="number" data-hospitalization-input="8"> %,</span>
+            <span class="nw">80+ <input type="number" data-hospitalization-input="9"> %</span>
+          </p>
+          <p class="closer small">
+            Load data for
+            <a class="link" data-hospitalization-input-load-data="average">World (average)</a>,
+            <a class="link" data-hospitalization-input-load-data="spain">Spain</a>,
+            <a class="link" data-hospitalization-input-load-data="usa">USA (derived)</a>
+          </p>
+        </div>
 
-      <div class="small-part">
-        <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
-        <p class="closer line-height">
-          <span class="nw">All ages: <input type="number" data-death-input="0"> %,</span>
-          <span class="nw">age 0-9: <input type="number" data-death-input="1"> %,</span>
-          <span class="nw">10-19 <input type="number" data-death-input="2"> %,</span>
-          <span class="nw">20-29 <input type="number" data-death-input="3"> %,</span>
-          <span class="nw">30-39 <input type="number" data-death-input="4"> %,</span>
-          <span class="nw">40-49 <input type="number" data-death-input="5"> %,</span>
-          <span class="nw">50-59 <input type="number" data-death-input="6"> %,</span>
-          <span class="nw">60-69 <input type="number" data-death-input="7"> %,</span>
-          <span class="nw">70-79 <input type="number" data-death-input="8"> %,</span>
-          <span class="nw">80+ <input type="number" data-death-input="9"> %</span>
-        </p>
-        <p class="closer small">
-          Load data for
-          <a class="link" data-death-input-load-data="average">World (average)</a>,
-          <a class="link" data-death-input-load-data="china">China</a>,
-          <a class="link" data-death-input-load-data="italy">Italy</a>,
-          <a class="link" data-death-input-load-data="netherlands">Netherlands</a>,
-          <a class="link" data-death-input-load-data="southKorea">South Korea</a>,
-          <a class="link" data-death-input-load-data="spain">Spain</a>
-        </p>
+        <div class="small-part">
+          <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
+          <p class="closer line-height">
+            <span class="nw">All ages: <input type="number" data-death-input="0"> %,</span>
+            <span class="nw">age 0-9: <input type="number" data-death-input="1"> %,</span>
+            <span class="nw">10-19 <input type="number" data-death-input="2"> %,</span>
+            <span class="nw">20-29 <input type="number" data-death-input="3"> %,</span>
+            <span class="nw">30-39 <input type="number" data-death-input="4"> %,</span>
+            <span class="nw">40-49 <input type="number" data-death-input="5"> %,</span>
+            <span class="nw">50-59 <input type="number" data-death-input="6"> %,</span>
+            <span class="nw">60-69 <input type="number" data-death-input="7"> %,</span>
+            <span class="nw">70-79 <input type="number" data-death-input="8"> %,</span>
+            <span class="nw">80+ <input type="number" data-death-input="9"> %</span>
+          </p>
+          <p class="closer small">
+            Load data for
+            <a class="link" data-death-input-load-data="average">World (average)</a>,
+            <a class="link" data-death-input-load-data="china">China</a>,
+            <a class="link" data-death-input-load-data="italy">Italy</a>,
+            <a class="link" data-death-input-load-data="netherlands">Netherlands</a>,
+            <a class="link" data-death-input-load-data="southKorea">South Korea</a>,
+            <a class="link" data-death-input-load-data="spain">Spain</a>
+          </p>
         </div>
       </div>
     </div>
-    <!-- settings -->
-
-
+  
+    <!-- results -->
     <div class="part results" id="results">
       <h2>Results</h2>
       <div class="small-part">
-      <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
+        <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get  <i class="fad fa-virus"></i> <b>infected</b>.</h1>
 
-      <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
+        <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
 
-      <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
-</div>
+        <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
+      </div>
 
-<div class="small-part">
-      <h3 class="">The chance that you will die this year in a vehicle crash is <b><code>0.0182&thinsp;%</code></b>.</h3>
-      <h3 class="">If you need hospitalization, there is a chance that you will end with reduced function of lungs.</h3>
-      <h3 class="">If you are young and need hospitalization, there is a small chance that someone else will die because of triage.</h3>
-</div>
-
-<div class="small-part">
-<p class="small notes">Notes:<br>
-    &ndash; The model does not count on transmission risk, gender, you wearing a mask, passing people on the street or touching infected surfaces.<br>
-    &ndash; We use data from <a href="https://github.com/pomber/covid19
-" class="link">pomber / covid19</a> and <a class="link" href="https://github.com/samayo/country-json">samayo / country-json</a>. Different countries count cases and test populations differently.<br>
-    &ndash; Chance of having COVID-19 = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.<br>
-    &ndash; Default hospitalization and fatality rates based on multiple sources, e.g. <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" class="link">Coronavirus disease 2019</a>.<br>
-    &ndash; Vehicle crash probability based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a>.<br>
-    &ndash; We are not epidemiologists or medical scientists.<br></p>
-</div>
-
-
+      <div class="small-part">
+        <h3 class="">The chance that you will die this year in a vehicle crash is <b><code>0.0182&thinsp;%</code></b>.</h3>
+        <h3 class="">If you need hospitalization, there is a chance that you will end with reduced function of lungs.</h3>
+        <h3 class="">If you are young and need hospitalization, there is a small chance that someone else will die because of triage.</h3>
+      </div>
+  
+      <div class="small-part">
+        <p class="small notes">Notes:<br>
+            &ndash; The model does not count on transmission risk, gender, you wearing a mask, passing people on the street or touching infected surfaces.<br>
+            &ndash; We use data from <a href="https://github.com/pomber/covid19
+        " class="link">pomber / covid19</a> and <a class="link" href="https://github.com/samayo/country-json">samayo / country-json</a>. Different countries count cases and test populations differently.<br>
+            &ndash; Chance of having COVID-19 = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.<br>
+            &ndash; Default hospitalization and fatality rates based on multiple sources, e.g. <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" class="link">Coronavirus disease 2019</a>.<br>
+            &ndash; Vehicle crash probability based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a>.<br>
+            &ndash; We are not epidemiologists or medical scientists.<br>
+        </p>
+      </div>
     </div>
-    <!-- results -->
 
-
+    <!-- conclusion -->
     <div class="part conclusion">
-
       <h1>If you can stay home, wear a mask, wash hands & save lives.</h1>
       <h1><i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
-
     </div>
-    <!-- conclusion -->
 
-
-    <div class="part footer">
-
-      <p class="small">Contribute to our <a class="link" href="https://github.com/bartaxyz/covidbility">Project on Github</a>. Made by <a href="https://ondrejbarta.xyz/" class="link">Ondrej Barta</a> (code) and <a href="https://vmokry.com/" class="link">Vladimir Mokry</a> (concept, design). </p>
-      </div>
     <!-- footer -->
+    <div class="part footer">
+      <p class="small">Contribute to our <a class="link" href="https://github.com/bartaxyz/covidbility">Project on Github</a>. Made by <a href="https://ondrejbarta.xyz/" class="link">Ondrej Barta</a> (code) and <a href="https://vmokry.com/" class="link">Vladimir Mokry</a> (concept, design). </p>
+    </div>
 
-
+  </div>
+  
 
 </body>
 
