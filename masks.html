@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="RQTWBZHf1UkfkPWeyaYo9LXcMVXCwVsaCBGEtRYnvMI" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covidbility - Learn your chance to get COVID-19</title>
+  <meta name="description" content="An online tool that counts the probability of getting infection based on the number of people you met.">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700%7CSource+Sans+Pro:400,700%7CSource+Serif+Pro:400,700&display=swap" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+  <script defer="" src="/js/all.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+  <script src="/dist/index.js"></script>
+
+  <!-- Twitter meta -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:image" content="https://covidbility.com/og-image.png">
+  <meta property="twitter:url" content="https://covidbility.com/">
+  <meta property="twitter:title" content="Covidbility - Learn your chance to get COVID-19">
+  <meta property="twitter:description" content="An online tool that counts the probability of getting infection based on the number of people you met.">
+
+  <!-- OpenGraph meta -->
+  <meta property="og:title" content="Covidbility - Learn your chance to get COVID-19" />
+  <meta property="og:description" content="An online tool that counts the probability of getting infection based on the number of people you met." />
+  <meta property="og:url" content="https://covidbility.com/" />
+  <meta property="og:image" content="https://covidbility.com/og-image.png" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- header -->
+    <div class="part header">
+      <h2><i class="fal fa-shield-virus"></i> Covidbility</h2>
+    </div>
+
+    <div class="part mainline">
+      <h2>Learn the likelihood that you will be <b>directly infected</b> with a novel coronavirus by another person.</h2>
+      <h3><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br> A number that represents how likely one person gets infected by a novel coronavirus.
+      </h3>
+    </div>
+
+    <!-- mainline -->
+    <div class="part mainline">
+      <h1 class="main" data-total-chance-title>
+        You have
+        <b class="highlight">
+            <code>
+              <span data-total-chance>-</span>&thinsp;%</code></b> chance to get <b>infected</b>.
+      </h1>
+
+      <h1 class="main" data-total-chance-title-country style="display:none;">
+        In <b data-country-name>-</b> you have
+        <b class="highlight">
+            <code>
+              <span data-total-chance>-</span>&thinsp;%</code></b> chance to get <b>infected</b>.
+      </h1>
+
+      <!-- note: 1 person, 2 and more people -->
+      <!-- Math behind cases / 7.8bil x 10 for each person -->
+      <p><a href="#results" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a></p>
+    </div>
+
+    <template id="template-timeline-item">
+      <div class="item-person">
+        <h4><i class="fas fa-user"></i> <span data-name>C</span></h4>
+      </div>
+    </template>
+
+    <div>
+      <div class="part timeline" data-people-timeline>
+        <h2>How many people have you met?</h2>
+        <p class="closer">People that you get closer than 2 meters (6 feets) of distance for a significant time.<br>Simplified model, learn more in <a class="link" href="#notes">Notes</a>.<br> You can <i class="fal fa-arrows"></i> move people between days.</p>
+        <div class="container">
+
+          <div class="item">
+            <div class="drag-container" data-drag-container="5"></div>
+            <div class="no">
+              <p>-5</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="5">-</span>%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="drag-container" data-drag-container="4"></div>
+            <div class="no">
+              <p>-4</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="4">-</span>%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="drag-container" data-drag-container="3"></div>
+            <div class="no">
+              <p>-3</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="3">-</span>%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="drag-container" data-drag-container="2"></div>
+            <div class="no">
+              <p>-2</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="2">-</span>%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="drag-container" data-drag-container="1"></div>
+            <div class="no">
+              <p>Yest.</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="1">-</span>&thinsp;%</code></p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="drag-container" data-drag-container="0">
+              <div class="item-person" data-person="A" tabindex="-1">
+                <h4><i class="fas fa-user"></i> <span data-name="">A</span></h4>
+              </div>
+            </div>
+            <div class="no">
+              <p>Today</p>
+            </div>
+            <div class="label">
+              <p class="small"><code><span data-chance="0">-</span>&thinsp;%</code></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- timeline -->
+
+      <template id="template-person-list-item">
+      </template>
+
+      <template id="template-person-list-empty-item">
+      </template>
+
+      <div data-people-list class="people part">
+        <div class="person">
+          <a class="link delete" data-remove><i class="fas fa-minus-circle"></i></a>
+          <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
+
+          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19
+            <span class="small">(<span data-day>Today</span>)</span>
+          </p>
+        </div>
+        <div class="person empty">
+          <a class="btn" data-add-person>Add person</a>
+        </div>
+
+      </div>
+      <!-- people -->
+    </div>
+
+    <!-- optional -->
+    <div class="part optional">
+      <h2>Optional</h2>
+
+      <h3 class="line-height">Where do you live?
+        <select id="country-select" data-country-select>
+          <option value="World">World</option>
+          <option disabled>─ ─ ─ ─ ─</option>
+          <option value="Afghanistan">Afghanistan</option>
+          <option value="Albania">Albania</option>
+          <option value="Algeria">Algeria</option>
+          <option value="Andorra">Andorra</option>
+          <option value="Angola">Angola</option>
+          <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Armenia">Armenia</option>
+          <option value="Australia">Australia</option>
+          <option value="Austria">Austria</option>
+          <option value="Azerbaijan">Azerbaijan</option>
+          <option value="Bahamas">Bahamas</option>
+          <option value="Bahrain">Bahrain</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="Barbados">Barbados</option>
+          <option value="Belarus">Belarus</option>
+          <option value="Belgium">Belgium</option>
+          <option value="Benin">Benin</option>
+          <option value="Bhutan">Bhutan</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+          <option value="Brazil">Brazil</option>
+          <option value="Brunei">Brunei</option>
+          <option value="Bulgaria">Bulgaria</option>
+          <option value="Burkina Faso">Burkina Faso</option>
+          <option value="Belize">Belize</option>
+          <option value="Burma">Burma</option>
+          <option value="Botswana">Botswana</option>
+          <option value="Cambodia">Cambodia</option>
+          <option value="Cameroon">Cameroon</option>
+          <option value="Canada">Canada</option>
+          <option value="Central African Republic">Central African Republic</option>
+          <option value="Chad">Chad</option>
+          <option value="Chile">Chile</option>
+          <option value="China">China</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Croatia">Croatia</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Cyprus">Cyprus</option>
+          <option value="Czechia">Czechia</option>
+          <option value="Denmark">Denmark</option>
+          <option value="Djibouti">Djibouti</option>
+          <option value="Dominica">Dominica</option>
+          <option value="Dominican Republic">Dominican Republic</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Egypt">Egypt</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Equatorial Guinea">Equatorial Guinea</option>
+          <option value="Eritrea">Eritrea</option>
+          <option value="Estonia">Estonia</option>
+          <option value="Ethiopia">Ethiopia</option>
+          <option value="Fiji">Fiji</option>
+          <option value="Finland">Finland</option>
+          <option value="France">France</option>
+          <option value="Gabon">Gabon</option>
+          <option value="Gambia">Gambia</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Germany">Germany</option>
+          <option value="Ghana">Ghana</option>
+          <option value="Greece">Greece</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Guinea">Guinea</option>
+          <option value="Grenada">Grenada</option>
+          <option value="Guinea-Bissau">Guinea-Bissau</option>
+          <option value="Guyana">Guyana</option>
+          <option value="Haiti">Haiti</option>
+          <option value="Holy See">Holy See</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Iceland">Iceland</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Iran">Iran</option>
+          <option value="Iraq">Iraq</option>
+          <option value="Ireland">Ireland</option>
+          <option value="Israel">Israel</option>
+          <option value="Italy">Italy</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Japan">Japan</option>
+          <option value="Jordan">Jordan</option>
+          <option value="Kazakhstan">Kazakhstan</option>
+          <option value="Kenya">Kenya</option>
+          <option value="Kuwait">Kuwait</option>
+          <option value="Kyrgyzstan">Kyrgyzstan</option>
+          <option value="Laos">Laos</option>
+          <option value="Latvia">Latvia</option>
+          <option value="Lebanon">Lebanon</option>
+          <option value="Liberia">Liberia</option>
+          <option value="Libya">Libya</option>
+          <option value="Liechtenstein">Liechtenstein</option>
+          <option value="Lithuania">Lithuania</option>
+          <option value="Luxembourg">Luxembourg</option>
+          <option value="Madagascar">Madagascar</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Maldives">Maldives</option>
+          <option value="Malta">Malta</option>
+          <option value="Mauritania">Mauritania</option>
+          <option value="Mauritius">Mauritius</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Moldova">Moldova</option>
+          <option value="Monaco">Monaco</option>
+          <option value="Mongolia">Mongolia</option>
+          <option value="Morocco">Morocco</option>
+          <option value="Mozambique">Mozambique</option>
+          <option value="Namibia">Namibia</option>
+          <option value="Nepal">Nepal</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Niger">Niger</option>
+          <option value="Nigeria">Nigeria</option>
+          <option value="North Macedonia">North Macedonia</option>
+          <option value="Norway">Norway</option>
+          <option value="Oman">Oman</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Panama">Panama</option>
+          <option value="Papua New Guinea">Papua New Guinea</option>
+          <option value="Paraguay">Paraguay</option>
+          <option value="Peru">Peru</option>
+          <option value="Philippines">Philippines</option>
+          <option value="Poland">Poland</option>
+          <option value="Portugal">Portugal</option>
+          <option value="Qatar">Qatar</option>
+          <option value="Romania">Romania</option>
+          <option value="Russia">Russia</option>
+          <option value="Rwanda">Rwanda</option>
+          <option value="Saint Lucia">Saint Lucia</option>
+          <option value="San Marino">San Marino</option>
+          <option value="Saudi Arabia">Saudi Arabia</option>
+          <option value="Senegal">Senegal</option>
+          <option value="Seychelles">Seychelles</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Slovakia">Slovakia</option>
+          <option value="Slovenia">Slovenia</option>
+          <option value="Somalia">Somalia</option>
+          <option value="South Africa">South Africa</option>
+          <option value="Korea, South">South Korea</option>
+          <option value="Spain">Spain</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Sudan">Sudan</option>
+          <option value="Suriname">Suriname</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="Syria">Syria</option>
+          <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Thailand">Thailand</option>
+          <option value="Togo">Togo</option>
+          <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+          <option value="Tunisia">Tunisia</option>
+          <option value="Turkey">Turkey</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Ukraine">Ukraine</option>
+          <option value="United Arab Emirates">United Arab Emirates</option>
+          <option value="US">United States</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Uruguay">Uruguay</option>
+          <option value="Uzbekistan">Uzbekistan</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Vietnam">Vietnam</option>
+          <option value="Zambia">Zambia</option>
+          <option value="Zimbabwe">Zimbabwe</option>
+        </select>
+      </h3>
+
+      <h3 class="line-height">What is your age group?
+        <select id="age-select" data-age-select>
+          <option value="0">All ages</option>
+          <option disabled>─ ─ ─ ─ ─</option>
+          <option value="1">age 0–9</option>
+          <option value="2">age 10–19</option>
+          <option value="3">age 20–29</option>
+          <option value="4">age 30–39</option>
+          <option value="5">age 40–49</option>
+          <option value="6">age 50–59</option>
+          <option value="7">age 60–69</option>
+          <option value="8">age 70–79</option>
+          <option value="9">age 80+</option>
+        </select>
+      </h3>
+
+    </div>
+
+
+    <!-- settings -->
+    <div class="part settings" data-collapse>
+      <div data-collapse-header>
+        <h2>Settings &emsp;<a class="link combined delete" data-collapse-trigger><span data-collapse-trigger-label>Show</span> <span data-collapse-open><i class="fas fa-minus-square"></i></span><span data-collapse-closed><i class="fas fa-plus-square"></i></span></a></h2>
+      </div>
+
+      <div data-collapse-content>
+        <div class="small-part">
+          <h3>Undocumented cases</h3>
+          <p class="closer line-height"><span class="nw">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</span></p>
+          <p class="closer small">Load data for <a class="link" data-undocumented-cases-multiplicator-load-data>World (average)</a></p>
+        </div>
+
+        <div class="small-part">
+          <h3>Chance to hospitalization (+ICU)</h3>
+          <p class="closer line-height">
+            <span class="nw">All ages: <input type="number" data-hospitalization-input="0"> %,</span>
+            <span class="nw">age 0-9: <input type="number" data-hospitalization-input="1"> %,</span>
+            <span class="nw">10-19 <input type="number" data-hospitalization-input="2"> %,</span>
+            <span class="nw">20-29 <input type="number" data-hospitalization-input="3"> %,</span>
+            <span class="nw">30-39 <input type="number" data-hospitalization-input="4"> %,</span>
+            <span class="nw">40-49 <input type="number" data-hospitalization-input="5"> %,</span>
+            <span class="nw">50-59 <input type="number" data-hospitalization-input="6"> %,</span>
+            <span class="nw">60-69 <input type="number" data-hospitalization-input="7"> %,</span>
+            <span class="nw">70-79 <input type="number" data-hospitalization-input="8"> %,</span>
+            <span class="nw">80+ <input type="number" data-hospitalization-input="9"> %</span>
+          </p>
+          <p class="closer small">
+            Load data for
+            <a class="link" data-hospitalization-input-load-data="average">World (average)</a>,
+            <a class="link" data-hospitalization-input-load-data="spain">Spain</a>,
+            <a class="link" data-hospitalization-input-load-data="usa">USA (derived)</a>
+          </p>
+        </div>
+
+        <div class="small-part">
+          <h3>Chance to death (Fatality Rate &ndash; CFR)</h3>
+          <p class="closer line-height">
+            <span class="nw">All ages: <input type="number" data-death-input="0"> %,</span>
+            <span class="nw">age 0-9: <input type="number" data-death-input="1"> %,</span>
+            <span class="nw">10-19 <input type="number" data-death-input="2"> %,</span>
+            <span class="nw">20-29 <input type="number" data-death-input="3"> %,</span>
+            <span class="nw">30-39 <input type="number" data-death-input="4"> %,</span>
+            <span class="nw">40-49 <input type="number" data-death-input="5"> %,</span>
+            <span class="nw">50-59 <input type="number" data-death-input="6"> %,</span>
+            <span class="nw">60-69 <input type="number" data-death-input="7"> %,</span>
+            <span class="nw">70-79 <input type="number" data-death-input="8"> %,</span>
+            <span class="nw">80+ <input type="number" data-death-input="9"> %</span>
+          </p>
+          <p class="closer small">
+            Load data for
+            <a class="link" data-death-input-load-data="average">World (average)</a>,
+            <a class="link" data-death-input-load-data="china">China</a>,
+            <a class="link" data-death-input-load-data="italy">Italy</a>,
+            <a class="link" data-death-input-load-data="netherlands">Netherlands</a>,
+            <a class="link" data-death-input-load-data="southKorea">South Korea</a>,
+            <a class="link" data-death-input-load-data="spain">Spain</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- results -->
+    <div class="part results" id="results">
+      <h2>Results</h2>
+      <div class="small-part">
+        <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get <i class="fad fa-virus"></i> <b>infected</b>.</h1>
+
+        <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
+
+        <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
+      </div>
+
+      <div class="small-part">
+        <h3 class="">The chance that you will die this year in a vehicle crash is <b><code>0.0182&thinsp;%</code></b>.</h3>
+        <h3 class="">If you need hospitalization, there is a chance that you will end with reduced function of lungs.</h3>
+        <h3 class="">If you are young and need hospitalization, there is a small chance that someone else will die because of triage.</h3>
+      </div>
+
+      <div class="small-part" id="notes">
+        <p class="notes">Notes:
+          <br> &ndash; This is very simplified model for information purpose only.
+          <br> &ndash; We do not intend to provide any medical advice.
+          <br> &ndash; We are not epidemiologists or medical scientists.
+          <br> &ndash; The model does not count on transmission risk, gender, wearing masks, passing people on the street or touching infected surfaces.<br> &ndash; We use data from <a href="https://github.com/pomber/covid19
+        " class="link">pomber / covid19</a> and <a class="link" href="https://github.com/samayo/country-json">samayo / country-json</a>. Different countries count cases and test populations differently.
+          <br> &ndash; Chance of having COVID-19 = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.
+          <br> &ndash; Default hospitalization and fatality rates based on multiple sources, e.g. <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" class="link">Coronavirus disease 2019</a>.
+          <br> &ndash; Vehicle crash probability based on <a class="link" href="https://www.who.int/publications-detail/global-status-report-on-road-safety-2018">Global Status Report on Road Safety 2018</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- conclusion -->
+    <div class="part conclusion">
+      <h1>If you can stay home, wear a mask, wash hands & save lives.</h1>
+      <h1><i class="fad fa-house-user"></i> + <i class="fad fa-head-side-mask"></i> + <i class="fad fa-hands-wash"></i></h1>
+      <h3>Read more:<br><a class="link" href="https://masks4all.org/">Masks 4 All</a> &ndash; Movement for population-wide use of homemade masks as critical protective equipment against COVID-19.</h3>
+    </div>
+
+    <!-- footer -->
+    <div class="part footer">
+      <p class="small">Contribute to our <a class="link" href="https://github.com/bartaxyz/covidbility">Project on Github</a>. Made by <a href="https://ondrejbarta.xyz/" class="link">Ondrej Barta</a> (code) and <a href="https://vmokry.com/" class="link">Vladimir Mokry</a> (concept, design). Thanks to <a class="link" href="https://kolar.io">Jan A Kolar</a>.</p>
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
