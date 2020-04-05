@@ -387,6 +387,16 @@ select {
   max-width: 240px;
 }
 
+input[type='checkbox'] {
+  font-size: 1em;
+  line-height: 1em;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
 /*
 NOT USABLE ON IOS SAFARI
 

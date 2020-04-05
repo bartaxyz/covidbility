@@ -37,8 +37,8 @@
 
     <div class="part mainline">
       <h2>Learn the likelihood that you will be <b>directly infected</b> with a novel coronavirus by another person.</h2>
-      <h3><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br> A number that represents how likely one person gets infected by a novel coronavirus.
-      </h3>
+      <p><b>covidbility</b> &ndash; <i>noun</i> [ C&thinsp;/&thinsp;U ]<br> A number that represents how likely one person gets infected by a novel coronavirus.
+      </p>
     </div>
 
     <!-- mainline -->
@@ -122,12 +122,12 @@
           <div class="item">
             <div class="0drag-container" data-drag-container="0">
               <div class="item-person" data-person="A" tabindex="-1">
-                <h4><i class="fas fa-user"></i> <span data-name="">A</span> <i class="fas fa-user"></i></h4>
+                <h4><i class="fas fa-user"></i> <span data-name="">A</span></h4>
               </div>
             </div>
             <div class="0drag-container" data-drag-container="0">
               <div class="item-person" data-person="A" tabindex="-1">
-                <h4><i class="fas fa-user"></i> <span data-name="">A</span></h4>
+                <h4><i class="fas fa-head-side-mask"></i> <span data-name="">B</span></h4>
               </div>
             </div>
             <div class="no">
@@ -158,7 +158,7 @@
           <p>
             <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span>
           </p>
-          <p><label for="mask-person-2">Has a mask?</label> <input id="mask-person-2" type="checkbox" checked="checked" /></p>
+          <p><label for="mask-person-2"><input id="mask-person-2" type="checkbox"  /> Wears a mask</label></p>
 
           <!-- 
           <a href="" class="btn lite square hide">No mask  <i class="fas fa-head-side"></i></a>
@@ -168,14 +168,14 @@
         </div>
         <div class="person">
           <a class="link delete"><i class="fas fa-times-circle"></i></a>
-          <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
+          <h4><i class="fas fa-head-side-mask"></i> <span data-name>B</span></h4>
 
           <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19</p>
           <p>
             <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span><br>
 
           </p>
-          <p><label for="mask-person-1">Has a mask?</label> <input id="mask-person-1" type="checkbox" checked="checked" /></p>
+          <p><label for="mask-person-1"><input id="mask-person-1" type="checkbox" checked="checked" /> Wears a mask</label></p>
         </div>
         <div class="person empty">
           <a class="btn">Add person</a>
@@ -189,14 +189,16 @@
     <div class="part optional">
       <h2 class="hide">Optional</h2>
 
+      <!-- 
       <h3 class="line-height hide">Do you wear a mask?
         <select id="mask-select" data-mask-select>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
       </h3>
-      <h3 class="line-height "><label for="mask-yourself">Do you wear a mask?</label>
-        <input type="checkbox" id="mask-yourself" name="" value="">
+      -->
+      <h3 class="line-height "><label for="mask-yourself"><input type="checkbox" id="mask-yourself" name="" value=""> I wear a mask</label>
+
       </h3>
 
       <h3 class="line-height">Where do you live?
@@ -398,11 +400,18 @@
         <div class="small-part">
           <h3>Undocumented cases</h3>
           <p class="closer line-height"><span class="nw">Multiplicator: <input type="number" value="10" data-undocumented-cases-multiplicator> &times;</span></p>
-          <p class="closer small">Load data for <a class="link" data-undocumented-cases-multiplicator-load-data>World (average)</a></p>
+          <p class="closer small hide">Load data for <a class="link" data-undocumented-cases-multiplicator-load-data>World (average)</a></p>
         </div>
 
         <div class="small-part">
-          <h3>Chance to hospitalization (+ICU)</h3>
+          <h3>Transmission risk</h3>
+          <p class="closer line-height"><span class="nw">No protection: <input type="number" value="100" data-undocumented-cases-multiplicator> %,</span>
+            <span class="nw">Your mask: <input type="number" value="70" data-undocumented-cases-multiplicator> %,</span></p>
+
+        </div>
+
+        <div class="small-part">
+          <h3>Chance to hospitalization or ICU</h3>
           <p class="closer line-height">
             <span class="nw">All ages: <input type="number" data-hospitalization-input="0"> %,</span>
             <span class="nw">age 0-9: <input type="number" data-hospitalization-input="1"> %,</span>
@@ -456,7 +465,7 @@
       <div class="small-part">
         <h1 class="main">You have <b class="highlight"><code><span data-total-chance>0.2109</span>&thinsp;%</code></b> chance to get <i class="fad fa-virus"></i> <b>infected</b>.</h1>
 
-        <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization (+ICU)</b>.</h1>
+        <h1 class="main">You have <b class="highlight"><code><span data-hospitalization-chance>0.0421</span>&thinsp;%</code></b> chance to need <i class="fad fa-hospital-alt"></i> <b>hospitalization or ICU</b>.</h1>
 
         <h1 class="main ">You have <b class="highlight"><code><span data-death-chance>0.0071</span>&thinsp;%</code></b> chance that you will <i class="fad fa-skull"></i> <b>die</b>.</h1>
       </div>
@@ -472,7 +481,7 @@
           <br> &ndash; This is very simplified model for information purpose only.
           <br> &ndash; We do not intend to provide any medical advice.
           <br> &ndash; We are not epidemiologists or medical scientists.
-          <br> &ndash; The model does not count on transmission risk, gender, wearing masks, passing people on the street or touching infected surfaces.<br> &ndash; We use data from <a href="https://github.com/pomber/covid19
+          <br> &ndash; The model does not count with gender, passing people on the street or touching infected surfaces.<br> &ndash; We use data from <a href="https://github.com/pomber/covid19
         " class="link">pomber / covid19</a> and <a class="link" href="https://github.com/samayo/country-json">samayo / country-json</a>. Different countries count cases and test populations differently.
           <br> &ndash; Chance of having COVID-19 = (Conf.C. &times; multiplicator of Undoc.C. &minus; Rec. &minus; Deaths) / Popul. &times; 100.
           <br> &ndash; Default hospitalization and fatality rates based on multiple sources, e.g. <a class="link" href="https://www.vox.com/2020/3/23/21190033/coronavirus-covid-19-deaths-by-age">The Covid-19 risks for different age groups, explained</a>, <a href="https://ourworldindata.org/coronavirus" class="link">Coronavirus Disease (COVID-19) – Statistics and Research</a>.
