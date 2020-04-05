@@ -348,7 +348,7 @@ a.link.combined {
 
 .person {
   padding: 1em;
-  padding-bottom: 0.7em;
+  padding-bottom: 0.5em;
   background-color: var(--block-color);
   border: 2px solid var(--none-color);
   border-radius: 4px;
@@ -369,8 +369,8 @@ a.link.combined {
 }
 
 .people .person p {
-  margin-top: .3em;
-  margin-bottom: .3em;
+  margin-top: .5em;
+  margin-bottom: .5em;
 }
 
 .person .square {
@@ -386,6 +386,9 @@ select {
   font-size: 1em;
   max-width: 240px;
 }
+
+/*
+NOT USABLE ON IOS SAFARI
 
 input[type='checkbox'] {
   position: relative;
@@ -419,8 +422,7 @@ input[type='checkbox']:checked:after {
   content: "✓";
   color: var(--link-color-hover);
 }
-
-
+*/
 
 .settings input[type=number] {
   width: 3.5em;
