@@ -387,14 +387,16 @@ select {
   max-width: 240px;
 }
 
-input[type='checkbox'] {}
+input[type='checkbox'] {
+  position: relative;
+}
 
 input[type='checkbox']:after {
   content: "✓";
   color: white;
   font-size: 1.5em;
   line-height: .9em;
-  display: block;
+  display: inline-block;
   padding: 0em;
   height: .9em;
   width: .9em;
@@ -403,8 +405,9 @@ input[type='checkbox']:after {
   border: 2px solid var(--link-color);
   background: white;
   border-radius: 4px;
-  position: relative;
+  position: absolute;
   top: -0.3em;
+  left: 0;
   cursor: pointer;
 }
 
