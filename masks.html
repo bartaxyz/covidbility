@@ -120,7 +120,12 @@
             </div>
           </div>
           <div class="item">
-            <div class="drag-container" data-drag-container="0">
+            <div class="0drag-container" data-drag-container="0">
+              <div class="item-person" data-person="A" tabindex="-1">
+                <h4><i class="fas fa-user"></i> <span data-name="">A</span> <i class="fas fa-user"></i></h4>
+              </div>
+            </div>
+            <div class="0drag-container" data-drag-container="0">
               <div class="item-person" data-person="A" tabindex="-1">
                 <h4><i class="fas fa-user"></i> <span data-name="">A</span></h4>
               </div>
@@ -149,19 +154,27 @@
           <a class="link delete" data-remove><i class="fas fa-times-circle"></i></a>
           <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
 
-          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19<br>
-            <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span><br>
-            <a href="" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a>
+          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19</p>
+          <p>
+            <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span>
+          </p>
+          <p><label for="mask-person-2">Has a mask?</label> <input id="mask-person-2" type="checkbox" checked="checked" /></p>
+
+          <!-- Old -->
+          <a href="" class="btn lite square hide">No mask  <i class="fas fa-head-side"></i></a>
+          <a href="" class="btn square hide">Has mask <i class="fas fa-head-side-mask"></i></a>
           </p>
         </div>
         <div class="person">
           <a class="link delete" data-remove><i class="fas fa-times-circle"></i></a>
           <h4><i class="fas fa-user"></i> <span data-name>A</span></h4>
 
-          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19<br>
+          <p class="small">has <b><code><span data-chance>-</span>&thinsp;%</code></b> chance of having COVID-19</p>
+          <p>
             <a class="link" href=""><i class="fas fa-minus-square"></i></a> <span class="small"><span data-day>Today</span> <a class="link" href=""><i class="fas fa-plus-square"></i></a></span><br>
-            <a href="" class="btn lite">Learn more <i class="fas fa-arrow-down"></i></a>&emsp;<a data-disabled-section href="#results" class="btn lite hide">Share <i class="fas fa-share"></i></a>
+
           </p>
+          <p><label for="mask-person-1">Has a mask?</label> <input id="mask-person-1" type="checkbox" checked="checked" /></p>
         </div>
         <div class="person empty">
           <a class="btn" data-add-person>Add person</a>
@@ -173,7 +186,17 @@
 
     <!-- optional -->
     <div class="part optional">
-      <h2>Optional</h2>
+      <h2 class="hide">Optional</h2>
+
+      <h3 class="line-height hide">Do you wear a mask?
+        <select id="mask-select" data-mask-select>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </h3>
+      <h3 class="line-height "><label for="mask-yourself">Do you wear a mask?</label>
+        <input type="checkbox" id="mask-yourself" name="" value="">
+      </h3>
 
       <h3 class="line-height">Where do you live?
         <select id="country-select" data-country-select>
