@@ -190,7 +190,8 @@ a.link.combined {
   margin-bottom: 2.5em;
 }
 
-.part.timeline {
+.part.timeline,
+.part.header {
   margin-bottom: 3em;
 }
 
