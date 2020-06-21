@@ -52,8 +52,7 @@ export const getChance = async (day: number = 0) => {
   }
 
   return (
-    ((currentConfirmed * undocumentedCasesMultiplicator -
-      currentRecovered -
+    (((currentConfirmed - currentRecovered) * undocumentedCasesMultiplicator -
       currentDeaths) /
       currentPopulation) *
     100
