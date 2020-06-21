@@ -1284,8 +1284,7 @@
                 typeof currentDeaths === "undefined") {
                 return;
             }
-            return (((currentConfirmed * undocumentedCasesMultiplicator -
-                currentRecovered -
+            return ((((currentConfirmed - currentRecovered) * undocumentedCasesMultiplicator -
                 currentDeaths) /
                 currentPopulation) *
                 100);
