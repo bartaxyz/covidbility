@@ -8,7 +8,7 @@ export class UndocumentedCasesMultiplicatorLoadData extends Component {
     super(element);
 
     this.element.addEventListener("click", () => {
-      write("undocumentedCasesMultiplicator", 10);
+      write("undocumentedCasesMultiplicator", 1.5);
     });
   }
 }

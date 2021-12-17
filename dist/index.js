@@ -1529,7 +1529,7 @@
             constructor(element) {
                 super(element);
                 this.element.addEventListener("click", () => {
-                    index_7.write("undocumentedCasesMultiplicator", 10);
+                    index_7.write("undocumentedCasesMultiplicator", 1.5);
                 });
             }
         }
