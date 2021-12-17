@@ -17,7 +17,7 @@ addEventListener("DOMContentLoaded", () => {
 // Clear data
 
 write("country", "World");
-write("undocumentedCasesMultiplicator", 10);
+write("undocumentedCasesMultiplicator", 1.5);
 write("deathRates", deathRate.average);
 write("hospitalizationRates", hospitalizationRate.average);
 write("age", 0);
