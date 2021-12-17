@@ -2645,7 +2645,7 @@
         });
         // Clear data
         index_20.write("country", "World");
-        index_20.write("undocumentedCasesMultiplicator", 10);
+        index_20.write("undocumentedCasesMultiplicator", 1.5);
         index_20.write("deathRates", deathRate_2.deathRate.average);
         index_20.write("hospitalizationRates", hospitalizationRate_2.hospitalizationRate.average);
         index_20.write("age", 0);
