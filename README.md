@@ -2,6 +2,8 @@
 
 ![GitHub Pages Deployment](https://github.com/bartaxyz/covidbility/workflows/GitHub%20Pages%20Deployment/badge.svg)
 
+:warning: This project no longer provides good data, and should not be used. It was useful at the beginning of the pandemic, but not anymore.
+
 ### <a href="https://bartaxyz.github.io/covidbility/">Learn your chance</a> to get infected by novel coronavirus.
 
 - Show % chance of becoming infected today, and days before.
